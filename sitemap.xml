@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://compomint.dev/</loc>
+    <lastmod>2025-05-12</lastmod> <!-- TODO: Please update this date to the actual last modification date. -->
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!--
+    If your website has other unique pages, add them here.
+    Pages with hash fragments (e.g., /#documentation, /#examples) are
+    generally considered part of the main page and do not need to be added as separate entries in the sitemap.
+    The content of these fragments will be crawled as part of the base URL (https://compomint.dev/).
+
+    Example of adding another page:
+    <url>
+      <loc>https://compomint.dev/another-page.html</loc>
+      <lastmod>YYYY-MM-DD</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  -->
+</urlset>

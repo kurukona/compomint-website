@@ -1,0 +1,29 @@
+{
+  "name": "compomint-website",
+  "version": "1.0.0",
+  "description": "![Compomint Logo](img/favicon.svg)",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css",
+    "dev": "npx @tailwindcss/cli -i ./css/input.css -o ./css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurukona/compomint-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kurukona/compomint-website/issues"
+  },
+  "homepage": "https://github.com/kurukona/compomint-website#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.6",
+    "tailwindcss": "^4.1.6"
+  }
+}
