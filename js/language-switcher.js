@@ -371,26 +371,26 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       'en': {
         'en': 'English',
-        'ko': '영어',
-        'ja': '英語',
-        'zh': '英语'
+        'ko': 'English',
+        'ja': 'English',
+        'zh': 'English'
       },
       'ko': {
-        'en': 'Korean',
+        'en': '한국어',
         'ko': '한국어',
-        'ja': '韓国語',
-        'zh': '韩语'
+        'ja': '한국어',
+        'zh': '한국어'
       },
       'ja': {
-        'en': 'Japanese',
-        'ko': '일본어',
+        'en': '日本語',
+        'ko': '日本語',
         'ja': '日本語',
-        'zh': '日语'
+        'zh': '日本語'
       },
       'zh': {
-        'en': 'Chinese',
-        'ko': '중국어',
-        'ja': '中国語',
+        'en': '中文',
+        'ko': '中文',
+        'ja': '中文',
         'zh': '中文'
       }
     }
