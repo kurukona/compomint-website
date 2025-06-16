@@ -1,6 +1,6 @@
 # Compomint Website
 
-![Compomint Logo](img/favicon.svg)
+![Compomint Logo](img/icon.png)
 
 A lightweight JavaScript template-based component engine website.
 
