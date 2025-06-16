@@ -262,6 +262,114 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     },
+    'vscode': {
+      'title': {
+        'en': 'VSCode Extension',
+        'ko': 'VSCode 확장 기능',
+        'ja': 'VSCode拡張機能',
+        'zh': 'VSCode扩展'
+      },
+      'subtitle': {
+        'en': 'Boost your Compomint development with powerful VSCode extension that provides syntax highlighting, auto-completion, and live preview.',
+        'ko': '구문 하이라이팅, 자동 완성, 라이브 미리보기를 제공하는 강력한 VSCode 확장 기능으로 Compomint 개발을 향상시키세요.',
+        'ja': '構文ハイライト、自動補完、ライブプレビューを提供する強力なVSCode拡張機能でCompomint開発を向上させましょう。',
+        'zh': '使用提供语法高亮、自动完成和实时预览的强大VSCode扩展来提升您的Compomint开发体验。'
+      },
+      'install': {
+        'en': 'Install Extension',
+        'ko': '확장 기능 설치',
+        'ja': '拡張機能をインストール',
+        'zh': '安装扩展'
+      },
+      'features': {
+        'syntax': {
+          'title': {
+            'en': 'Syntax Highlighting',
+            'ko': '구문 하이라이팅',
+            'ja': '構文ハイライト',
+            'zh': '语法高亮'
+          },
+          'description': {
+            'en': 'Colored syntax highlighting for Compomint templates and expressions.',
+            'ko': 'Compomint 템플릿과 표현식을 위한 컬러 구문 하이라이팅을 제공합니다.',
+            'ja': 'Compomintテンプレートと式のカラー構文ハイライトを提供します。',
+            'zh': '为Compomint模板和表达式提供彩色语法高亮。'
+          }
+        },
+        'autocomplete': {
+          'title': {
+            'en': 'Auto-completion',
+            'ko': '자동 완성',
+            'ja': '自動補完',
+            'zh': '自动完成'
+          },
+          'description': {
+            'en': 'Smart auto-completion for Compomint APIs and template syntax.',
+            'ko': 'Compomint API와 템플릿 구문을 위한 스마트 자동 완성 기능을 제공합니다.',
+            'ja': 'Compomint APIとテンプレート構文のスマート自動補完を提供します。',
+            'zh': '为Compomint API和模板语法提供智能自动完成。'
+          }
+        },
+        'snippets': {
+          'title': {
+            'en': 'Code Snippets',
+            'ko': '코드 스니펫',
+            'ja': 'コードスニペット',
+            'zh': '代码片段'
+          },
+          'description': {
+            'en': 'Ready-to-use code snippets for common Compomint patterns.',
+            'ko': '일반적인 Compomint 패턴을 위한 즉시 사용 가능한 코드 스니펫을 제공합니다.',
+            'ja': '一般的なCompomintパターン用のすぐに使えるコードスニペットを提供します。',
+            'zh': '为常见的Compomint模式提供即用型代码片段。'
+          }
+        },
+        'preview': {
+          'title': {
+            'en': 'Live Preview',
+            'ko': '라이브 미리보기',
+            'ja': 'ライブプレビュー',
+            'zh': '实时预览'
+          },
+          'description': {
+            'en': 'Real-time preview of your Compomint templates and components.',
+            'ko': 'Compomint 템플릿과 컴포넌트의 실시간 미리보기를 제공합니다.',
+            'ja': 'Compomintテンプレートとコンポーネントのリアルタイムプレビューを提供します。',
+            'zh': '为您的Compomint模板和组件提供实时预览。'
+          }
+        }
+      },
+      'screenshots': {
+        'template': {
+          'title': {
+            'en': 'Template Support',
+            'ko': '템플릿 지원',
+            'ja': 'テンプレートサポート',
+            'zh': '模板支持'
+          },
+          'description': {
+            'en': 'Advanced template editing with syntax highlighting and IntelliSense.',
+            'ko': '구문 하이라이팅과 IntelliSense를 통한 고급 템플릿 편집 기능입니다.',
+            'ja': '構文ハイライトとIntelliSenseによる高度なテンプレート編集機能です。',
+            'zh': '通过语法高亮和IntelliSense提供高级模板编辑功能。'
+          }
+        },
+        'preview': {
+          'title': {
+            'en': 'Live Preview',
+            'ko': '라이브 미리보기',
+            'ja': 'ライブプレビュー',
+            'zh': '实时预览'
+          },
+          'description': {
+            'en': 'See your components rendered in real-time as you code.',
+            'ko': '코딩하는 동시에 컴포넌트가 실시간으로 렌더링되는 것을 확인할 수 있습니다.',
+            'ja': 'コーディング中にコンポーネントがリアルタイムでレンダリングされるのを確認できます。',
+            'zh': '在编码时实时查看组件的渲染效果。'
+          }
+        }
+      }
+    },
     'footer': {
       'description': {
         'en': 'Compomint is a lightweight JavaScript framework for creating web applications with a component-based architecture.',

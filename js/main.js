@@ -88,6 +88,7 @@ function initApp() {
     menuItems: [
       { label: compomint.i18n.footer.links.home('Home'), url: '#home', active: true },
       { label: compomint.i18n.footer.links.features('Features'), url: '#features' },
+      { label: compomint.i18n.vscode.title('VSCode'), url: '#vscode-extension' },
       { label: compomint.i18n.footer.links.examples('Examples'), url: '#examples' },
       { label: compomint.i18n.footer.links.docs('Documentation'), url: '#documentation' }
     ]
@@ -154,6 +155,67 @@ document.body.appendChild(hello.element);`
         title: compomint.i18n.features.i18n.title('Internationalization'),
         description: compomint.i18n.features.i18n.description('Built-in support for multiple languages with i18n system.'),
         icon: featureIcons.i18n
+      }
+    ]
+  });
+
+  // VSCode Extension icons
+  const vscodeIcons = {
+    syntax: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+    </svg>`,
+    autocomplete: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+    </svg>`,
+    snippets: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+    </svg>`,
+    preview: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+    </svg>`
+  };
+
+  // Define the VSCode extension section
+  const vscodeExtension = tmpl.ui.VSCodeExtension({
+    title: compomint.i18n.vscode.title('VSCode Extension'),
+    subtitle: compomint.i18n.vscode.subtitle('Boost your Compomint development with powerful VSCode extension that provides syntax highlighting, auto-completion, and live preview.'),
+    extensionUrl: 'https://marketplace.visualstudio.com/items?itemName=compomint.compomint-vscode',
+    buttonText: compomint.i18n.vscode.install('Install Extension'),
+    features: [
+      {
+        title: compomint.i18n.vscode.features.syntax.title('Syntax Highlighting'),
+        description: compomint.i18n.vscode.features.syntax.description('Colored syntax highlighting for Compomint templates and expressions.'),
+        icon: vscodeIcons.syntax
+      },
+      {
+        title: compomint.i18n.vscode.features.autocomplete.title('Auto-completion'),
+        description: compomint.i18n.vscode.features.autocomplete.description('Smart auto-completion for Compomint APIs and template syntax.'),
+        icon: vscodeIcons.autocomplete
+      },
+      {
+        title: compomint.i18n.vscode.features.snippets.title('Code Snippets'),
+        description: compomint.i18n.vscode.features.snippets.description('Ready-to-use code snippets for common Compomint patterns.'),
+        icon: vscodeIcons.snippets
+      },
+      {
+        title: compomint.i18n.vscode.features.preview.title('Live Preview'),
+        description: compomint.i18n.vscode.features.preview.description('Real-time preview of your Compomint templates and components.'),
+        icon: vscodeIcons.preview
+      }
+    ],
+    screenshots: [
+      {
+        src: 'img/compomint-template-support.png',
+        alt: 'Compomint Template Support in VSCode',
+        title: compomint.i18n.vscode.screenshots.template.title('Template Support'),
+        description: compomint.i18n.vscode.screenshots.template.description('Advanced template editing with syntax highlighting and IntelliSense.')
+      },
+      {
+        src: 'img/template-preview.png',
+        alt: 'Template Preview Feature',
+        title: compomint.i18n.vscode.screenshots.preview.title('Live Preview'),
+        description: compomint.i18n.vscode.screenshots.preview.description('See your components rendered in real-time as you code.')
       }
     ]
   });
@@ -283,6 +345,7 @@ compomint.addTmpl('ui-TodoList', \`
     header: header,
     hero: hero,
     features: features,
+    vscodeExtension: vscodeExtension,
     examples: examples,
     documentation: documentation,
     footer: footer
