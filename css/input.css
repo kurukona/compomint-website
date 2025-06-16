@@ -1,4 +1,11 @@
-/* input.css */
-@import "tailwindcss";
+/* Tailwind CSS Styles for Compomint Website */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* Custom component styles */
+@layer components {
+  .CodeMirror {
+    @apply h-full;
+  }
+}

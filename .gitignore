@@ -25,3 +25,10 @@ yarn-error.log*
 
 # Node.js dependencies
 node_modules/
+
+# Vite
+dist/
+.vite/
+
+# Build outputs (Vite가 관리하므로 더 이상 필요 없음)
+# css/output.css

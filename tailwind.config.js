@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: 'class', // Use class-based dark mode
   content: [
-    './**/*.html',
+    './index.html',
+    './cmint.playground.html',
     './js/**/*.js',
+    './template/**/*.html'
   ],
   theme: {
     extend: {
