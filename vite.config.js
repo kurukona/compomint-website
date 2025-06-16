@@ -16,8 +16,7 @@ export default defineConfig({
     assetsDir: 'assets',
     rollupOptions: {
       input: {
-        main: './index.html',
-        playground: './cmint.playground.html'
+        main: './index.html'
       }
     }
   },
