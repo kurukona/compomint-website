@@ -25,16 +25,7 @@ compomint.addTmpls(`
     <header class="bg-white shadow-sm sticky top-0 z-50 dark:bg-gray-800">
       <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
         <div class="flex items-center space-x-2 mb-4 md:mb-0">
-          <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <!-- Background Circle -->
-            <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2"/>
-            
-            <!-- 'C' Character -->
-            <path d="M16 16 Q12 20 12 24 Q12 28 16 32 Q18 34 20 34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            
-            <!-- 'M' Character -->
-            <path d="M26 34 L26 16 L31 24 L36 16 L36 34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <img src="img/icon.png" alt="Compomint Logo" class="w-8 h-8 logo-primary">
           <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">Compomint</span>
         </div>
         
@@ -238,16 +229,7 @@ compomint.addTmpls(`
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div class="flex items-center space-x-2 mb-6">
-              <svg class="w-8 h-8 text-indigo-400" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <!-- Background Circle -->
-                <circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2"/>
-                
-                <!-- 'C' Character -->
-                <path d="M16 16 Q12 20 12 24 Q12 28 16 32 Q18 34 20 34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                
-                <!-- 'M' Character -->
-                <path d="M26 34 L26 16 L31 24 L36 16 L36 34" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img src="img/icon.png" alt="Compomint Logo" class="w-8 h-8 logo-light">
               <span class="text-xl font-bold text-white">Compomint</span>
             </div>
             <p class="text-gray-400">##=data.description##</p>
