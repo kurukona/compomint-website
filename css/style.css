@@ -298,3 +298,21 @@ body.dark-mode .bg-indigo-50.text-indigo-600 {
 body.dark-mode .hover\:bg-gray-100:hover {
   background-color: #374151;
 }
+
+/* Logo color filters */
+.logo-primary {
+  filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(215deg) brightness(119%) contrast(119%);
+}
+
+.logo-light {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%) hue-rotate(215deg) brightness(91%) contrast(91%);
+}
+
+/* Dark mode logo adjustments */
+.dark .logo-primary {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%) hue-rotate(215deg) brightness(91%) contrast(91%);
+}
+
+body.dark-mode .logo-primary {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%) hue-rotate(215deg) brightness(91%) contrast(91%);
+}
