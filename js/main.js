@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     "templates/ui-components.cmint",
     "templates/ui.components.cmint",
     "templates/pg.components.cmint",
-    //"templates/demo-components.cmint",
+    "templates/demo-components.cmint",
   ]);
 
   if (promise) {
@@ -340,6 +340,32 @@ document.body.appendChild(button.element);`,
   });
   document.body.appendChild(todoList.element);`,
         //result: todoList,
+      },
+      {
+        class: "demo-xl-size",
+        interactive: true,
+        title: compomint.i18n.examples.multiTemplate.title(
+          "Multi-Template Application"
+        ),
+        description: compomint.i18n.examples.multiTemplate.description(
+          "Complete application example combining multiple templates"
+        ),
+        type: "codeIsTemplateFile",
+        template: await (
+          await fetch("templates/demo/ui.UserManagement.cmint")
+        ).text(),
+        imports: [],
+        code: `// Create a user management system for an example
+const userManagement = tmpl.ui.UserManagement({
+  users: [
+    { id: 1, name: 'Kim Chul-su', email: 'kim@example.com', role: 'admin', active: true, joinDate: '2024-01-15' },
+    { id: 2, name: 'Lee Young-hee', email: 'lee@example.com', role: 'moderator', active: true, joinDate: '2024-02-10' },
+    { id: 3, name: 'Park Min-su', email: 'park@example.com', role: 'user', active: false, joinDate: '2024-03-05' },
+    { id: 4, name: 'Choi Ji-eun', email: 'choi@example.com', role: 'user', active: true, joinDate: '2024-06-20' }
+  ]
+});
+document.body.appendChild(userManagement.element);`,
+        //result: userManagement,
       },
     ],
   });
