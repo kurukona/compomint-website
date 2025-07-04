@@ -1,6 +1,6 @@
 # Compomint Website
 
-![Compomint Logo](img/icon.png)
+![Compomint Logo](public/img/icon.png)
 
 A lightweight JavaScript template-based component engine website.
 
@@ -27,21 +27,25 @@ This repository contains the website for Compomint - a lightweight JavaScript te
 ## Getting Started
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/yourusername/compomint-website.git
    ```
 
 2. Open the website locally:
+
    ```
    cd compomint-website
    ```
+
    Then serve the pages directory using any static file server.
 
 3. For development, you can use any simple HTTP server:
+
    ```
    # Using Python (if installed)
    python -m http.server
-   
+
    # Or using Node.js (with http-server installed)
    npx http-server
    ```
@@ -56,7 +60,6 @@ The website supports multiple languages through Compomint's built-in i18n system
 - Chinese (zh)
 
 Language files are located in `js/language-switcher.js`.
-
 
 ## License
 
