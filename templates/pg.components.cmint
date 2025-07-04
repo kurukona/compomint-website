@@ -1,0 +1,763 @@
+<body>
+<template id="pg-TestArea">
+  <style id="style-pg-TestArea">
+    .pg-TestArea {
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      background: white;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .dark .pg-TestArea {
+      background: #1f2937;
+      border-color: #374151;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    }
+    
+    .pg-TestArea.console {
+      height: 545px;
+    }
+    .pg-TestArea.template {
+      height: 667px;
+    }
+    .pg-TestArea.template.console {
+      height: 867px;
+    }
+    
+    /* console 상태에서 controlArea가 console 바로 위에 위치하도록 */
+    .pg-TestArea.console .controlArea {
+      z-index: 20; /* console보다 위에 표시 */
+      position: relative;
+      left: 0;
+      right: 0;
+    }
+    
+    /* 콘솔 영역의 z-index 설정 */
+    .pg-Console-Area {
+      z-index: 5;
+    }
+
+    .pg-TestArea .brui-Splitter-Layout.code,
+    .pg-TestArea .brui-Splitter-Layout.template {
+      height: calc(100% - 50px);
+    }
+    .pg-TestArea.template .brui-Splitter-Layout.template .brui-Splitter-Layout.code {
+      height: 100%;
+    }
+    .pg-TestArea.console .brui-Splitter-Layout.code,
+    .pg-TestArea.console .brui-Splitter-Layout.template {
+      height: calc(100% - 250px);
+    }
+    
+    .pg-TestArea .pg-Rendering-Area {
+      height: calc(100% - 20px);
+    }
+    
+    /* 제어 영역 스타일 개선 */
+    .pg-TestArea .controlArea {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-top: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 50px;
+      box-sizing: border-box;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+    
+    .dark .pg-TestArea .controlArea {
+      background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+      border-top: 1px solid #4b5563;
+    }
+    
+    /* 스플리터 제목 스타일 개선 */
+    .pg-TestArea .splitter-title {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      padding: 8px 12px;
+      height: 32px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-sizing: border-box;
+    }
+    
+    .dark .pg-TestArea .splitter-title {
+      background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+      border-bottom: 1px solid #6b7280;
+      color: #f3f4f6;
+    }
+  </style>
+  ##
+  var imports = data.imports;
+  var template = data.template;
+  var hasTemplate = !!template;
+  var code = data.code;
+  var type = data.type;
+  var showConsole = data.showConsole || false;
+  var autoRefresh = true;
+
+  var runCodeArea = tmpl.pg.CodeMirrorArea({
+    value: code,
+    changeEvent: function(cMirror) {
+      if (autoRefresh) renderingArea.refreshCode({code: cMirror.getValue(), type: type});
+    }
+  });
+  var consoleArea = tmpl.pg.ConsoleArea({show: showConsole});
+  var renderingArea = tmpl.pg.RenderingArea({imports: imports, code: code, type: type, template: template, loadCallback: function(iframe) {
+    setTimeout(function() {
+      consoleArea.setWindow(iframe.contentWindow);
+    });
+  }});
+
+  var codeSpliteArea = compomint.tmpl('brui-Splitter-Layout')({
+    class: 'code',
+    direction: 'horizontal',
+    items: [[compomint.tmpl('co-Element')({tag: 'div', props: {class: 'splitter-title'}, content: 'Run Code'}), runCodeArea], [compomint.tmpl('co-Element')({tag: 'div', props: {class: 'splitter-title'}, content: 'Result'}), renderingArea]]
+  });
+
+  var templateSpliteArea, templateCodeArea = null;
+  if (hasTemplate) {
+    templateCodeArea = tmpl.pg.CodeMirrorArea({
+      value: template,
+      changeEvent: function(cMirror) {
+        if (autoRefresh) renderingArea.refreshCode({template: cMirror.getValue(), type: type});
+      }
+    });
+    templateSpliteArea = compomint.tmpl('brui-Splitter-Layout')({
+      class: 'template',
+      direction: 'vertical',
+      items: [[compomint.tmpl('co-Element')({tag: 'div', props: {class: 'splitter-title'}, content: 'Template'}), templateCodeArea], codeSpliteArea]
+    });
+  }
+  ##
+  <div class="pg-TestArea h-[345px] mb-2.5 ##=hasTemplate ? 'template' : ''## ##=showConsole ? 'console' : ''##">
+    ##%templateSpliteArea || codeSpliteArea##
+    <div class="controlArea">
+      ##%tmpl.pg.Button({label: 'AUTO REFRESH', icon: 'refresh', styleClass: 'xs ' + (autoRefresh ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
+        autoRefresh = !autoRefresh;
+        element.style.backgroundColor = autoRefresh ? '#10b981' : '#f3f4f6';
+        element.style.color = autoRefresh ? 'white' : '#374151';
+        element.style.borderColor = autoRefresh ? '#10b981' : '#d1d5db';
+      }})##
+      ##%tmpl.pg.Button({label: 'CODE RESET', icon: 'repeat', styleClass: 'xs btn-default', event: function() {
+        runCodeArea.codeMirror.setValue(code);
+      }})##
+      ##%tmpl.pg.Button({label: 'RUN', icon: 'play', styleClass: 'xs btn-primary', event: function() {
+        renderingArea.refreshCode({template: templateCodeArea ? templateCodeArea.codeMirror.getValue() : null, code: runCodeArea.codeMirror.getValue()});
+      }})##
+      ##%tmpl.pg.Button({label: 'CONSOLE', icon: '', styleClass: 'xs right ' + (showConsole ? 'btn-info' : 'btn-default'), event: function(e, {element, componentElement}) {
+        showConsole = !showConsole;
+        consoleArea.show(showConsole);
+        component.element.classList[showConsole ? 'add' : 'remove']('console');
+        element.style.backgroundColor = showConsole ? '#3b82f6' : '#f3f4f6';
+        element.style.color = showConsole ? 'white' : '#374151';
+        element.style.borderColor = showConsole ? '#3b82f6' : '#d1d5db';
+      }})##
+    </div>
+    ##%consoleArea##
+  </div>
+  ###
+
+  ##
+</template>
+
+<template id="pg-Component-PlayGround">
+  <style id="style-pg-Component-PlayGround">
+    .pg-Component-PlayGround {
+      height: 200px;
+      border: 1px solid #d1d5db;
+      margin: 10px 0;
+    }
+    .pg-Component-PlayGround .renderingArea {
+      width: 200px;
+      height: 100%;
+      float: left;
+    }
+    .pg-Component-PlayGround .renderingArea .pg-Rendering-Area {
+      height: calc(100% - 22px);
+      padding: 20px;
+    }
+    .pg-Component-PlayGround .runCodeArea {
+      width: calc(100% - 201px);
+      height: 100%;
+      float: right;
+      position: relative;
+      border-left: 1px solid #d1d5db;
+    }
+    .pg-Component-PlayGround .runCodeArea .pg-CodeMirror-Area {
+      /* 스타일 추가 예정 */
+    }
+    .pg-Component-PlayGround .runCodeAreaTitle {
+      background-color: #f3f4f6;
+      border-bottom: 1px solid #d1d5db;
+      height: 20px;
+      padding-left: 6px;
+    }
+    .pg-Component-PlayGround .runCodeAreaTitle .control {
+      float: right;
+    }
+    .pg-Component-PlayGround .runCodeAreaTitle .btn {
+      border-radius: 0;
+      padding: 0 4px;
+      vertical-align: top;
+      height: 19px;
+      margin-left: 10px;
+    }
+  </style>
+  ##
+  var imports = data.imports;
+  var importTmpls = data.importTmpls;
+  var code = data.code;
+  var runCode = data.runCode;
+  var type = data.type;
+
+  var autoRefresh = true;
+
+  var toRenderingCode = function() {
+    var realCode = "compomint.addTmplByUrl([" +
+        "'" + importTmpls.join("', '") + "'" +
+      "], {loadScript: false, loadLink: false}, function() {" +
+        (runCode || code) +
+    "});";
+    return realCode;
+  }
+  var renderingArea = tmpl.pg.RenderingArea({imports: imports, code: toRenderingCode(), type: type});
+  var runCodeArea = tmpl.pg.CodeMirrorArea({
+    value: code,
+    changeEvent: function(cMirror) {
+      if (autoRefresh) renderingArea.refreshCode({code: cMirror.getValue(), type: type});
+    }
+  });
+  ##
+  <div class="pg-Component-PlayGround">
+    <div class="renderingArea">##%renderingArea##</div>
+    <div class="runCodeArea">
+      <div class="runCodeAreaTitle">
+        <span>Code</span>
+        <div class="control">
+          ##%tmpl.pg.Button({label: 'AUTO REFRESH', icon: 'refresh', styleClass: 'xs ' + (autoRefresh ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
+            autoRefresh = !autoRefresh;
+            element.style.backgroundColor = autoRefresh ? '#10b981' : '#f3f4f6';
+            element.style.color = autoRefresh ? 'white' : '#374151';
+            element.style.borderColor = autoRefresh ? '#10b981' : '#d1d5db';
+          }})##
+        </div>
+      </div>
+      ##%runCodeArea##
+    </div>
+  </div>
+</template>
+
+<template id="pg-CodeMirror-Area">
+  <style id="style-pg-CodeMirror-Area">
+    .pg-CodeMirror-Area .CodeMirror {
+      height: 100%;
+    }
+    .pg-CodeMirror-Area {
+      position: absolute;
+      top: 32px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  </style>
+  ##
+  var value = data.value;
+  var changeEvent = data.changeEvent;
+  ##
+  <div class="pg-CodeMirror-Area"></div>
+  ###
+  var element = this;
+  setTimeout(function() {
+    var isDark = document.documentElement.classList.contains('dark');
+    var codeMirror = component.codeMirror = CodeMirror(element, {
+      value: value || '',
+      lineNumbers: true,
+      mode: "javascript",
+      theme: isDark ? 'monokai' : 'default',
+      indentUnit: 2,
+      tabSize: 2,
+      lineWrapping: true
+    });
+    
+    if (changeEvent) codeMirror.on('change', changeEvent);
+    
+    // 다크 모드 변경 감지
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === 'class') {
+          var isDark = document.documentElement.classList.contains('dark');
+          codeMirror.setOption('theme', isDark ? 'monokai' : 'default');
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    // 컴포넌트 제거시 observer 정리
+    component.destroy = function() {
+      observer.disconnect();
+    };
+  });
+  ##
+</template>
+
+<template id="pg-Rendering-Area">
+  <style id="style-pg-Rendering-Area">
+    .pg-Rendering-Area .render-container {
+      border: 1px solid #e5e7eb;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: white;
+      padding: 10px;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+    
+    .dark .pg-Rendering-Area .render-container {
+      border: 1px solid #4b5563;
+      background-color: #1f2937;
+      color: #f3f4f6;
+    }
+  </style>
+  ##
+  var imports = data.imports || [];
+  var template = data.template;
+  var code = data.code;
+  var type = data.type;
+  var loadCallback = data.loadCallback;
+  var loadCount = 0;
+  var hasImport = false;
+
+  var importOptionTags = {
+    css: function(item) {
+      return compomint.tmpl('co-Ele')(['link', {href: item.text, rel: "stylesheet", type: "text/css"}]);
+    },
+    css_text: function(item) {
+      return compomint.tmpl('co-Ele')(['style', {innerHTML: item.text, type: "text/css"}]);
+    },
+    js: function(item) {
+      loadCount++;
+      return compomint.tmpl('co-Ele')(['script', {src: item.text, defer: true, onload: function () {
+        loadCount--;
+        if (loadCount == 0) {
+          execScript(code);
+        }
+      }}]);
+    },
+    addTmplByUrl: function(item) {
+      loadCount++;
+      var loader = 'compomint.addTmplByUrl(' + item.text + ', function() {' +
+        'loadCount--;' +
+        'if (loadCount == 0) {' +
+        '  execScript(code);' +
+        '}' +
+      '});';
+      return compomint.tmpl('co-Ele')(['script', {innerHTML: loader}]);
+    },
+    import: function(item) {
+      hasImport = true;
+      loadCount++;
+      return compomint.tmpl('co-Ele')(['link', {href: item.text, rel: "import", onload: function () {
+        loadCount--;
+        if (loadCount == 0) {
+          execScript(code);
+        }
+      }}]);
+    },
+    tmpl: function(item) {
+      hasImport = true;
+      loadCount++;
+      return compomint.tmpl('co-Ele')(['link', {href: '/tmpls?template_group_id=' + item.text, rel: "import", onload: function () {
+        loadCount--;
+        if (loadCount == 0) {
+          setTimeout(function() {
+            execScript(code);
+          });
+        }
+      }}]);
+    }
+  }
+
+  var createImportElement = function(item) {
+    var tag = importOptionTags[item.type];
+    return tag ? tag(item) : null;
+  }
+
+  var execScript = function(code) {
+    if (!code) {
+      console.warn('Cannot execute script: missing code');
+      return;
+    }
+
+    // 렌더링 컨테이너 초기화
+    if (renderContainer) {
+      renderContainer.innerHTML = '';
+    }
+
+    if (template && type == 'codeIsTemplate') {
+      template.forEach(function(tmplData) {
+        compomint.addTmpl(tmplData.key, tmplData.code);
+      });
+    } else if (template && type == 'codeIsTemplateFile') {
+      compomint.addTmpls(template);
+    }
+
+    if (type == 'codeIsPage') {
+      if (renderContainer) {
+        renderContainer.innerHTML = code;
+      }
+    } else {
+      try {
+        var codeLine = Function('return (function() {/*' + code + ' */}).toString().match(/\\/\\*([^]*)\\*\\//)[1];')();
+        
+        // 안전한 코드 실행을 위한 컨텍스트 생성
+        var executeInContext = function() {
+          try {
+            // 임시 컨테이너에서 코드 실행
+            var tempContainer = renderContainer || document.createElement('div');
+            var originalAppend = document.body.appendChild;
+            
+            // document.body.appendChild를 임시로 오버라이드
+            document.body.appendChild = function(element) {
+              return tempContainer.appendChild(element);
+            };
+            
+            eval(codeLine);
+            
+            // 원래 함수 복구
+            document.body.appendChild = originalAppend;
+          } catch(e) {
+            if (renderContainer) {
+              renderContainer.innerHTML = '&lt;div style="color: red; padding: 10px;"&gt;Error: ' + e.message + '&lt;/div&gt;';
+            }
+            console.error(e);
+          }
+        };
+        
+        executeInContext();
+      } catch(e) {
+        if (renderContainer) {
+          renderContainer.innerHTML = '&lt;div style="color: red; padding: 10px;"&gt;Parse Error: ' + e.message + '&lt;/div&gt;';
+        }
+        console.error(e);
+      }
+    }
+  }
+
+  var iframeDocument, iframeWindow = null;
+  var clearBody = function() {
+    if (renderContainer) {
+      renderContainer.innerHTML = '';
+    }
+  }
+  component.refreshCode = function(newCode) {
+    if (!renderContainer) {
+      console.warn('Cannot refresh code: render container not available');
+      return;
+    };
+    try {
+      clearBody();
+    if (newCode.code) {
+      code = data.code = newCode.code;
+    };
+    if (newCode.template) {
+      template = data.template = newCode.template;
+    };
+      execScript(code);
+    } catch(e) {
+      console.warn('Error refreshing code:', e.message);
+    }
+  };
+  ##
+  <div class="pg-Rendering-Area">
+    <div class="render-container border border-gray-300 w-full h-full overflow-auto bg-white p-2.5 box-border" data-co-element-ref="##:renderContainer##"></div>
+  </div>
+  ###
+  // iframe 대신 직접 렌더링 컨테이너 사용
+  iframeDocument = document;
+  iframeWindow = window;
+  
+  setTimeout(function() {
+    // 즉시 로드 완료 콜백 호출
+    if (loadCallback) loadCallback({contentWindow: window, contentDocument: document});
+  }, 10);
+  ##
+</template>
+
+<template id="pg-Console-Area">
+  <style id="style-pg-Console-Area">
+    .pg-Console-Area {
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .dark .pg-Console-Area {
+      background: #374151;
+      border-top: 1px solid #4b5563;
+    }
+    
+    .pg-Console-Area .logArea {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      margin: 8px;
+      padding: 8px;
+    }
+    
+    .dark .pg-Console-Area .logArea {
+      background: #1f2937;
+      border: 1px solid #4b5563;
+      color: #f3f4f6;
+    }
+    
+    .pg-Console-Area .logArea p {
+      margin: 0;
+      margin-bottom: 4px;
+    }
+    .pg-Console-Area .logArea pre {
+      font-size: 11px;
+      border: 0;
+      margin: 0;
+      margin-bottom: 2px;
+      padding: 4px 8px;
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 3px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+    
+    .dark .pg-Console-Area .logArea pre {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e5e7eb;
+    }
+    
+    .pg-Console-Area .logArea .error {
+      color: #dc2626;
+      background: rgba(220, 38, 38, 0.1);
+    }
+    
+    .dark .pg-Console-Area .logArea .error {
+      color: #f87171;
+      background: rgba(248, 113, 113, 0.1);
+    }
+    
+    .pg-Console-Area .console-controlArea {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-top: 1px solid #e2e8f0;
+      padding: 8px;
+    }
+    
+    .dark .pg-Console-Area .console-controlArea {
+      background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+      border-top: 1px solid #6b7280;
+    }
+  </style>
+  ##
+  var targetWindow = data.window;
+  var show = !!data.show ? true : false;
+  var autoScroll = data.autoScroll === false ? false : true;
+  
+  // 원본 console 백업
+  var originalConsole = {
+    log: console.log.bind(console),
+    error: console.error.bind(console),
+    warn: console.warn.bind(console)
+  };
+
+  component.clear = function() {
+    var area = component.element.querySelector('.logArea');
+    if (area) {
+      while (area.firstChild) { area.removeChild(area.firstChild); }
+    }
+  }
+  component.console = {
+    log: function() {
+      originalConsole.log.apply(null, arguments);
+      for (var i = 0; i &lt; arguments.length; i++) {
+        var target = arguments[i];
+        if (target == undefined) {
+          htmlString = undefined;
+        } else if (target instanceof Function) {
+          htmlString = target.toString(); //.split("\n  ").join("\n");
+        } else if (target.outerHTML) {
+          htmlString = compomint.tools.escapeHtml.escape(target.outerHTML);
+        } else if (typeof target == 'object') {
+          var seen = [];
+          var replacer = function(key, value) {
+            if (value != null && typeof value == "object") {
+              if (seen.indexOf(value) >= 0) {
+                return;
+              }
+              seen.push(value);
+            }
+            return value;
+          };
+
+          htmlString = (JSON && JSON.stringify ? JSON.stringify(target, replacer, 2) : target);
+        } else {
+          htmlString = target;
+        }
+
+        var ele = document.createElement('pre');
+        ele.innerHTML = '> ' + (htmlString && htmlString.trim ? htmlString.trim() : htmlString);
+        var area = component.element.querySelector('.logArea');
+        if (area) {
+          area.appendChild(ele);
+          if (autoScroll) area.scrollTo(0, area.scrollHeight);
+        }
+      }
+    },
+    error: function(error) {
+      var ele = document.createElement('pre');
+      ele.classList.add('error');
+      ele.innerHTML = error.stack;
+      var area = component.element.querySelector('.logArea');
+      if (area) {
+        area.appendChild(ele);
+        if (autoScroll) area.scrollTo(0, area.scrollHeight);
+      }
+    }
+  }
+
+  component.show = function(value) {
+    component.element.style.display = value ? '' : 'none';
+  }
+
+  var consoleBackup = null;
+  component.setWindow = function(target) {
+    if (target) {
+      var backup = {};
+      for (var key in component.console) {
+        backup[key] = target.console[key];
+        target.console[key] = component.console[key];
+      }
+      consoleBackup = backup;
+      targetWindow = target;
+    }
+  }
+
+  component.setWindow(targetWindow);
+  ##
+  <div class="pg-Console-Area h-[200px] clear-both flex flex-col bottom-0 left-0 right-0" style="##=show ? '' : 'display: none'##">
+    <div class="logArea overflow-y-auto flex-1 border border-gray-300 rounded-md m-2 p-2 bg-white dark:bg-gray-800 dark:border-gray-600" data-co-element-ref="##:area##"></div>
+    <div class="console-controlArea h-[50px] flex items-center gap-2 px-2 border-t border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700">
+      ##%tmpl.pg.Field({containerClass: 'console-input-container flex-1 mr-2', size: 'sm', placeholder: 'Enter command...', enterKeyEvent: function(e) {
+        var command = e.target.value.trim();
+        e.target.value = '';
+        if (!command) return;
+        try {
+          var result = targetWindow.eval(command);
+          component.console.log(result);
+        } catch(error) {
+          component.console.error(error);
+        }
+      }})##
+      ##%tmpl.pg.Button({label: 'AUTO SCROLL', styleClass: 'xs ' + (autoScroll ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
+        autoScroll = !autoScroll;
+        element.style.backgroundColor = autoScroll ? '#10b981' : '#f3f4f6';
+        element.style.color = autoScroll ? 'white' : '#374151';
+        element.style.borderColor = autoScroll ? '#10b981' : '#d1d5db';
+      }})##
+      ##%tmpl.pg.Button({label: 'CLEAR', styleClass: 'xs btn-default', event: function() {
+        component.clear();
+      }})##
+    </div>
+  </div>
+</template>
+
+<!-- Playground UI Components with Tailwind CSS -->
+<template id="pg-Button">
+  ##
+  var label = data.label || 'Button';
+  var icon = data.icon || '';
+  var styleClass = data.styleClass || '';
+  var event = data.event;
+  var className = data.className || '';
+  
+  // 기본 버튼 클래스
+  var baseClass = 'inline-flex items-center font-medium rounded border cursor-pointer transition-all duration-200';
+  
+  // 크기별 클래스
+  var sizeClass = 'px-3 py-1.5 text-sm'; // 기본 크기
+  if (styleClass && styleClass.includes('xs')) {
+    sizeClass = 'px-2 py-1 text-xs';
+  }
+  
+  // 색상별 클래스
+  var colorClass = 'bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200 dark:bg-gray-600 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-500'; // default
+  if (styleClass && styleClass.includes('btn-success')) {
+    colorClass = 'bg-emerald-500 text-white border-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700';
+  } else if (styleClass && styleClass.includes('btn-info')) {
+    colorClass = 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700';
+  } else if (styleClass && styleClass.includes('btn-primary')) {
+    colorClass = 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800';
+  }
+  
+  // 위치 클래스
+  var positionClass = '';
+  if (styleClass && styleClass.includes('right')) {
+    positionClass = 'ml-auto';
+  }
+  
+  var finalClass = [baseClass, sizeClass, colorClass, positionClass].filter(Boolean).join(' ');
+  ##
+  <button class="##=finalClass##" data-co-event="##:{click: event}##">
+    ##if (icon) {##<span class="icon-##=icon## mr-1"></span>##}##
+    ##=label##
+  </button>
+</template>
+
+<template id="pg-Field">
+  ##
+  var type = data.type || 'text';
+  var value = data.value || '';
+  var placeholder = data.placeholder || '';
+  var className = data.class || data.className || '';
+  var size = data.size || '';
+  var enterKeyEvent = data.enterKeyEvent;
+  var onChange = data.onChange;
+  var onInput = data.onInput;
+  
+  // 기본 Input 클래스
+  var baseClass = 'block w-full border border-gray-300 rounded-md shadow-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:focus:ring-blue-400 dark:focus:border-blue-400';
+  
+  // 크기별 클래스
+  var sizeClass = 'px-3 py-2 text-sm'; // 기본 크기
+  if (size === 'sm') {
+    sizeClass = 'px-2 py-1 text-sm';
+  } else if (size === 'xs') {
+    sizeClass = 'px-1.5 py-0.5 text-xs';
+  }
+  
+  var finalClass = [baseClass, sizeClass].filter(Boolean).join(' ');
+  ##
+  <div class="##=data.containerClass || ''##">
+    <input 
+      type="##=type##" 
+      class="##=finalClass##" 
+      value="##=value##"
+      ##if (placeholder) {## placeholder="##=placeholder##" ##}##
+      ##if (enterKeyEvent) {## data-co-event="##:{keypress: function(e) { if (e.key === 'Enter') enterKeyEvent(e); }}##" ##}##
+      ##if (onChange) {## data-co-event="##:{change: onChange}##" ##}##
+      ##if (onInput) {## data-co-event="##:{input: onInput}##" ##}##
+    />
+  </div>
+</template>
+
+</body>

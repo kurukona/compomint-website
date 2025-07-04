@@ -1,0 +1,15 @@
+<!-- Main App Layout -->
+<template id="app-Layout">
+  <div class="min-h-screen flex flex-col">
+    ##%data.header##
+    <main class="flex-grow">
+      ##%data.hero##
+      ##%data.features##
+      ##%data.vscodeExtension##
+      ##%data.examples##
+      ##%data.advancedExamples##
+      ##%data.documentation##
+    </main>
+    ##%data.footer##
+  </div>
+</template>

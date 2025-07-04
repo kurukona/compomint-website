@@ -1,29 +1,30 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class', // Use class-based dark mode
+  darkMode: "class", // Use class-based dark mode
   content: [
-    './index.html',
-    './cmint.playground.html',
-    './js/**/*.js',
-    './template/**/*.html'
+    "./index.html",
+    "./js/**/*.js",
+    "./templates/**/*.html",
+    "./templates/**/*.cmint",
+    "./templates/*.cmint",
   ],
   theme: {
     extend: {
       colors: {
         primary: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81'
-        }
-      }
-    }
+          50: "#eef2ff",
+          100: "#e0e7ff",
+          200: "#c7d2fe",
+          300: "#a5b4fc",
+          400: "#818cf8",
+          500: "#6366f1",
+          600: "#4f46e5",
+          700: "#4338ca",
+          800: "#3730a3",
+          900: "#312e81",
+        },
+      },
+    },
   },
   plugins: [],
-}
+};
