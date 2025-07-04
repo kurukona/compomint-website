@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Load all template files
   // NOTE: Template files are loaded once and cached. Changes to template files
   // require a page refresh to take effect as they are not dynamically reloaded.
+
   const promise = compomint.addTmplByUrl([
     "templates/layout.cmint",
     "templates/header.cmint",
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (promise) {
     // Initialize the application
     promise.then(() => {
+      console.log("loaded templates, now initialize app");
       initApp();
     });
   } else {

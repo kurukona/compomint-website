@@ -20,7 +20,7 @@ export default defineConfig({
       },
     },
   },
-  publicDir: false, // img, css 등을 직접 관리하므로 false로 설정
+  publicDir: "public", // img, css 등을 직접 관리하므로 false로 설정
 
   // 개발 서버에서 HTML 파일들이 올바르게 서빙되도록 설정
   define: {
