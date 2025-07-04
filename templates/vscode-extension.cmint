@@ -1,0 +1,59 @@
+<!-- VSCode Extension Section -->
+<template id="ui-VSCodeExtension">
+  <section id="vscode-extension" class="py-16 bg-indigo-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">##=data.title##</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">##=data.subtitle##</p>
+      </div>
+      
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <!-- Left side - Features -->
+          <div class="space-y-6">
+            ##data.features.forEach(feature => {##
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0">
+                  <div class="w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center">
+                    ##%feature.icon##
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">##=feature.title##</h3>
+                  <p class="text-gray-600 dark:text-gray-300">##=feature.description##</p>
+                </div>
+              </div>
+            ##})##
+            
+            <div class="pt-4">
+              <a href="##=data.extensionUrl##" 
+                 target="_blank" 
+                 rel="noopener"
+                 class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/>
+                </svg>
+                ##=data.buttonText##
+              </a>
+            </div>
+          </div>
+          
+          <!-- Right side - Screenshots -->
+          <div class="space-y-4">
+            ##data.screenshots.forEach(screenshot => {##
+              <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">
+                <img src="##=screenshot.src##" 
+                     alt="##=screenshot.alt##" 
+                     class="w-full h-auto">
+                <div class="p-4">
+                  <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-1">##=screenshot.title##</h4>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">##=screenshot.description##</p>
+                </div>
+              </div>
+            ##})##
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>

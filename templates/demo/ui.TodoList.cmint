@@ -1,0 +1,156 @@
+<template id="ui-TodoList">
+  ##!
+  compomint.addI18ns({
+    "ui-TodoList": {
+      title: {
+        en: "Todo List",
+        ko: "할 일 목록",
+        ja: "Todoリスト",
+        zh: "待办事项列表",
+      },
+      addTodo: {
+        en: "Add",
+        ko: "추가",
+        ja: "追加",
+        zh: "添加",
+      },
+      placeholder: {
+        en: "Add a todo...",
+        ko: "할 일 추가...",
+        ja: "Todoを追加...",
+        zh: "添加待办事项...",
+      },
+      empty: {
+        en: "No todos yet. Add one above!",
+        ko: "할 일이 없습니다. 새로운 항목을 추가해보세요!",
+        ja: "まだTodoはありません。上に新しいものを追加してください！",
+        zh: "暂无待办事项。请在上方添加！",
+      },
+      itemsLeft: {
+        en: "item(s) left",
+        ko: "항목 남음",
+        ja: "アイテム残り",
+        zh: "剩余项目",
+      },
+      clearCompleted: {
+        en: "Clear completed",
+        ko: "완료된 항목 지우기",
+        ja: "完了したアイテムをクリア",
+        zh: "清除已完成",
+      },
+    },
+  });
+  ##
+  ##
+  status.todos = status.todos || data.initialTodos ||[];
+
+  // Initialize todo state
+  status.todos = status.todos || data.initialTodos || [];
+  
+  // Add a new todo
+  function addTodo() {
+    const text = newTodoInput.value.trim();
+    if (text) {
+      status.todos.push({
+        text: text,
+        completed: false
+      });
+      newTodoInput.value = '';
+      component.refresh();
+    }
+  }
+  
+  // Toggle todo completion status
+  function toggleTodo(index) {
+    status.todos[index].completed = !status.todos[index].completed;
+    component.refresh();
+  }
+  
+  // Remove a todo
+  function removeTodo(index) {
+    status.todos.splice(index, 1);
+    component.refresh();
+  }
+  
+  // Clear completed todos
+  function clearCompleted() {
+    status.todos = status.todos.filter(todo => !todo.completed);
+    component.refresh();
+  }
+  ## 
+  <div class="bg-white border border-gray-200 dark:border-gray-700 rounded p-4 max-w-md mx-auto">
+    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">##=i18n.title##</h3>
+    
+    <div class="flex mb-4">
+      <input 
+        type="text" 
+        placeholder="##=i18n.placeholder('Add a todo...')##" 
+        class="flex-grow border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-l px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+        data-co-element-ref="##:newTodoInput##"
+        data-co-event="##:{
+          keypress: function(event) {
+            if (event.key === 'Enter') {
+              addTodo();
+            }
+          }
+        }##"
+      >
+      <button 
+        class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-r"
+        data-co-event="##:{
+          click: addTodo
+        }##"
+      >
+        ##=i18n.addTodo('Add')##
+      </button>
+    </div>
+    
+    <ul class="space-y-2 mb-4">
+      ##if (status.todos.length === 0) {##
+        <li class="text-gray-500 dark:text-gray-400 text-center py-2">##=i18n.empty('No todos yet. Add one above!')##</li>
+      ##} else {##
+        ##status.todos.forEach((todo, index) => {##
+          <li class="flex items-center p-2 border-b border-gray-100 dark:border-gray-700">
+            <input 
+              type="checkbox" 
+              ##=todo.completed ? 'checked' : ''##
+              data-co-event="##:{
+                change: function() {
+                  toggleTodo(index);
+                }
+              }##"
+              class="mr-2"
+            >
+            <span class="flex-grow ##=todo.completed ? 'line-through text-gray-400 dark:text-gray-500' : 'dark:text-gray-200'##">##=todo.text##</span>
+            <button 
+              class="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+              data-co-event="##:{
+                click: function() {
+                  removeTodo(index);
+                }
+              }##"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </li>
+        ##})##
+      ##}##
+    </ul>
+    
+    ##if (status.todos.length > 0) {##
+      <div class="text-sm text-gray-500 dark:text-gray-400 flex justify-between">
+        <span>##=status.todos.filter(todo => !todo.completed).length## ##=i18n.itemsLeft('item(s) left')##</span>
+        <button 
+          class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
+          data-co-event="##:{
+            click: clearCompleted
+          }##"
+        >
+          ##=i18n.clearCompleted('Clear completed')##
+        </button>
+      </div>
+    ##}##
+  </div>
+</template>
