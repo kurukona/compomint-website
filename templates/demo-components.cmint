@@ -140,3 +140,365 @@
   }
   ##
 </template>
+
+<!-- User Management Application -->
+<template id="demo-UserManagement">
+  <style id="style-demo-UserManagement">
+    .user-management { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .user-card { transition: all 0.3s ease; }
+    .user-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .user-avatar { width: 48px; height: 48px; object-fit: cover; }
+    .status-active { background-color: #10b981; }
+    .status-inactive { background-color: #f59e0b; }
+    .status-pending { background-color: #6b7280; }
+    .modal-overlay { backdrop-filter: blur(4px); }
+    .slide-in { animation: slideIn 0.3s ease-out; }
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  </style>
+  
+  ##!
+  compomint.addI18ns({
+    'demo-UserManagement': {
+      'title': { 'ko': '사용자 관리 시스템', 'en': 'User Management System', 'ja': 'ユーザー管理システム', 'zh': '用户管理系统' },
+      'addUser': { 'ko': '사용자 추가', 'en': 'Add User', 'ja': 'ユーザーを追加', 'zh': '添加用户' },
+      'searchPlaceholder': { 'ko': '사용자 검색...', 'en': 'Search users...', 'ja': 'ユーザーを検索...', 'zh': '搜索用户...' },
+      'name': { 'ko': '이름', 'en': 'Name', 'ja': '名前', 'zh': '姓名' },
+      'email': { 'ko': '이메일', 'en': 'Email', 'ja': 'メール', 'zh': '邮箱' },
+      'role': { 'ko': '역할', 'en': 'Role', 'ja': '役割', 'zh': '角色' },
+      'status': { 'ko': '상태', 'en': 'Status', 'ja': 'ステータス', 'zh': '状态' },
+      'actions': { 'ko': '작업', 'en': 'Actions', 'ja': 'アクション', 'zh': '操作' },
+      'edit': { 'ko': '편집', 'en': 'Edit', 'ja': '編集', 'zh': '编辑' },
+      'delete': { 'ko': '삭제', 'en': 'Delete', 'ja': '削除', 'zh': '删除' },
+      'save': { 'ko': '저장', 'en': 'Save', 'ja': '保存', 'zh': '保存' },
+      'cancel': { 'ko': '취소', 'en': 'Cancel', 'ja': 'キャンセル', 'zh': '取消' },
+      'active': { 'ko': '활성', 'en': 'Active', 'ja': 'アクティブ', 'zh': '活跃' },
+      'inactive': { 'ko': '비활성', 'en': 'Inactive', 'ja': '非アクティブ', 'zh': '未活跃' },
+      'pending': { 'ko': '대기중', 'en': 'Pending', 'ja': '保留中', 'zh': '待定' },
+      'admin': { 'ko': '관리자', 'en': 'Admin', 'ja': '管理者', 'zh': '管理员' },
+      'user': { 'ko': '사용자', 'en': 'User', 'ja': 'ユーザー', 'zh': '用户' },
+      'moderator': { 'ko': '중재자', 'en': 'Moderator', 'ja': 'モデレータ', 'zh': '版主' },
+      'totalUsers': { 'ko': '총 사용자', 'en': 'Total Users', 'ja': '総ユーザー数', 'zh': '总用户数' },
+      'activeUsers': { 'ko': '활성 사용자', 'en': 'Active Users', 'ja': 'アクティブユーザー', 'zh': '活跃用户' },
+      'newUserTitle': { 'ko': '새 사용자 추가', 'en': 'Add New User', 'ja': '新しいユーザーを追加', 'zh': '添加新用户' },
+      'editUserTitle': { 'ko': '사용자 편집', 'en': 'Edit User', 'ja': 'ユーザーを編集', 'zh': '编辑用户' },
+      'deleteConfirm': { 'ko': '이 사용자를 삭제하시겠습니까?', 'en': 'Are you sure you want to delete this user?', 'ja': 'このユーザーを削除してもよろしいですか？', 'zh': '您确定要删除此用户吗？' },
+      'noUsersFound': { 'ko': '사용자를 찾을 수 없습니다', 'en': 'No users found', 'ja': 'ユーザーが見つかりません', 'zh': '未找到用户' }
+    }
+  });
+  ##
+  
+  ##
+  // Initialize user data
+  status.users = status.users || data.users || [];
+  status.searchTerm = status.searchTerm || '';
+  status.showModal = status.showModal || false;
+  status.editingUser = status.editingUser || null;
+  
+  // Generate avatar URL
+  function generateAvatarUrl(name) {
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random&color=fff&size=48`;
+  }
+  
+  // Filter users based on search term
+  function getFilteredUsers() {
+    return status.users.filter(user => 
+      user.name.toLowerCase().includes(status.searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(status.searchTerm.toLowerCase())
+    );
+  }
+  
+  // Search users
+  function searchUsers() {
+    status.searchTerm = searchInput.value;
+    component.refresh();
+  }
+  
+  // Show add user modal
+  function showAddUserModal() {
+    status.editingUser = null;
+    status.showModal = true;
+    component.refresh();
+  }
+  
+  // Show edit user modal
+  function showEditUserModal(userIndex) {
+    const user = status.users[userIndex];
+    status.editingUser = { ...user, index: userIndex };
+    status.showModal = true;
+    component.refresh();
+  }
+  
+  // Close modal
+  function closeModal() {
+    status.showModal = false;
+    status.editingUser = null;
+    component.refresh();
+  }
+  
+  // Save user
+  function saveUser() {
+    const name = modalNameInput.value.trim();
+    const email = modalEmailInput.value.trim();
+    const role = modalRoleSelect.value;
+    const userStatus = modalStatusSelect.value;
+    
+    if (!name || !email) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    if (status.editingUser) {
+      // Edit existing user
+      const index = status.editingUser.index;
+      status.users[index] = { ...status.users[index], name, email, role, status: userStatus };
+    } else {
+      // Add new user
+      status.users.push({
+        id: Date.now(),
+        name,
+        email,
+        role,
+        status: userStatus,
+        avatar: generateAvatarUrl(name)
+      });
+    }
+    
+    closeModal();
+  }
+  
+  // Delete user
+  function deleteUser(userIndex) {
+    if (confirm(i18n.deleteConfirm)) {
+      status.users.splice(userIndex, 1);
+      component.refresh();
+    }
+  }
+  
+  // Get status badge class
+  function getStatusBadgeClass(userStatus) {
+    switch(userStatus) {
+      case 'active': return 'status-active';
+      case 'inactive': return 'status-inactive';
+      case 'pending': return 'status-pending';
+      default: return 'status-pending';
+    }
+  }
+  
+  // Get status text
+  function getStatusText(userStatus) {
+    switch(userStatus) {
+      case 'active': return i18n.active;
+      case 'inactive': return i18n.inactive;
+      case 'pending': return i18n.pending;
+      default: return i18n.pending;
+    }
+  }
+  
+  // Get role text
+  function getRoleText(role) {
+    switch(role) {
+      case 'admin': return i18n.admin;
+      case 'moderator': return i18n.moderator;
+      case 'user': return i18n.user;
+      default: return i18n.user;
+    }
+  }
+  
+  // Calculate statistics
+  const totalUsers = status.users.length;
+  const activeUsers = status.users.filter(u => u.status === 'active').length;
+  const filteredUsers = getFilteredUsers();
+  ##
+  
+  <div class="user-management max-w-6xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white">##=i18n.title##</h2>
+      <button 
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+        data-co-event="##:{click: showAddUserModal}##"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+        </svg>
+        ##=i18n.addUser##
+      </button>
+    </div>
+    
+    <!-- Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+        <div class="text-2xl font-bold text-gray-900 dark:text-white">##=totalUsers##</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">##=i18n.totalUsers##</div>
+      </div>
+      <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+        <div class="text-2xl font-bold text-green-600">##=activeUsers##</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">##=i18n.activeUsers##</div>
+      </div>
+      <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+        <div class="text-2xl font-bold text-blue-600">##=filteredUsers.length##</div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">Filtered Results</div>
+      </div>
+    </div>
+    
+    <!-- Search -->
+    <div class="mb-6">
+      <div class="relative">
+        <input 
+          type="text" 
+          placeholder="##=i18n.searchPlaceholder##"
+          class="w-full px-4 py-2 pl-10 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+          data-co-element-ref="##:searchInput##"
+          data-co-event="##:{input: searchUsers}##"
+        >
+        <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Users Table -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+        <thead class="bg-gray-50 dark:bg-gray-700">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">##=i18n.name##</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">##=i18n.email##</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">##=i18n.role##</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">##=i18n.status##</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">##=i18n.actions##</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          ##if (filteredUsers.length === 0) {##
+            <tr>
+              <td colspan="5" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">##=i18n.noUsersFound##</td>
+            </tr>
+          ##} else {##
+            ##filteredUsers.forEach((user, index) => {##
+              <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <img class="user-avatar rounded-full mr-3" src="##=user.avatar || generateAvatarUrl(user.name)##" alt="##=user.name##">
+                    <div class="text-sm font-medium text-gray-900 dark:text-white">##=user.name##</div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-500 dark:text-gray-400">##=user.email##</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-gray-200">
+                    ##=getRoleText(user.role)##
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full text-white ##=getStatusBadgeClass(user.status)##">
+                    ##=getStatusText(user.status)##
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button 
+                    class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-3"
+                    data-co-event="##:{click: function() { showEditUserModal(status.users.indexOf(user)); }}##"
+                  >
+                    ##=i18n.edit##
+                  </button>
+                  <button 
+                    class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
+                    data-co-event="##:{click: function() { deleteUser(status.users.indexOf(user)); }}##"
+                  >
+                    ##=i18n.delete##
+                  </button>
+                </td>
+              </tr>
+            ##})##
+          ##}##
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Modal -->
+    ##if (status.showModal) {##
+      <div class="fixed inset-0 z-50 flex items-center justify-center modal-overlay bg-black bg-opacity-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md slide-in">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+              ##=status.editingUser ? i18n.editUserTitle : i18n.newUserTitle##
+            </h3>
+            <button 
+              class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              data-co-event="##:{click: closeModal}##"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          
+          <form class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">##=i18n.name##</label>
+              <input 
+                type="text" 
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                data-co-element-ref="##:modalNameInput##"
+                value="##=status.editingUser ? status.editingUser.name : ''##"
+              >
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">##=i18n.email##</label>
+              <input 
+                type="email" 
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                data-co-element-ref="##:modalEmailInput##"
+                value="##=status.editingUser ? status.editingUser.email : ''##"
+              >
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">##=i18n.role##</label>
+              <select 
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                data-co-element-ref="##:modalRoleSelect##"
+              >
+                <option value="user" ##=(!status.editingUser || status.editingUser.role === 'user') ? 'selected' : ''##>##=i18n.user##</option>
+                <option value="moderator" ##=(status.editingUser && status.editingUser.role === 'moderator') ? 'selected' : ''##>##=i18n.moderator##</option>
+                <option value="admin" ##=(status.editingUser && status.editingUser.role === 'admin') ? 'selected' : ''##>##=i18n.admin##</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">##=i18n.status##</label>
+              <select 
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                data-co-element-ref="##:modalStatusSelect##"
+              >
+                <option value="active" ##=(!status.editingUser || status.editingUser.status === 'active') ? 'selected' : ''##>##=i18n.active##</option>
+                <option value="inactive" ##=(status.editingUser && status.editingUser.status === 'inactive') ? 'selected' : ''##>##=i18n.inactive##</option>
+                <option value="pending" ##=(status.editingUser && status.editingUser.status === 'pending') ? 'selected' : ''##>##=i18n.pending##</option>
+              </select>
+            </div>
+            
+            <div class="flex justify-end space-x-2 pt-4">
+              <button 
+                type="button"
+                class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-500 rounded-md transition-colors"
+                data-co-event="##:{click: closeModal}##"
+              >
+                ##=i18n.cancel##
+              </button>
+              <button 
+                type="button"
+                class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
+                data-co-event="##:{click: saveUser}##"
+              >
+                ##=i18n.save##
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    ##}##
+  </div>
+</template>
