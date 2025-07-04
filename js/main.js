@@ -1,4 +1,5 @@
 import { compomint, tmpl } from "compomint";
+import "../css/input.css";
 
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", async function () {
@@ -279,6 +280,7 @@ document.body.appendChild(hello.element);`,
     title: compomint.i18n.app.examplesTitle("Code Examples"),
     examples: [
       {
+        class: "h-[500px]",
         interactive: true,
         title: compomint.i18n.examples.basicComponent.title("Basic Component"),
         description: compomint.i18n.examples.basicComponent.description(
@@ -304,6 +306,7 @@ document.body.appendChild(button.element);`,
         //result: button,
       },
       {
+        class: "h-[700px]",
         interactive: true,
         title:
           compomint.i18n.examples.stateManagement.title("State Management"),
@@ -320,6 +323,7 @@ document.body.appendChild(button.element);`,
         //result: counter,
       },
       {
+        class: "h-[1000px]",
         interactive: true,
         title:
           compomint.i18n.examples.complexComponent.title("Complex Component"),
@@ -342,7 +346,7 @@ document.body.appendChild(button.element);`,
         //result: todoList,
       },
       {
-        class: "demo-xl-size",
+        class: "h-[1400px]",
         interactive: true,
         title: compomint.i18n.examples.multiTemplate.title(
           "Multi-Template Application"
@@ -416,7 +420,6 @@ document.body.appendChild(userManagement.element);`,
         label: compomint.i18n.footer.links.examples("Examples"),
         url: "#examples",
       },
-      { label: "샘플 코드", url: "samples.html" },
       {
         label: compomint.i18n.footer.links.docs("Documentation"),
         url: "#documentation",

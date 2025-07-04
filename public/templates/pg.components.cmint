@@ -14,7 +14,8 @@
       border-color: #374151;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
     }
-    
+
+    /*
     .pg-TestArea.console {
       height: 545px;
     }
@@ -24,6 +25,7 @@
     .pg-TestArea.template.console {
       height: 867px;
     }
+    */
     
     /* console 상태에서 controlArea가 console 바로 위에 위치하도록 */
     .pg-TestArea.console .controlArea {
@@ -40,7 +42,7 @@
 
     .pg-TestArea .brui-Splitter-Layout.code,
     .pg-TestArea .brui-Splitter-Layout.template {
-      height: calc(100% - 50px);
+      height: calc(100% - 36px);
     }
     .pg-TestArea.template .brui-Splitter-Layout.template .brui-Splitter-Layout.code {
       height: 100%;
@@ -51,7 +53,7 @@
     }
     
     .pg-TestArea .pg-Rendering-Area {
-      height: calc(100% - 20px);
+      height: calc(100% - 32px);
     }
     
     /* 제어 영역 스타일 개선 */
@@ -62,7 +64,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      height: 50px;
+      height: 40px;
       box-sizing: border-box;
       position: absolute;
       bottom: 0;
@@ -142,7 +144,7 @@
     });
   }
   ##
-  <div class="pg-TestArea h-[345px] mb-2.5 ##=hasTemplate ? 'template' : ''## ##=showConsole ? 'console' : ''##">
+  <div class="pg-TestArea h-full mb-1.5 ##=hasTemplate ? 'template' : ''## ##=showConsole ? 'console' : ''##">
     ##%templateSpliteArea || codeSpliteArea##
     <div class="controlArea">
       ##%tmpl.pg.Button({label: 'AUTO REFRESH', icon: 'refresh', styleClass: 'xs ' + (autoRefresh ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
@@ -272,6 +274,8 @@
       left: 0;
       right: 0;
     }
+    
+
   </style>
   ##
   var value = data.value;
@@ -289,7 +293,9 @@
       theme: isDark ? 'monokai' : 'default',
       indentUnit: 2,
       tabSize: 2,
-      lineWrapping: true
+      lineWrapping: false,  // 수평 스크롤을 위해 줄바꿈 비활성화
+      scrollbarStyle: "native",  // 네이티브 스크롤바 사용
+      viewportMargin: Infinity  // 전체 문서 렌더링으로 스크롤 성능 개선
     });
     
     if (changeEvent) codeMirror.on('change', changeEvent);
@@ -327,7 +333,6 @@
       background-color: white;
       padding: 10px;
       box-sizing: border-box;
-      border-radius: 4px;
     }
     
     .dark .pg-Rendering-Area .render-container {
