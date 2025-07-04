@@ -5,8 +5,7 @@ export default {
     "./index.html",
     "./js/**/*.js",
     "./templates/**/*.html",
-    "./templates/**/*.cmint",
-    "./templates/*.cmint",
+    "./public/**/*.cmint",
   ],
   theme: {
     extend: {
