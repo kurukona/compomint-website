@@ -1,6 +1,7 @@
 {
   "name": "compomint-website",
   "version": "1.0.0",
+  "type": "module",
   "description": "![Compomint Logo](img/favicon.svg)",
   "main": "index.js",
   "directories": {
@@ -8,8 +9,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "npm run build-css-once && vite build",
+    "preview": "vite preview",
+    "build-css": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
+    "build-css-once": "tailwindcss -i ./css/input.css -o ./css/output.css"
   },
   "repository": {
     "type": "git",
@@ -22,11 +25,15 @@
     "url": "https://github.com/kurukona/compomint-website/issues"
   },
   "homepage": "https://github.com/kurukona/compomint-website#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@playwright/test": "^1.53.2",
+    "compomint": "^1.1.0",
+    "playwright": "^1.53.2"
+  },
   "devDependencies": {
-    "vite": "^5.0.0",
-    "tailwindcss": "^3.4.0",
     "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32"
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.17",
+    "vite": "^5.0.0"
   }
 }

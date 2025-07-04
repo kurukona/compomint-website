@@ -1,37 +1,46 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: '.', // 프로젝트 루트 디렉토리
+  root: ".", // 프로젝트 루트 디렉토리
   css: {
-    postcss: './postcss.config.js'
+    postcss: "./postcss.config.js",
   },
   server: {
-    port: 3000,
+    port: 3100,
     open: true, // 서버 시작 시 브라우저 자동 열기
     cors: true,
-    host: true // 네트워크 접근 허용
+    host: true, // 네트워크 접근 허용
   },
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
+    outDir: "dist",
+    assetsDir: "assets",
     rollupOptions: {
       input: {
-        main: './index.html'
-      }
-    }
+        main: "./index.html",
+      },
+    },
   },
   publicDir: false, // img, css 등을 직접 관리하므로 false로 설정
-  
+
   // 개발 서버에서 HTML 파일들이 올바르게 서빙되도록 설정
   define: {
-    global: 'globalThis'
+    global: "globalThis",
   },
-  
+
   // 플레이그라운드에서 iframe을 위한 CORS 설정
   optimizeDeps: {
-    exclude: []
+    exclude: [],
   },
-  
+
   // 정적 파일 처리
-  assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp']
-})
+  assetsInclude: [
+    "**/*.svg",
+    "**/*.png",
+    "**/*.jpg",
+    "**/*.jpeg",
+    "**/*.gif",
+    "**/*.webp",
+  ],
+
+  plugins: [],
+});

@@ -1,4 +1,4 @@
-import { compomint } from "https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.esm.min.js"
+import { compomint, tmpl } from "compomint";
 
 // Compomint Template Definitions
 

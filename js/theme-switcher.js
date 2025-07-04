@@ -1,29 +1,32 @@
-import { compomint, tmpl } from "https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.esm.min.js"
+import { compomint, tmpl } from "compomint";
 
 // Theme Switcher Component and Functionality
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   // Check for saved theme preference or use system preference as fallback
   let savedTheme;
   try {
-    savedTheme = localStorage.getItem('compomint-theme');
+    savedTheme = localStorage.getItem("compomint-theme");
   } catch (e) {
     console.warn("Couldn't access localStorage:", e);
   }
 
   // Initialize dark mode based on saved preference or system preference
-  const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initialDarkMode = savedTheme === 'dark' || (savedTheme === null && prefersDarkMode);
+  const prefersDarkMode =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const initialDarkMode =
+    savedTheme === "dark" || (savedTheme === null && prefersDarkMode);
 
   // Apply initial theme immediately
   if (initialDarkMode) {
-    document.documentElement.classList.add('dark');
-    document.body.classList.add('dark-mode');
-    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.classList.add("dark");
+    document.body.classList.add("dark-mode");
+    document.documentElement.setAttribute("data-theme", "dark");
   } else {
-    document.documentElement.classList.remove('dark');
-    document.body.classList.remove('dark-mode');
-    document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.classList.remove("dark");
+    document.body.classList.remove("dark-mode");
+    document.documentElement.setAttribute("data-theme", "light");
   }
 
   // Theme Switcher Template
@@ -101,19 +104,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Listen for system theme changes
   if (window.matchMedia) {
-    const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
     if (colorSchemeQuery.addEventListener) {
-      colorSchemeQuery.addEventListener('change', function (e) {
+      colorSchemeQuery.addEventListener("change", function (e) {
         // Only update if no saved preference exists
-        if (!localStorage.getItem('compomint-theme')) {
+        if (!localStorage.getItem("compomint-theme")) {
           themeSwitcher.status.isDarkMode = e.matches;
 
           if (e.matches) {
-            document.documentElement.classList.add('dark');
-            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add("dark");
+            document.body.classList.add("dark-mode");
           } else {
-            document.documentElement.classList.remove('dark');
-            document.body.classList.remove('dark-mode');
+            document.documentElement.classList.remove("dark");
+            document.body.classList.remove("dark-mode");
           }
 
           themeSwitcher.refresh();

@@ -1,0 +1,16 @@
+<!-- Documentation Section -->
+<template id="ui-Documentation">
+  <section id="documentation" class="py-16 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">##=data.title##</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">##=data.description##</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        ##data.links.forEach(link => {##
+          <a href="##=link.url##" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+            ##=link.label##
+          </a>
+        ##})##
+      </div>
+    </div>
+  </section>
+</template>
