@@ -7,7 +7,7 @@ export default defineConfig({
   },
   server: {
     port: 3100,
-    open: true, // 서버 시작 시 브라우저 자동 열기
+    open: false, // 서버 시작 시 브라우저 자동 열기
     cors: true,
     host: true, // 네트워크 접근 허용
   },

@@ -4,8 +4,10 @@ export default {
   content: [
     "./index.html",
     "./js/**/*.js",
+    "./js/*.js",
     "./templates/**/*.html",
     "./public/**/*.cmint",
+    "./public/*.cmint",
   ],
   theme: {
     extend: {

@@ -263,6 +263,20 @@ document.addEventListener("DOMContentLoaded", function () {
           zh: "更复杂的组件示例：待办事项列表",
         },
       },
+      multiTemplate: {
+        title: {
+          en: "Multi-Template Application",
+          ko: "다중 템플릿 애플리케이션",
+          ja: "マルチテンプレートアプリケーション",
+          zh: "多模板应用程序",
+        },
+        description: {
+          en: "Complete application example combining multiple templates",
+          ko: "여러 템플릿을 결합한 완전한 애플리케이션 예제",
+          ja: "複数のテンプレートを組み合わせた完全なアプリケーション例",
+          zh: "结合多个模板的完整应用程序示例",
+        },
+      },
     },
     vscode: {
       title: {
@@ -422,6 +436,56 @@ document.addEventListener("DOMContentLoaded", function () {
         ko: "MIT 라이센스에 따라 사용 가능합니다.",
         ja: "MITライセンスの下で利用可能です。",
         zh: "根据MIT许可证可用。",
+      },
+    },
+    pg: {
+      fullscreen: {
+        en: "FULLSCREEN",
+        ko: "전체화면",
+        ja: "フルスクリーン",
+        zh: "全屏",
+      },
+      exitFull: {
+        en: "EXIT FULL",
+        ko: "전체화면 해제",
+        ja: "フルスクリーン解除",
+        zh: "退出全屏",
+      },
+      autoRefresh: {
+        en: "AUTO REFRESH",
+        ko: "자동 새로고침",
+        ja: "自動更新",
+        zh: "自动刷新",
+      },
+      codeReset: {
+        en: "CODE RESET",
+        ko: "코드 초기화",
+        ja: "コードリセット",
+        zh: "代码重置",
+      },
+      run: {
+        en: "RUN",
+        ko: "실행",
+        ja: "実行",
+        zh: "运行",
+      },
+      console: {
+        en: "CONSOLE",
+        ko: "콘솔",
+        ja: "コンソール",
+        zh: "控制台",
+      },
+      autoScroll: {
+        en: "AUTO SCROLL",
+        ko: "자동 스크롤",
+        ja: "自動スクロール",
+        zh: "自动滚动",
+      },
+      clear: {
+        en: "CLEAR",
+        ko: "지우기",
+        ja: "クリア",
+        zh: "清除",
       },
     },
     "ui-LanguageSwitcher": {
