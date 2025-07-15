@@ -1,4 +1,5 @@
 import { compomint, tmpl } from "compomint";
+import "../css/input.css";
 
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", async function () {
@@ -18,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     "templates/ui-components.cmint",
     "templates/ui.components.cmint",
     "templates/pg.components.cmint",
-    //"templates/demo-components.cmint",
+    "templates/demo-components.cmint",
   ]);
 
   if (promise) {
@@ -279,6 +280,7 @@ document.body.appendChild(hello.element);`,
     title: compomint.i18n.app.examplesTitle("Code Examples"),
     examples: [
       {
+        class: "h-[500px]",
         interactive: true,
         title: compomint.i18n.examples.basicComponent.title("Basic Component"),
         description: compomint.i18n.examples.basicComponent.description(
@@ -304,6 +306,7 @@ document.body.appendChild(button.element);`,
         //result: button,
       },
       {
+        class: "h-[700px]",
         interactive: true,
         title:
           compomint.i18n.examples.stateManagement.title("State Management"),
@@ -320,6 +323,7 @@ document.body.appendChild(button.element);`,
         //result: counter,
       },
       {
+        class: "h-[1000px]",
         interactive: true,
         title:
           compomint.i18n.examples.complexComponent.title("Complex Component"),
@@ -340,6 +344,32 @@ document.body.appendChild(button.element);`,
   });
   document.body.appendChild(todoList.element);`,
         //result: todoList,
+      },
+      {
+        class: "h-[1400px]",
+        interactive: true,
+        title: compomint.i18n.examples.multiTemplate.title(
+          "Multi-Template Application"
+        ),
+        description: compomint.i18n.examples.multiTemplate.description(
+          "Complete application example combining multiple templates"
+        ),
+        type: "codeIsTemplateFile",
+        template: await (
+          await fetch("templates/demo/ui.UserManagement.cmint")
+        ).text(),
+        imports: [],
+        code: `// Create a user management system for an example
+const userManagement = tmpl.ui.UserManagement({
+  users: [
+    { id: 1, name: 'Kim Chul-su', email: 'kim@example.com', role: 'admin', active: true, joinDate: '2024-01-15' },
+    { id: 2, name: 'Lee Young-hee', email: 'lee@example.com', role: 'moderator', active: true, joinDate: '2024-02-10' },
+    { id: 3, name: 'Park Min-su', email: 'park@example.com', role: 'user', active: false, joinDate: '2024-03-05' },
+    { id: 4, name: 'Choi Ji-eun', email: 'choi@example.com', role: 'user', active: true, joinDate: '2024-06-20' }
+  ]
+});
+document.body.appendChild(userManagement.element);`,
+        //result: userManagement,
       },
     ],
   });
@@ -390,7 +420,6 @@ document.body.appendChild(button.element);`,
         label: compomint.i18n.footer.links.examples("Examples"),
         url: "#examples",
       },
-      { label: "샘플 코드", url: "samples.html" },
       {
         label: compomint.i18n.footer.links.docs("Documentation"),
         url: "#documentation",
