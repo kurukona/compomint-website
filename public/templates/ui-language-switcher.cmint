@@ -1,0 +1,118 @@
+<!-- Language Switcher Component -->
+<template id="ui-LanguageSwitcher">
+  ##!
+    compomint.addI18ns({
+      'ui-LanguageSwitcher': {
+        'language': {
+          'en': 'Language',
+          'ko': '언어',
+          'ja': '言語',
+          'zh': '语言'
+        },
+        'en': {
+          'en': 'English',
+          'ko': 'English',
+          'ja': 'English',
+          'zh': 'English'
+        },
+        'ko': {
+          'en': '한국어',
+          'ko': '한국어',
+          'ja': '한국어',
+          'zh': '한국어'
+        },
+        'ja': {
+          'en': '日本語',
+          'ko': '日本語',
+          'ja': '日本語',
+          'zh': '日本語'
+        },
+        'zh': {
+          'en': '中文',
+          'ko': '中文',
+          'ja': '中文',
+          'zh': '中文'
+        }
+      }
+    });
+  ##
+  ##
+    const langs = ['en', 'ko', 'ja', 'zh'];
+    
+    // Get current language
+    const currentLang = document.documentElement.lang || 'en';
+    
+    // Initialize state
+    status.isOpen = status.isOpen || false;
+    
+    // Function to set language
+    function setLanguage(lang) {
+      // Set HTML lang attribute
+      document.documentElement.lang = lang;
+
+      // Store language preference
+      try {
+        localStorage.setItem('compomint-lang', lang);
+      } catch (e) {
+        console.warn('Failed to save language preference to localStorage:', e);
+      }
+
+      // Close the dropdown
+      status.isOpen = false;
+
+      // Refresh all components on page
+      refreshAllComponents();
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (event) {
+      if (status.isOpen && !event.target.closest('.ui-LanguageSwitcher')) {
+        status.isOpen = false;
+        component.refresh();
+      }
+    });
+
+    // Function to refresh all components on the page
+    function refreshAllComponents() {
+      // Update meta tags with i18n content
+      if (typeof window.updateMetaTags === 'function') {
+        window.updateMetaTags();
+      }
+    }
+  ##
+  
+  <div class="relative inline-block text-left ui-LanguageSwitcher">
+    <button 
+      class="flex items-center space-x-1 text-gray-600 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+      data-co-event="##:{
+        click: function() {
+          status.isOpen = !status.isOpen;
+          component.refresh();
+        }
+      }##"
+    >
+      <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+      </svg>
+      <span>##=i18n.language##</span>
+      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+    </button>
+    
+    <div class="##=status.isOpen ? 'block' : 'hidden'## absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 text-gray-800 dark:text-gray-200">
+      ##langs.forEach(lang => {##
+        <a href="##=window.location.origin + window.location.pathname + '?lang=' + lang##" 
+          class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 ##=currentLang === lang ? 'bg-indigo-50 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-200' : ''##"
+          data-co-event="##:{
+            click: function(e) {
+              setLanguage(lang);
+            }
+          }##"
+        >
+          ##=i18n[lang]##
+        </a>
+      ##});##
+    </div>
+  </div>
+</template>

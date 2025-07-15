@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     "templates/pg.components.cmint",
     "templates/demo-components.cmint",
     "templates/ui-cookie-consent.cmint",
+    "templates/ui-language-switcher.cmint",
   ]);
 
   if (promise) {

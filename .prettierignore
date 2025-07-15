@@ -1,0 +1,11 @@
+# Compomint playground files - contains template syntax that shouldn't be formatted
+cmint.playground.html
+
+# Template files with Compomint syntax
+templates/*.html
+templates/*.cmint
+
+# Generated files
+css/output.css
+dist/
+build/
