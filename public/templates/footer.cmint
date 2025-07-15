@@ -1,5 +1,9 @@
 <!-- Footer -->
 <template id="ui-Footer">
+  ##
+    const cookieConsent = tmpl.ui.CookieConsent({});
+  ##
+  
   <footer class="bg-gray-800 text-gray-300 py-12">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -44,6 +48,11 @@
               </a>
             </li>
           </ul>
+          <ul class="space-y-2 pt-16">
+            <li class="flex items-center space-x-2">
+              <button data-co-event="##:{click: cookieConsent.openCookieBanner}##" class="hover:text-indigo-300 transition-colors duration-200">Manage Cookies</button>
+            </li>
+          </ul>
         </div>
       </div>
       
@@ -52,4 +61,7 @@
       </div>
     </div>
   </footer>
+  
+  <!-- Cookie Consent Component -->
+  ##%cookieConsent##
 </template>

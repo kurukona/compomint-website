@@ -1,0 +1,254 @@
+<!-- Cookie Consent Component -->
+<template id="ui-CookieConsent">
+  ##!
+    compomint.addI18ns({
+      'ui-CookieConsent': {
+        'cookie_consent_title': {
+          'en': 'We use cookies',
+          'ko': '쿠키를 사용합니다',
+          'ja': 'クッキーを使用します',
+          'zh': '我们使用Cookie'
+        },
+        'cookie_consent_message': {
+          'en': 'This website uses cookies to enhance your browsing experience and provide personalized content. By continuing to use this site, you agree to our use of cookies.',
+          'ko': '이 웹사이트는 브라우징 경험을 향상시키고 개인화된 콘텐츠를 제공하기 위해 쿠키를 사용합니다. 이 사이트를 계속 사용하면 쿠키 사용에 동의하는 것입니다.',
+          'ja': 'このウェブサイトは、ブラウジング体験を向上させ、パーソナライズされたコンテンツを提供するためにクッキーを使用しています。このサイトを継続して使用することで、クッキーの使用に同意したことになります。',
+          'zh': '本网站使用Cookie来增强您的浏览体验并提供个性化内容。继续使用本站即表示您同意我们使用Cookie。'
+        },
+        'accept_all': {
+          'en': 'Accept All',
+          'ko': '모두 허용',
+          'ja': 'すべて受け入れる',
+          'zh': '接受全部'
+        },
+        'essential_only': {
+          'en': 'Essential Only',
+          'ko': '필수만',
+          'ja': '必須のみ',
+          'zh': '仅必要'
+        },
+        'cookie_settings': {
+          'en': 'Cookie Settings',
+          'ko': '쿠키 설정',
+          'ja': 'クッキー設定',
+          'zh': 'Cookie设置'
+        },
+        'analytics_cookies': {
+          'en': 'Analytics Cookies',
+          'ko': '분석 쿠키',
+          'ja': '分析クッキー',
+          'zh': '分析Cookie'
+        },
+        'analytics_description': {
+          'en': 'These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.',
+          'ko': '이 쿠키는 방문자가 웹사이트와 상호 작용하는 방식을 이해하는 데 도움이 되도록 정보를 익명으로 수집하고 보고합니다.',
+          'ja': 'これらのクッキーは、匿名で情報を収集・報告することで、訪問者がウェブサイトとどのように関わっているかを理解するのに役立ちます。',
+          'zh': '这些Cookie通过匿名收集和报告信息来帮助我们了解访问者如何与我们的网站互动。'
+        },
+        'save_preferences': {
+          'en': 'Save Preferences',
+          'ko': '설정 저장',
+          'ja': '設定を保存',
+          'zh': '保存偏好'
+        },
+        'close': {
+          'en': 'Close',
+          'ko': '닫기',
+          'ja': '閉じる',
+          'zh': '关闭'
+        }
+      }
+    });
+  ##
+  ##
+    status.cookieConsentShown = status.cookieConsentShown !== undefined ? status.cookieConsentShown : !localStorage.getItem('cookieConsent');
+    status.showCookieModal = status.showCookieModal || false;
+    status.analyticsEnabled = status.analyticsEnabled !== undefined ? status.analyticsEnabled : (localStorage.getItem('analyticsEnabled') === 'true');
+    
+    function openCookieBanner() {
+      status.cookieConsentShown = true;
+      component.refresh();
+    }
+    component.openCookieBanner = openCookieBanner;
+    
+
+    // Cookie consent functions
+    function acceptAll() {
+      localStorage.setItem('cookieConsent', 'accepted');
+      localStorage.setItem('analyticsEnabled', 'true');
+      status.cookieConsentShown = false;
+      status.analyticsEnabled = true;
+      enableAnalytics();
+      component.refresh();
+    }
+    
+    function acceptEssential() {
+      localStorage.setItem('cookieConsent', 'essential');
+      localStorage.setItem('analyticsEnabled', 'false');
+      status.cookieConsentShown = false;
+      status.analyticsEnabled = false;
+      disableAnalytics();
+      component.refresh();
+    }
+    
+    function openCookieSettings() {
+      status.showCookieModal = true;
+      component.refresh();
+    }
+    
+    function closeCookieModal() {
+      status.showCookieModal = false;
+      component.refresh();
+    }
+    
+    function toggleAnalytics() {
+      status.analyticsEnabled = !status.analyticsEnabled;
+      component.refresh();
+    }
+    
+    function savePreferences() {
+      localStorage.setItem('cookieConsent', 'customized');
+      localStorage.setItem('analyticsEnabled', status.analyticsEnabled.toString());
+      status.cookieConsentShown = false;
+      status.showCookieModal = false;
+      
+      if (status.analyticsEnabled) {
+        enableAnalytics();
+      } else {
+        disableAnalytics();
+      }
+      
+      component.refresh();
+    }
+    
+    function enableAnalytics() {
+      // Enable Google Analytics
+      if (window.gtag) {
+        window.gtag('consent', 'update', {
+          'analytics_storage': 'granted'
+        });
+      }
+      
+      // Initialize gtag if not already loaded
+      if (!window.gtag) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW';
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-6X8Q36NXSW');
+        };
+      }
+    }
+    
+    function disableAnalytics() {
+      if (window.gtag) {
+        window.gtag('consent', 'update', {
+          'analytics_storage': 'denied'
+        });
+      }
+    }
+
+    // Initialize analytics based on consent
+    if (status.analyticsEnabled && localStorage.getItem('cookieConsent')) {
+      enableAnalytics();
+    }
+  ##
+
+<div class="ui-CookieConsent">
+  <!-- Cookie Consent Banner -->
+  ##if (status.cookieConsentShown) {##
+    <div class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 border-t border-gray-700">
+      <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex-1">
+          <h3 class="font-semibold mb-2">##=i18n.cookie_consent_title##</h3>
+          <p class="text-sm text-gray-300">##=i18n.cookie_consent_message##</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-2 flex-shrink-0">
+          <button 
+            class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors text-sm"
+            data-co-event="##:{click: acceptAll}##"
+          >
+            ##=i18n.accept_all##
+          </button>
+          <button 
+            class="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors text-sm"
+            data-co-event="##:{click: acceptEssential}##"
+          >
+            ##=i18n.essential_only##
+          </button>
+          <button 
+            class="px-4 py-2 bg-transparent border border-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors text-sm"
+            data-co-event="##:{click: openCookieSettings}##"
+          >
+            ##=i18n.cookie_settings##
+          </button>
+        </div>
+      </div>
+    </div>
+  ##}##
+  
+  <!-- Cookie Settings Modal -->
+  ##if (status.showCookieModal) {##
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full max-h-[80vh] overflow-y-auto">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">##=i18n.cookie_settings##</h2>
+            <button 
+              class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              data-co-event="##:{click: closeCookieModal}##"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-medium text-gray-900 dark:text-white">##=i18n.analytics_cookies##</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">##=i18n.analytics_description##</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input 
+                    type="checkbox" 
+                    class="sr-only peer" 
+                    ##if (status.analyticsEnabled) {##checked##}##
+                    data-co-event="##:{change: toggleAnalytics}##"
+                  >
+                  <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex justify-end gap-3 mt-6">
+            <button 
+              class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+              data-co-event="##:{click: closeCookieModal}##"
+            >
+              ##=i18n.close##
+            </button>
+            <button 
+              class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
+              data-co-event="##:{click: savePreferences}##"
+            >
+              ##=i18n.save_preferences##
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  ##}##
+</div>
+</template>
