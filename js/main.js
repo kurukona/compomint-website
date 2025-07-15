@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     "templates/ui.components.cmint",
     "templates/pg.components.cmint",
     "templates/demo-components.cmint",
+    "templates/ui-cookie-consent.cmint",
   ]);
 
   if (promise) {
@@ -288,7 +289,7 @@ document.body.appendChild(hello.element);`,
         ),
         code: `// Template definition
 compomint.addTmpl('ui-Button', \` // Template definition
-  <button class="ui-Button ##=data.variant ? 'ui-Button--' + data.variant : ''##"
+  <button class="ui-Button p-2 ##=data.color ? 'bg-' + data.color + '-50' : ''##"
     data-co-event="##:data.onClick##">
     ##=data.label##
   </button>
@@ -297,7 +298,7 @@ compomint.addTmpl('ui-Button', \` // Template definition
 // Create and use component
 const button = tmpl.ui.Button({
   label: 'Click here',
-  variant: 'primary',
+  color: 'indigo',
   onClick: function() {
     alert('The button has been clicked!');
   }

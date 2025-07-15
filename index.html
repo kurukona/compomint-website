@@ -164,19 +164,34 @@
       });
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW"
-    ></script>
+    <!-- Google tag (gtag.js) - Only loaded if analytics are enabled -->
     <script>
+      // Initialize consent mode
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
-
-      gtag("config", "G-6X8Q36NXSW");
+      
+      // Default consent state
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied'
+      });
+      
+      // Only load gtag if analytics are enabled
+      if (localStorage.getItem('analyticsEnabled') === 'true') {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW';
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+          gtag('js', new Date());
+          gtag('config', 'G-6X8Q36NXSW');
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        };
+      }
     </script>
   </head>
 
