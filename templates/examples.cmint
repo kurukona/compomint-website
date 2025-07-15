@@ -1,12 +1,92 @@
 <!-- Code Examples Section -->
 <template id="ui-Examples">
+  ##!
+    compomint.addI18ns({
+      'ui-Examples': {
+        'title': {
+          'en': 'Code Examples',
+          'ko': '코드 예제',
+          'ja': 'コード例',
+          'zh': '代码示例'
+        },
+        'result': {
+          'en': 'Result:',
+          'ko': '결과:',
+          'ja': '結果:',
+          'zh': '结果:'
+        },
+        'examples': {
+          'basic': {
+            'title': {
+              'en': 'Basic Component',
+              'ko': '기본 컴포넌트',
+              'ja': '基本的なコンポーネント',
+              'zh': '基础组件'
+            },
+            'description': {
+              'en': 'Simple template definition and usage',
+              'ko': '간단한 템플릿 정의와 사용 방법',
+              'ja': 'シンプルなテンプレート定義と使用方法',
+              'zh': '简单的模板定义和使用方法'
+            }
+          },
+          'state': {
+            'title': {
+              'en': 'State Management',
+              'ko': '상태 관리',
+              'ja': '状態管理',
+              'zh': '状态管理'
+            },
+            'description': {
+              'en': 'How to manage internal component state and respond to events',
+              'ko': '컴포넌트 내부 상태를 관리하고 이벤트에 반응하는 방법',
+              'ja': 'コンポーネントの内部状態を管理しイベントに応答する方法',
+              'zh': '如何管理组件内部状态并响应事件'
+            }
+          },
+          'complex': {
+            'title': {
+              'en': 'Complex Component',
+              'ko': '복잡한 컴포넌트',
+              'ja': '複雑なコンポーネント',
+              'zh': '复杂组件'
+            },
+            'description': {
+              'en': 'A more complex component example: Todo List',
+              'ko': '더 복잡한 컴포넌트 예제: Todo 리스트',
+              'ja': 'より複雑なコンポーネントの例：Todoリスト',
+              'zh': '更复杂的组件示例：待办事项列表'
+            }
+          },
+          'multiTemplate': {
+            'title': {
+              'en': 'Multi-Template Application',
+              'ko': '다중 템플릿 애플리케이션',
+              'ja': 'マルチテンプレートアプリケーション',
+              'zh': '多模板应用程序'
+            },
+            'description': {
+              'en': 'Complete application example combining multiple templates',
+              'ko': '여러 템플릿을 결합한 완전한 애플리케이션 예제',
+              'ja': '複数のテンプレートを組み合わせた完全なアプリケーション例',
+              'zh': '结合多个模板的完整应用程序示例'
+            }
+          }
+        }
+      }
+    });
+  ##
+  ##
+    // Use examples data passed from main.js
+    const examples = data.examples || [];
+  ##
 
   <section id="examples" class="py-16 bg-gray-100 dark:bg-gray-900">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">##=data.title##</h2>
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">##=i18n.title##</h2>
       
       <div class="mx-auto">
-        ##data.examples.forEach((example, index) => {##
+        ##examples.forEach((example, index) => {##
           <div class="mb-10 bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
             <div class="p-6 border-b dark:border-gray-700">
               <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">##=example.title##</h3>
@@ -31,7 +111,7 @@
               </div>
               ##if (example.result) {##
                 <div class="p-6 bg-gray-50 dark:bg-gray-700 border-t dark:border-gray-600">
-                  <h4 class="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">##=compomint.i18n.examples.result('Result:')##</h4>
+                  <h4 class="text-sm uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3">##=i18n.result('Result:')##</h4>
                   <div class="p-4 bg-gray-100 border border-gray-200 dark:border-gray-600 rounded">
                     ##%example.result##
                   </div>

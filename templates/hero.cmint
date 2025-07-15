@@ -1,20 +1,44 @@
 <!-- Hero Section -->
 <template id="ui-Hero">
+  ##!
+    compomint.addI18ns({
+      'ui-Hero': {
+        'title': {
+          'en': 'How to Create Web Components Easily',
+          'ko': '웹 컴포넌트를 간단하게 만드는 방법',
+          'ja': 'Webコンポーネントを簡単に作成する方法',
+          'zh': '如何轻松创建Web组件'
+        },
+        'subtitle': {
+          'en': 'Compomint is a lightweight JavaScript framework that provides a template-based component system.',
+          'ko': 'Compomint는 템플릿 기반 컴포넌트 시스템을 제공하는 경량 JavaScript 프레임워크입니다.',
+          'ja': 'Compomintは、テンプレートベースのコンポーネントシステムを提供する軽量JavaScriptフレームワークです。',
+          'zh': 'Compomint是一个轻量级JavaScript框架，提供基于模板的组件系统。'
+        },
+        'getStarted': {
+          'en': 'Get Started',
+          'ko': '시작하기',
+          'ja': '始めましょう',
+          'zh': '开始使用'
+        }
+      }
+    });
+  ##
   <section id="home" class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white py-20">
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
       <div class="md:w-1/2 mb-10 md:mb-0">
         <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-          ##=data.title##
+          ##=i18n.title##
         </h1>
         <p class="text-xl md:text-2xl mb-8 text-indigo-100">
-          ##=data.subtitle##
+          ##=i18n.subtitle##
         </p>
         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-          <a href="##=data.primaryButtonUrl##" class="bg-white text-indigo-600 dark:text-indigo-400 px-6 py-3 rounded-lg font-medium text-center hover:bg-gray-100 transition-colors duration-200">
-            ##=data.primaryButtonText##
+          <a href="#documentation" class="bg-white text-indigo-600 dark:text-indigo-400 px-6 py-3 rounded-lg font-medium text-center hover:bg-gray-100 transition-colors duration-200">
+            ##=i18n.getStarted##
           </a>
-          <a href="##=data.secondaryButtonUrl##" class="border border-white text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white/10 transition-colors duration-200">
-            ##=data.secondaryButtonText##
+          <a href="https://github.com/kurukona/compomint" class="border border-white text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white/10 transition-colors duration-200">
+            GitHub
           </a>
         </div>
       </div>
@@ -28,7 +52,24 @@
             </div>
             <div class="text-gray-400 text-sm">example.html</div>
           </div>
-          <pre class="p-4 text-sm font-mono overflow-x-auto"><code>##=data.codeExample##</code></pre>
+          <pre class="p-4 text-sm font-mono overflow-x-auto"><code>&lt;template id="hello-world"&gt;
+  &lt;style id="style-hello-world"&gt;
+    .hello-world { color: ##=data.color || 'black'## }
+  &lt;/style&gt;
+  &lt;div class="hello-world"&gt;
+    &lt;h1&gt;##=data.title || 'Hello'##&lt;/h1&gt;
+    &lt;p&gt;##=data.message##&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+// Create and use component
+const hello = compomint.tmpl('hello-world')({
+  title: 'Hello Compomint!',
+  message: 'Easy and simple component',
+  color: '#4F46E5'
+});
+
+document.body.appendChild(hello.element);</code></pre>
         </div>
       </div>
     </div>

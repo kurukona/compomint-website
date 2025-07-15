@@ -26,6 +26,44 @@
 
 <!-- Todo List Component -->
 <template id="ui-TodoList">
+  ##!
+    compomint.addI18ns({
+      'ui-TodoList': {
+        'todo': {
+          'placeholder': {
+            'en': 'Add a todo...',
+            'ko': '할 일을 추가하세요...',
+            'ja': 'やることを追加...',
+            'zh': '添加待办事项...'
+          },
+          'addTodo': {
+            'en': 'Add',
+            'ko': '추가',
+            'ja': '追加',
+            'zh': '添加'
+          },
+          'empty': {
+            'en': 'No todos yet. Add one above!',
+            'ko': '아직 할 일이 없습니다. 위에서 추가하세요!',
+            'ja': 'まだやることがありません。上で追加してください！',
+            'zh': '还没有待办事项。在上面添加一个！'
+          },
+          'itemsLeft': {
+            'en': 'item(s) left',
+            'ko': '개 남음',
+            'ja': '個残り',
+            'zh': '项剩余'
+          },
+          'clearCompleted': {
+            'en': 'Clear completed',
+            'ko': '완료된 항목 지우기',
+            'ja': '完了したものをクリア',
+            'zh': '清除已完成'
+          }
+        }
+      }
+    });
+  ##
   ##
   status.todos = status.todos || [];
   ##
@@ -35,7 +73,7 @@
     <div class="flex mb-4">
       <input 
         type="text" 
-        placeholder="##=compomint.i18n.demo.todo.placeholder('Add a todo...')##" 
+        placeholder="##=i18n.placeholder('Add a todo...')##" 
         class="flex-grow border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-l px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
         data-co-element-ref="##:newTodoInput##"
         data-co-event="##:{
@@ -52,13 +90,13 @@
           click: addTodo
         }##"
       >
-        ##=compomint.i18n.demo.todo.addTodo('Add')##
+        ##=i18n.addTodo('Add')##
       </button>
     </div>
     
     <ul class="space-y-2 mb-4">
       ##if (status.todos.length === 0) {##
-        <li class="text-gray-500 dark:text-gray-400 text-center py-2">##=compomint.i18n.demo.todo.empty('No todos yet. Add one above!')##</li>
+        <li class="text-gray-500 dark:text-gray-400 text-center py-2">##=i18n.empty('No todos yet. Add one above!')##</li>
       ##} else {##
         ##status.todos.forEach((todo, index) => {##
           <li class="flex items-center p-2 border-b border-gray-100 dark:border-gray-700">
@@ -92,14 +130,14 @@
     
     ##if (status.todos.length > 0) {##
       <div class="text-sm text-gray-500 dark:text-gray-400 flex justify-between">
-        <span>##=status.todos.filter(todo => !todo.completed).length## ##=compomint.i18n.demo.todo.itemsLeft('item(s) left')##</span>
+        <span>##=status.todos.filter(todo => !todo.completed).length## ##=i18n.itemsLeft('item(s) left')##</span>
         <button 
           class="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
           data-co-event="##:{
             click: clearCompleted
           }##"
         >
-          ##=compomint.i18n.demo.todo.clearCompleted('Clear completed')##
+          ##=i18n.clearCompleted('Clear completed')##
         </button>
       </div>
     ##}##
