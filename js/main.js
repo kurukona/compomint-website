@@ -68,215 +68,19 @@ function initDarkMode() {
 
 // Initialize the application
 async function initApp() {
-  // Icons for features section
-  const featureIcons = {
-    lightweight: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-    </svg>`,
-    template: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
-    </svg>`,
-    component: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
-    </svg>`,
-    responsive: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-    </svg>`,
-    easy: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-    </svg>`,
-    i18n: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
-    </svg>`,
-  };
-
   // Define the header component
-  const header = tmpl.ui.Header({
-    menuItems: [
-      {
-        label: compomint.i18n.footer.links.home("Home"),
-        url: "#home",
-        active: true,
-      },
-      {
-        label: compomint.i18n.footer.links.features("Features"),
-        url: "#features",
-      },
-      {
-        label: compomint.i18n.vscode.title("VSCode"),
-        url: "#vscode-extension",
-      },
-      {
-        label: compomint.i18n.footer.links.examples("Examples"),
-        url: "#examples",
-      },
-      {
-        label: compomint.i18n.footer.links.docs("Documentation"),
-        url: "#documentation",
-      },
-    ],
-  });
+  const header = tmpl.ui.Header({});
 
   // Define the hero section
-  const hero = tmpl.ui.Hero({
-    title: compomint.i18n.app.title("How to Create Web Components Easily"),
-    subtitle: compomint.i18n.app.subtitle(
-      "Compomint is a lightweight JavaScript framework that provides a template-based component system."
-    ),
-    primaryButtonText: compomint.i18n.app.getStarted("Get Started"),
-    primaryButtonUrl: "#documentation",
-    secondaryButtonText: "GitHub",
-    secondaryButtonUrl: "https://github.com/kurukona/compomint",
-    codeExample: `<template id="hello-world">
-  <style id="style-hello-world">
-    .hello-world { color: ##=data.color || 'black'## }
-  </style>
-  <div class="hello-world">
-    <h1>##=data.title || 'Hello'##</h1>
-    <p>##=data.message##</p>
-  </div>
-</template>
-
-// Create and use component
-const hello = compomint.tmpl('hello-world')({
-  title: 'Hello Compomint!',
-  message: 'Easy and simple component',
-  color: '#4F46E5'
-});
-
-document.body.appendChild(hello.element);`,
-  });
+  const hero = tmpl.ui.Hero({});
 
   // Define the features section
-  const features = tmpl.ui.Features({
-    title: compomint.i18n.app.featuresTitle("Why Use Compomint?"),
-    features: [
-      {
-        title: compomint.i18n.features.lightweight.title("Lightweight Size"),
-        description: compomint.i18n.features.lightweight.description(
-          "Fast loading and execution with a small footprint (~14KB gzipped)."
-        ),
-        icon: featureIcons.lightweight,
-      },
-      {
-        title: compomint.i18n.features.template.title("Template-Based"),
-        description: compomint.i18n.features.template.description(
-          "Use a simple yet powerful string-based template syntax with JavaScript evaluation."
-        ),
-        icon: featureIcons.template,
-      },
-      {
-        title: compomint.i18n.features.component.title("Component-Oriented"),
-        description: compomint.i18n.features.component.description(
-          "Build reusable UI components with proper encapsulation."
-        ),
-        icon: featureIcons.component,
-      },
-      {
-        title: compomint.i18n.features.easy.title("Component Composition"),
-        description: compomint.i18n.features.easy.description(
-          "Combine components like building blocks to create complex UIs."
-        ),
-        icon: featureIcons.easy,
-      },
-      {
-        title: compomint.i18n.features.responsive.title("State Management"),
-        description: compomint.i18n.features.responsive.description(
-          "Manage component state efficiently with automatic updates."
-        ),
-        icon: featureIcons.responsive,
-      },
-      {
-        title: compomint.i18n.features.i18n.title("Internationalization"),
-        description: compomint.i18n.features.i18n.description(
-          "Built-in support for multiple languages with i18n system."
-        ),
-        icon: featureIcons.i18n,
-      },
-    ],
-  });
-
-  // VSCode Extension icons
-  const vscodeIcons = {
-    syntax: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-    </svg>`,
-    autocomplete: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-    </svg>`,
-    snippets: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
-    </svg>`,
-    preview: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-    </svg>`,
-  };
+  const features = tmpl.ui.Features({});
 
   // Define the VSCode extension section
-  const vscodeExtension = tmpl.ui.VSCodeExtension({
-    title: compomint.i18n.vscode.title("VSCode Extension"),
-    subtitle: compomint.i18n.vscode.subtitle(
-      "Boost your Compomint development with powerful VSCode extension that provides syntax highlighting, auto-completion, and live preview."
-    ),
-    extensionUrl:
-      "https://marketplace.visualstudio.com/items?itemName=compomint.compomint-vscode",
-    buttonText: compomint.i18n.vscode.install("Install Extension"),
-    features: [
-      {
-        title: compomint.i18n.vscode.features.syntax.title(
-          "Syntax Highlighting"
-        ),
-        description: compomint.i18n.vscode.features.syntax.description(
-          "Colored syntax highlighting for Compomint templates and expressions."
-        ),
-        icon: vscodeIcons.syntax,
-      },
-      {
-        title:
-          compomint.i18n.vscode.features.autocomplete.title("Auto-completion"),
-        description: compomint.i18n.vscode.features.autocomplete.description(
-          "Smart auto-completion for Compomint APIs and template syntax."
-        ),
-        icon: vscodeIcons.autocomplete,
-      },
-      {
-        title: compomint.i18n.vscode.features.snippets.title("Code Snippets"),
-        description: compomint.i18n.vscode.features.snippets.description(
-          "Ready-to-use code snippets for common Compomint patterns."
-        ),
-        icon: vscodeIcons.snippets,
-      },
-      {
-        title: compomint.i18n.vscode.features.preview.title("Live Preview"),
-        description: compomint.i18n.vscode.features.preview.description(
-          "Real-time preview of your Compomint templates and components."
-        ),
-        icon: vscodeIcons.preview,
-      },
-    ],
-    screenshots: [
-      {
-        src: "img/compomint-template-support.png",
-        alt: "Compomint Template Support in VSCode",
-        title:
-          compomint.i18n.vscode.screenshots.template.title("Template Support"),
-        description: compomint.i18n.vscode.screenshots.template.description(
-          "Advanced template editing with syntax highlighting and IntelliSense."
-        ),
-      },
-      {
-        src: "img/template-preview.png",
-        alt: "Template Preview Feature",
-        title: compomint.i18n.vscode.screenshots.preview.title("Live Preview"),
-        description: compomint.i18n.vscode.screenshots.preview.description(
-          "See your components rendered in real-time as you code."
-        ),
-      },
-    ],
-  });
+  const vscodeExtension = tmpl.ui.VSCodeExtension({});
 
-  // Define the examples section
+  // Define the examples section with example data
   const examples = tmpl.ui.Examples({
     title: compomint.i18n.app.examplesTitle("Code Examples"),
     examples: [
@@ -376,62 +180,10 @@ document.body.appendChild(userManagement.element);`,
   });
 
   // Define the documentation section
-  const documentation = tmpl.ui.Documentation({
-    title: compomint.i18n.app.docTitle("Learn More"),
-    description: compomint.i18n.app.docDescription(
-      "Check out detailed documentation and resources for Compomint."
-    ),
-    links: [
-      {
-        label: "Getting Started",
-        url: "https://kurukona.github.io/compomint/",
-      },
-      {
-        label: "Basic Usage",
-        url: "https://kurukona.github.io/compomint/#basic-usage",
-      },
-      {
-        label: "Template Syntax",
-        url: "https://kurukona.github.io/compomint/#template-syntax",
-      },
-      {
-        label: "API Reference",
-        url: "https://kurukona.github.io/compomint/#api-reference",
-      },
-      {
-        label: "Examples",
-        url: "https://github.com/kurukona/compomint/tree/master/examples",
-      },
-      { label: "GitHub", url: "https://github.com/kurukona/compomint" },
-    ],
-  });
+  const documentation = tmpl.ui.Documentation({});
 
   // Define the footer
-  const footer = tmpl.ui.Footer({
-    description: compomint.i18n.footer.description(
-      "Compomint is a lightweight JavaScript framework for creating web applications with a component-based architecture."
-    ),
-    links: [
-      { label: compomint.i18n.footer.links.home("Home"), url: "#home" },
-      {
-        label: compomint.i18n.footer.links.features("Features"),
-        url: "#features",
-      },
-      {
-        label: compomint.i18n.footer.links.examples("Examples"),
-        url: "#examples",
-      },
-      {
-        label: compomint.i18n.footer.links.docs("Documentation"),
-        url: "#documentation",
-      },
-      { label: "GitHub", url: "https://github.com/kurukona/compomint" },
-    ],
-    email: "choish@kurukona.com",
-    github: "kurukona/compomint",
-    year: new Date().getFullYear(),
-    copyright: "Compomint",
-  });
+  const footer = tmpl.ui.Footer({});
 
   // Create the main app layout
   const appLayout = tmpl.app.Layout({

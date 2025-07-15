@@ -1,15 +1,46 @@
 <!-- Documentation Section -->
 <template id="ui-Documentation">
+  ##!
+    compomint.addI18ns({
+      'ui-Documentation': {
+        'title': {
+          'en': 'Learn More',
+          'ko': '더 알아보기',
+          'ja': 'もっと詳しく',
+          'zh': '了解更多'
+        },
+        'description': {
+          'en': 'Check out detailed documentation and resources for Compomint.',
+          'ko': 'Compomint에 대한 자세한 정보와 문서를 확인하세요.',
+          'ja': 'Compomintの詳細なドキュメントとリソースをご覧ください。',
+          'zh': '查看Compomint的详细文档和资源。'
+        }
+      }
+    });
+  ##
   <section id="documentation" class="py-16 bg-white dark:bg-gray-800">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">##=data.title##</h2>
-      <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">##=data.description##</p>
+      <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">##=i18n.title##</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">##=i18n.description##</p>
       <div class="flex flex-wrap justify-center gap-4">
-        ##data.links.forEach(link => {##
-          <a href="##=link.url##" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
-            ##=link.label##
-          </a>
-        ##})##
+        <a href="https://kurukona.github.io/compomint/" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+          Getting Started
+        </a>
+        <a href="https://kurukona.github.io/compomint/#basic-usage" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+          Basic Usage
+        </a>
+        <a href="https://kurukona.github.io/compomint/#template-syntax" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+          Template Syntax
+        </a>
+        <a href="https://kurukona.github.io/compomint/#api-reference" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+          API Reference
+        </a>
+        <a href="https://github.com/kurukona/compomint/tree/master/examples" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+          Examples
+        </a>
+        <a href="https://github.com/kurukona/compomint" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
+          GitHub
+        </a>
       </div>
     </div>
   </section>

@@ -1,5 +1,41 @@
 <!-- Header Component -->
 <template id="ui-Header">
+  ##!
+    compomint.addI18ns({
+      'ui-Header': {
+        'home': {
+          'en': 'Home',
+          'ko': '홈',
+          'ja': 'ホーム',
+          'zh': '首页'
+        },
+        'features': {
+          'en': 'Features',
+          'ko': '특징',
+          'ja': '機能',
+          'zh': '特性'
+        },
+        'vscode': {
+          'en': 'VSCode',
+          'ko': 'VSCode',
+          'ja': 'VSCode',
+          'zh': 'VSCode'
+        },
+        'examples': {
+          'en': 'Examples',
+          'ko': '예제',
+          'ja': '例',
+          'zh': '示例'
+        },
+        'documentation': {
+          'en': 'Documentation',
+          'ko': '문서',
+          'ja': 'ドキュメント',
+          'zh': '文档'
+        }
+      }
+    });
+  ##
   <header class="bg-white shadow-sm sticky top-0 z-50 dark:bg-gray-800">
     <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
       <div class="flex items-center space-x-2 mb-4 md:mb-0">
@@ -9,13 +45,31 @@
       
       <nav class="w-full md:w-auto">
         <ul class="flex flex-wrap justify-center gap-4 md:gap-0 md:space-x-6 text-gray-600 dark:text-gray-300">
-          ##data.menuItems.forEach(item => {##
-            <li class="text-center">
-              <a href="##=item.url##" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=item.active ? 'font-medium text-indigo-600 dark:text-indigo-400' : ''##">
-                ##=item.label##
-              </a>
-            </li>
-          ##})##
+          <li class="text-center">
+            <a href="#home" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 font-medium text-indigo-600 dark:text-indigo-400">
+              ##=i18n.home##
+            </a>
+          </li>
+          <li class="text-center">
+            <a href="#features" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+              ##=i18n.features##
+            </a>
+          </li>
+          <li class="text-center">
+            <a href="#vscode-extension" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+              ##=i18n.vscode##
+            </a>
+          </li>
+          <li class="text-center">
+            <a href="#examples" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+              ##=i18n.examples##
+            </a>
+          </li>
+          <li class="text-center">
+            <a href="#documentation" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+              ##=i18n.documentation##
+            </a>
+          </li>
           <li class="text-center">
             <a href="https://github.com/kurukona/compomint" target="_blank" rel="noopener" 
                class="flex items-center justify-center md:justify-start space-x-1 py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">

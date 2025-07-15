@@ -1,19 +1,173 @@
 <!-- Features Section -->
 <template id="ui-Features">
+  ##!
+    compomint.addI18ns({
+      'ui-Features': {
+        'title': {
+          'en': 'Why Use Compomint?',
+          'ko': '왜 Compomint를 사용해야 할까요?',
+          'ja': 'なぜCompomintを使用するのですか？',
+          'zh': '为什么使用Compomint？'
+        },
+        'features': {
+          'lightweight': {
+            'title': {
+              'en': 'Lightweight Size',
+              'ko': '가벼운 크기',
+              'ja': '軽量サイズ',
+              'zh': '轻量级大小'
+            },
+            'description': {
+              'en': 'Fast loading and execution with a small footprint (~14KB gzipped).',
+              'ko': '약 14KB(gzip 압축)의 작은 크기로 빠른 로딩과 실행이 가능합니다.',
+              'ja': '小さなフットプリント（gzip圧縮で約14KB）で高速なロードと実行が可能です。',
+              'zh': '小体积（gzip压缩后约14KB）实现快速加载和执行。'
+            }
+          },
+          'template': {
+            'title': {
+              'en': 'Template-Based',
+              'ko': '템플릿 기반',
+              'ja': 'テンプレートベース',
+              'zh': '基于模板'
+            },
+            'description': {
+              'en': 'Use a simple yet powerful string-based template syntax with JavaScript evaluation.',
+              'ko': 'JavaScript 평가가 가능한 간단하고 강력한 문자열 기반 템플릿 구문을 사용합니다.',
+              'ja': 'JavaScript評価が可能なシンプルで強力な文字列ベースのテンプレート構文を使用します。',
+              'zh': '使用简单而强大的基于字符串的模板语法，支持JavaScript评估。'
+            }
+          },
+          'component': {
+            'title': {
+              'en': 'Component-Oriented',
+              'ko': '컴포넌트 지향',
+              'ja': 'コンポーネント指向',
+              'zh': '组件导向'
+            },
+            'description': {
+              'en': 'Build reusable UI components with proper encapsulation.',
+              'ko': '적절한 캡슐화와 함께 재사용 가능한 UI 컴포넌트를 구축합니다.',
+              'ja': '適切なカプセル化を備えた再利用可能なUIコンポーネントを構築します。',
+              'zh': '构建具有适当封装的可重用UI组件。'
+            }
+          },
+          'easy': {
+            'title': {
+              'en': 'Component Composition',
+              'ko': '컴포넌트 구성',
+              'ja': 'コンポーネントの構成',
+              'zh': '组件组合'
+            },
+            'description': {
+              'en': 'Combine components like building blocks to create complex UIs.',
+              'ko': '복잡한 UI를 구성하기 위해 블록처럼 컴포넌트를 조합할 수 있습니다.',
+              'ja': '複雑なUIを作成するために、ビルディングブロックのようにコンポーネントを組み合わせます。',
+              'zh': '像积木一样组合组件，创建复杂的UI。'
+            }
+          },
+          'responsive': {
+            'title': {
+              'en': 'State Management',
+              'ko': '상태 관리',
+              'ja': '状態管理',
+              'zh': '状态管理'
+            },
+            'description': {
+              'en': 'Manage component state efficiently with automatic updates.',
+              'ko': '자동 업데이트와 함께 컴포넌트 상태를 효율적으로 관리합니다.',
+              'ja': '自動更新でコンポーネントの状態を効率的に管理します。',
+              'zh': '通过自动更新高效管理组件状态。'
+            }
+          },
+          'i18n': {
+            'title': {
+              'en': 'Internationalization',
+              'ko': '다국어 지원',
+              'ja': '国際化',
+              'zh': '国际化'
+            },
+            'description': {
+              'en': 'Built-in support for multiple languages with i18n system.',
+              'ko': '여러 언어를 지원하는 내장된 국제화(i18n) 시스템을 제공합니다.',
+              'ja': '複数言語をサポートする組み込みの国際化（i18n）システムを提供します。',
+              'zh': '内置的i18n系统支持多种语言。'
+            }
+          }
+        }
+      }
+    });
+  ##
+  ##
+    // Feature icons
+    const featureIcons = {
+      lightweight: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+      </svg>`,
+      template: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+      </svg>`,
+      component: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
+      </svg>`,
+      responsive: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+      </svg>`,
+      easy: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>`,
+      i18n: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+      </svg>`
+    };
+  ##
   <section id="features" class="py-16 bg-white dark:bg-gray-800">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">##=data.title##</h2>
+      <h2 class="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">##=i18n.title##</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        ##data.features.forEach(feature => {##
-          <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
-            <div class="text-indigo-600 dark:text-indigo-400 mb-4 w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
-              ##%feature.icon##
-            </div>
-            <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">##=feature.title##</h3>
-            <p class="text-gray-600 dark:text-gray-300">##=feature.description##</p>
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4 w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
+            ##%featureIcons.lightweight##
           </div>
-        ##})##
+          <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">##=i18n.features.lightweight.title##</h3>
+          <p class="text-gray-600 dark:text-gray-300">##=i18n.features.lightweight.description##</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4 w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
+            ##%featureIcons.template##
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">##=i18n.features.template.title##</h3>
+          <p class="text-gray-600 dark:text-gray-300">##=i18n.features.template.description##</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4 w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
+            ##%featureIcons.component##
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">##=i18n.features.component.title##</h3>
+          <p class="text-gray-600 dark:text-gray-300">##=i18n.features.component.description##</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4 w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
+            ##%featureIcons.easy##
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">##=i18n.features.easy.title##</h3>
+          <p class="text-gray-600 dark:text-gray-300">##=i18n.features.easy.description##</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4 w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
+            ##%featureIcons.responsive##
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">##=i18n.features.responsive.title##</h3>
+          <p class="text-gray-600 dark:text-gray-300">##=i18n.features.responsive.description##</p>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg hover:shadow-md transition-shadow duration-200">
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4 w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
+            ##%featureIcons.i18n##
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100">##=i18n.features.i18n.title##</h3>
+          <p class="text-gray-600 dark:text-gray-300">##=i18n.features.i18n.description##</p>
+        </div>
       </div>
     </div>
   </section>

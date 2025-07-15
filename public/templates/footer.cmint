@@ -1,7 +1,53 @@
 <!-- Footer -->
 <template id="ui-Footer">
+  ##!
+    compomint.addI18ns({
+      'ui-Footer': {
+        'links_section': {
+          'en': 'Links',
+          'ko': '링크',
+          'ja': 'リンク',
+          'zh': '链接'
+        },
+        'contact_section': {
+          'en': 'Contact',
+          'ko': '연락처',
+          'ja': 'お問い合わせ',
+          'zh': '联系我们'
+        },
+        'license_text': {
+          'en': 'Available under MIT License.',
+          'ko': 'MIT 라이센스에 따라 사용 가능합니다.',
+          'ja': 'MITライセンスの下で利用可能です.',
+          'zh': '根据MIT许可证可用.'
+        },
+        'manage_cookies': {
+          'en': 'Manage Cookies',
+          'ko': '쿠키 관리',
+          'ja': 'クッキー管理',
+          'zh': '管理Cookie'
+        }
+      }
+    });
+  ##
   ##
     const cookieConsent = tmpl.ui.CookieConsent({});
+    
+    // Default footer data if not provided
+    const footerData = {
+      description: data.description || compomint.i18n.footer?.description("Compomint is a lightweight JavaScript framework for creating web applications with a component-based architecture."),
+      links: data.links || [
+        { label: compomint.i18n.footer?.links?.home("Home"), url: "#home" },
+        { label: compomint.i18n.footer?.links?.features("Features"), url: "#features" },
+        { label: compomint.i18n.footer?.links?.examples("Examples"), url: "#examples" },
+        { label: compomint.i18n.footer?.links?.docs("Documentation"), url: "#documentation" },
+        { label: "GitHub", url: "https://github.com/kurukona/compomint" }
+      ],
+      email: data.email || "choish@kurukona.com",
+      github: data.github || "kurukona/compomint",
+      year: data.year || new Date().getFullYear(),
+      copyright: data.copyright || "Compomint"
+    };
   ##
   
   <footer class="bg-gray-800 text-gray-300 py-12">
@@ -12,13 +58,13 @@
             <img src="img/icon.png" alt="Compomint Logo" class="w-8 h-8 logo-light">
             <span class="text-xl font-bold text-white">Compomint</span>
           </div>
-          <p class="text-gray-400">##=data.description##</p>
+          <p class="text-gray-400">##=footerData.description##</p>
         </div>
         
         <div>
-          <h3 class="text-lg font-semibold mb-4 text-white">##=compomint.i18n.footer.links_section('Links')##</h3>
+          <h3 class="text-lg font-semibold mb-4 text-white">##=i18n.links_section('Links')##</h3>
           <ul class="space-y-2">
-            ##data.links.forEach(link => {##
+            ##footerData.links.forEach(link => {##
               <li>
                 <a href="##=link.url##" class="hover:text-indigo-300 transition-colors duration-200">
                   ##=link.label##
@@ -29,35 +75,35 @@
         </div>
         
         <div>
-          <h3 class="text-lg font-semibold mb-4 text-white">##=compomint.i18n.footer.contact_section('Contact')##</h3>
+          <h3 class="text-lg font-semibold mb-4 text-white">##=i18n.contact_section('Contact')##</h3>
           <ul class="space-y-2">
             <li class="flex items-center space-x-2">
               <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
-              <a href="mailto:##=data.email##" class="hover:text-indigo-300 transition-colors duration-200">
-                ##=data.email##
+              <a href="mailto:##=footerData.email##" class="hover:text-indigo-300 transition-colors duration-200">
+                ##=footerData.email##
               </a>
             </li>
             <li class="flex items-center space-x-2">
               <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
               </svg>
-              <a href="https://github.com/##=data.github##" target="_blank" rel="noopener" class="hover:text-indigo-300 transition-colors duration-200">
-                ##=data.github##
+              <a href="https://github.com/##=footerData.github##" target="_blank" rel="noopener" class="hover:text-indigo-300 transition-colors duration-200">
+                ##=footerData.github##
               </a>
             </li>
           </ul>
           <ul class="space-y-2 pt-16">
             <li class="flex items-center space-x-2">
-              <button data-co-event="##:{click: cookieConsent.openCookieBanner}##" class="hover:text-indigo-300 transition-colors duration-200">Manage Cookies</button>
+              <button data-co-event="##:{click: cookieConsent.openCookieBanner}##" class="hover:text-indigo-300 transition-colors duration-200">##=i18n.manage_cookies('Manage Cookies')##</button>
             </li>
           </ul>
         </div>
       </div>
       
       <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400">
-        <p>© ##=data.year## ##=data.copyright##. ##=compomint.i18n.footer.license_text('Available under MIT License.')##</p>
+        <p>© ##=footerData.year## ##=footerData.copyright##. ##=i18n.license_text('Available under MIT License.')##</p>
       </div>
     </div>
   </footer>
