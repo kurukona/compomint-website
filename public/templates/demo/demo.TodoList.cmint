@@ -1,7 +1,7 @@
-<template id="ui-TodoList">
+<template id="demo-TodoList">
   ##!
   compomint.addI18ns({
-    "ui-TodoList": {
+    "demo-TodoList": {
       title: {
         en: "Todo List",
         ko: "할 일 목록",

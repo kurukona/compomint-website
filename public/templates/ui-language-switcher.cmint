@@ -44,7 +44,71 @@
     
     // Initialize state
     status.isOpen = status.isOpen || false;
-    
+
+
+
+    // Add utility function to update meta tags in real-time
+    updateMetaTags = function () {
+      const currentLang = document.documentElement.lang || "en";
+
+      // Helper function to get i18n value
+      function getI18nValue(key) {
+        const parts = key.split(".");
+        if (parts.length !== 2) return null;
+
+        const section = compomint.i18n[parts[0]];
+        if (!section || !section[parts[1]]) return null;
+
+        const translationFn = section[parts[1]];
+        return typeof translationFn === "function" ? translationFn() : null;
+      }
+
+      // Update document title
+      const titleKey = "app.page-title";
+      const title = getI18nValue(titleKey);
+      if (title) document.title = title;
+
+      // Update meta tags with data-i18n-content attributes
+      document.querySelectorAll("[data-i18n-content]").forEach((el) => {
+        const i18nKey = el.getAttribute("data-i18n-content");
+        const content = getI18nValue(i18nKey);
+
+        if (content) {
+          if (el.hasAttribute("content")) {
+            el.setAttribute("content", content);
+          } else {
+            el.textContent = content;
+          }
+        }
+      });
+
+      // Update schema.org data if it exists
+      try {
+        const schemaScripts = document.querySelectorAll(
+          'script[type="application/ld+json"]'
+        );
+        schemaScripts.forEach((script) => {
+          try {
+            const data = JSON.parse(script.textContent);
+
+            // Update Software Application schema
+            if (data["@type"] === "SoftwareApplication") {
+              const description = getI18nValue("app.meta-description");
+              if (description) data.description = description;
+
+              // Create updated JSON string with proper formatting
+              script.textContent = JSON.stringify(data, null, 2);
+            }
+          } catch (e) {
+            console.warn("Failed to parse schema JSON:", e);
+          }
+        });
+      } catch (e) {
+        console.warn("Error updating schema.org data:", e);
+      }
+    };
+
+
     // Function to set language
     function setLanguage(lang) {
       // Set HTML lang attribute
@@ -75,13 +139,12 @@
     // Function to refresh all components on the page
     function refreshAllComponents() {
       // Update meta tags with i18n content
-      if (typeof window.updateMetaTags === 'function') {
-        window.updateMetaTags();
-      }
+      updateMetaTags();
+      window.appLayout.refresh();
     }
   ##
   
-  <div class="relative inline-block text-left ui-LanguageSwitcher">
+  <div class="ui-LanguageSwitcher relative inline-block text-left">
     <button 
       class="flex items-center space-x-1 text-gray-600 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
       data-co-event="##:{
@@ -102,6 +165,7 @@
     
     <div class="##=status.isOpen ? 'block' : 'hidden'## absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 text-gray-800 dark:text-gray-200">
       ##langs.forEach(lang => {##
+        <!--
         <a href="##=window.location.origin + window.location.pathname + '?lang=' + lang##" 
           class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 ##=currentLang === lang ? 'bg-indigo-50 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-200' : ''##"
           data-co-event="##:{
@@ -112,6 +176,18 @@
         >
           ##=i18n[lang]##
         </a>
+        -->
+        <button
+          class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 ##=currentLang === lang ? 'bg-indigo-50 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-200' : ''##"
+          data-co-event="##:{
+            click: function(e) {
+              setLanguage(lang);
+            }
+          }##"
+        >
+          ##=i18n[lang]##
+        </button>
+
       ##});##
     </div>
   </div>

@@ -1,5 +1,17 @@
 <!-- Main App Layout -->
 <template id="app-Layout">
+  ##
+  // Refresh for adapt i18n
+  if (data.header) data.header.refresh();
+  if (data.features) data.features.refresh();
+  if (data.vscodeExtension) data.vscodeExtension.refresh();
+
+  if (data.examples) data.examples.refresh();
+  if (data.advancedExamples) data.advancedExamples.refresh();
+
+  if (data.documentation) data.documentation.refresh();
+  if (data.footer) data.footer.refresh();
+  ##
   <div class="min-h-screen flex flex-col">
     ##%data.header##
     <main class="flex-grow">
