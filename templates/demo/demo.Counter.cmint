@@ -1,7 +1,7 @@
-<template id="ui-Counter">
+<template id="demo-Counter">
   ##!
   compomint.addI18ns({
-    "ui-Counter": {
+    "demo-Counter": {
       title: {
         en: "Counter Component",
         ko: "카운터 컴포넌트",
