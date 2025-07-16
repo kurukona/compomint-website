@@ -82,7 +82,7 @@
     component.refresh();
   }
 
-  const userList = tmpl.ui.UserList({
+  const userList = tmpl.demo.UserList({
     filteredUsers: filteredUsers,
     handleUserEdit: handleUserEdit,
     handleUserDelete: handleUserDelete
@@ -116,7 +116,7 @@
     ##if (status.showForm) {##
       <!-- User Form -->
       <div class="mb-6">
-        ##%tmpl.ui.UserForm({
+        ##%tmpl.demo.UserForm({
           user: status.selectedUser,
           onSubmit: handleFormSubmit,
           onCancel: handleFormCancel
@@ -131,7 +131,7 @@
     
     <!-- Statistics Dashboard -->
     <div class="mt-8">
-      ##%tmpl.ui.UserStats({
+      ##%tmpl.demo.UserStats({
         totalUsers: status.users.length,
         activeUsers: status.users.filter(u => u.active).length,
         recentUsers: status.users.filter(u => {
@@ -145,10 +145,10 @@
 
 
 
-<template id="ui-UserCard">
+<template id="demo-UserCard">
   ##!
   compomint.addI18ns({
-    'ui-UserCard': {
+    'demo-UserCard': {
       'edit': { 'ko': '편집', 'en': 'Edit', 'ja': '編集', 'zh': '编辑' },
       'delete': { 'ko': '삭제', 'en': 'Delete', 'ja': '削除', 'zh': '删除' },
       'active': { 'ko': '활성', 'en': 'Active', 'ja': 'アクティブ', 'zh': '活跃' },
@@ -246,10 +246,14 @@
 </template>
 
 
-<template id="ui-UserForm">
+<template id="demo-UserForm">
+  <style id="style-demo-UserForm">
+    .slide-in { animation: slideIn 0.3s ease-out; }
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  </style>
   ##!
   compomint.addI18ns({
-    'ui-UserForm': {
+    'demo-UserForm': {
       'addUser': { 'ko': '사용자 추가', 'en': 'Add User', 'ja': 'ユーザー追加', 'zh': '添加用户' },
       'editUser': { 'ko': '사용자 편집', 'en': 'Edit User', 'ja': 'ユーザー編集', 'zh': '编辑用户' },
       'name': { 'ko': '이름', 'en': 'Name', 'ja': '名前', 'zh': '姓名' },
@@ -322,94 +326,95 @@
     status.formData[name] = value;
   }
   ##
-  
-  <div class="user-form bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
-    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
-      ##=isEdit ? i18n.editUser : i18n.addUser##
-    </h3>
-    
-    <form data-co-event="##:{submit: handleSubmit}##" class="space-y-4">
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          ##=i18n.name##
-        </label>
-        <input 
-          type="text" 
-          name="name" 
-          value="##=status.formData.name##"
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
-          data-co-event="##:{input: handleInputChange}##"
-          required
-        />
-      </div>
+  <div class="absolute inset-0 z-50 flex items-center justify-center modal-overlay bg-black bg-opacity-50">
+    <div class="user-form bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 w-full max-w-md slide-in">
+      <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+        ##=isEdit ? i18n.editUser : i18n.addUser##
+      </h3>
       
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          ##=i18n.email##
-        </label>
-        <input 
-          type="email" 
-          name="email" 
-          value="##=status.formData.email##"
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
-          data-co-event="##:{input: handleInputChange}##"
-          required
-        />
-      </div>
-      
-      <div>
-        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          ##=i18n.role##
-        </label>
-        <select 
-          name="role" 
-          value="##=status.formData.role##"
-          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
-          data-co-event="##:{change: handleInputChange}##"
-        >
-          <option value="user">##=i18n.user##</option>
-          <option value="moderator">##=i18n.moderator##</option>
-          <option value="admin">##=i18n.admin##</option>
-        </select>
-      </div>
-      
-      <div>
-        <label class="flex items-center">
+      <form data-co-event="##:{submit: handleSubmit}##" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            ##=i18n.name##
+          </label>
           <input 
-            type="checkbox" 
-            name="active" 
-            ##=status.formData.active ? 'checked' : ''##
-            class="mr-2"
-            data-co-event="##:{change: handleInputChange}##"
+            type="text" 
+            name="name" 
+            value="##=status.formData.name##"
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
+            data-co-event="##:{input: handleInputChange}##"
+            required
           />
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">##=i18n.active##</span>
-        </label>
-      </div>
-      
-      <div class="flex space-x-2 pt-4">
-        <button 
-          type="submit"
-          class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors"
-        >
-          ##=i18n.save##
-        </button>
-        <button 
-          type="button"
-          class="flex-1 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors"
-          data-co-event="##:{click: handleCancel}##"
-        >
-          ##=i18n.cancel##
-        </button>
-      </div>
-    </form>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            ##=i18n.email##
+          </label>
+          <input 
+            type="email" 
+            name="email" 
+            value="##=status.formData.email##"
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
+            data-co-event="##:{input: handleInputChange}##"
+            required
+          />
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            ##=i18n.role##
+          </label>
+          <select 
+            name="role" 
+            value="##=status.formData.role##"
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100"
+            data-co-event="##:{change: handleInputChange}##"
+          >
+            <option value="user">##=i18n.user##</option>
+            <option value="moderator">##=i18n.moderator##</option>
+            <option value="admin">##=i18n.admin##</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="flex items-center">
+            <input 
+              type="checkbox" 
+              name="active" 
+              ##=status.formData.active ? 'checked' : ''##
+              class="mr-2"
+              data-co-event="##:{change: handleInputChange}##"
+            />
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">##=i18n.active##</span>
+          </label>
+        </div>
+        
+        <div class="flex space-x-2 pt-4">
+          <button 
+            type="submit"
+            class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors"
+          >
+            ##=i18n.save##
+          </button>
+          <button 
+            type="button"
+            class="flex-1 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors"
+            data-co-event="##:{click: handleCancel}##"
+          >
+            ##=i18n.cancel##
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 
-<template id="ui-UserList">
+<template id="demo-UserList">
   ##!
   compomint.addI18ns({
-    'ui-UserList': {
+    'demo-UserList': {
       'userList': { 'ko': '사용자 목록', 'en': 'User List', 'ja': 'ユーザーリスト', 'zh': '用户列表' },
     }
   });
@@ -419,7 +424,7 @@
   const handleUserEdit = data.handleUserEdit;
   const handleUserDelete = data.handleUserDelete;
   ##
-  <div class="ui-UserList">
+  <div class="demo-UserList">
     <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">##=i18n.userList##</h3>
   ##if (filteredUsers.length === 0) {##
     <div class="text-center py-8 text-gray-500 dark:text-gray-400">
@@ -428,7 +433,7 @@
   ##} else {##
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
       ##filteredUsers.forEach(user => {##
-        ##%tmpl.ui.UserCard({
+        ##%tmpl.demo.UserCard({
           user: user,
           onEdit: () => handleUserEdit(user),
           onDelete: () => handleUserDelete(user.id)
@@ -439,10 +444,10 @@
   </div>
 </template>
 
-<template id="ui-UserStats">
+<template id="demo-UserStats">
   ##!
   compomint.addI18ns({
-    'ui-UserStats': {
+    'demo-UserStats': {
       'statistics': { 'ko': '통계', 'en': 'Statistics', 'ja': '統計', 'zh': '统计' },
       'totalUsers': { 'ko': '총 사용자', 'en': 'Total Users', 'ja': '総ユーザー', 'zh': '总用户' },
       'activeUsers': { 'ko': '활성 사용자', 'en': 'Active Users', 'ja': 'アクティブユーザー', 'zh': '活跃用户' },
