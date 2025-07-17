@@ -1,8 +1,8 @@
 <!-- VSCode Extension Section -->
-<template id="ui-VSCodeExtension">
+<template id="section-VSCodeExtension">
   ##!
     compomint.addI18ns({
-      'ui-VSCodeExtension': {
+      'section-VSCodeExtension': {
         'title': {
           'en': 'VSCode Extension',
           'ko': 'VSCode 확장 기능',
@@ -130,7 +130,7 @@
       </svg>`
     };
   ##
-  <section id="vscode-extension" class="py-16 bg-indigo-50 dark:bg-gray-800">
+  <section id="vscode-extension" class="section-VSCodeExtension py-16 bg-indigo-50 dark:bg-gray-800">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">##=i18n.title##</h2>

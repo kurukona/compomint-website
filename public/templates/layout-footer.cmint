@@ -1,8 +1,8 @@
 <!-- Footer -->
-<template id="ui-Footer">
+<template id="layout-Footer">
   ##!
     compomint.addI18ns({
-      'ui-Footer': {
+      'layout-Footer': {
         'links_section': {
           'en': 'Links',
           'ko': '링크',
@@ -26,7 +26,33 @@
           'ko': '쿠키 관리',
           'ja': 'クッキー管理',
           'zh': '管理Cookie'
-        }
+        },
+        links: {
+          home: {
+            en: "Home",
+            ko: "홈",
+            ja: "ホーム",
+            zh: "首页",
+          },
+          features: {
+            en: "Features",
+            ko: "특징",
+            ja: "機能",
+            zh: "特性",
+          },
+          examples: {
+            en: "Examples",
+            ko: "예제",
+            ja: "例",
+            zh: "示例",
+          },
+          docs: {
+            en: "Documentation",
+            ko: "문서",
+            ja: "ドキュメント",
+            zh: "文档",
+          },
+        },
       }
     });
   ##
@@ -37,10 +63,10 @@
     const footerData = {
       description: data.description || compomint.i18n.footer?.description("Compomint is a lightweight JavaScript framework for creating web applications with a component-based architecture."),
       links: data.links || [
-        { label: compomint.i18n.footer?.links?.home("Home"), url: "#home" },
-        { label: compomint.i18n.footer?.links?.features("Features"), url: "#features" },
-        { label: compomint.i18n.footer?.links?.examples("Examples"), url: "#examples" },
-        { label: compomint.i18n.footer?.links?.docs("Documentation"), url: "#documentation" },
+        { label: i18n.links.home("Home"), url: "#home" },
+        { label: i18n.links.features("Features"), url: "#features" },
+        { label: i18n.links.examples("Examples"), url: "#examples" },
+        { label: i18n.links.docs("Documentation"), url: "#documentation" },
         { label: "GitHub", url: "https://github.com/kurukona/compomint" }
       ],
       email: data.email || "choish@kurukona.com",
@@ -50,7 +76,7 @@
     };
   ##
   
-  <footer class="bg-gray-800 text-gray-300 py-12">
+  <footer class="layout-Footer bg-gray-800 text-gray-300 py-12">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>

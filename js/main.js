@@ -8,19 +8,21 @@ document.addEventListener("DOMContentLoaded", async function () {
   // require a page refresh to take effect as they are not dynamically reloaded.
 
   const promise = compomint.addTmplByUrl([
-    "templates/layout.cmint",
-    "templates/header.cmint",
-    "templates/hero.cmint",
-    "templates/features.cmint",
-    "templates/vscode-extension.cmint",
-    "templates/examples.cmint",
-    "templates/documentation.cmint",
-    "templates/footer.cmint",
-    "templates/ui-components.cmint",
-    "templates/ui.components.cmint",
-    "templates/pg.components.cmint",
+    "templates/app-layout.cmint",
+    "templates/layout-header.cmint",
+    "templates/layout-footer.cmint",
+    "templates/section-hero.cmint",
+    "templates/section-features.cmint",
+    "templates/section-vscode-extension.cmint",
+    "templates/section-examples.cmint",
+    "templates/section-documentation.cmint",
+    "templates/page-tutorial.cmint",
+
     "templates/ui-cookie-consent.cmint",
     "templates/ui-language-switcher.cmint",
+
+    "templates/cmint-brui.cmint",
+    "templates/cmint-playground.cmint",
   ]);
 
   if (promise) {
@@ -145,16 +147,16 @@ async function initApp() {
   });
 
   // Define the header component
-  const header = tmpl.ui.Header({});
+  const header = tmpl.layout.Header({});
 
   // Define the hero section
-  const hero = tmpl.ui.Hero({});
+  const hero = tmpl.section.Hero({});
 
   // Define the features section
-  const features = tmpl.ui.Features({});
+  const features = tmpl.section.Features({});
 
   // Define the VSCode extension section
-  const vscodeExtension = tmpl.ui.VSCodeExtension({});
+  const vscodeExtension = tmpl.section.VSCodeExtension({});
 
   // Load templates for examples
   const counterTemplate = await (
@@ -171,7 +173,7 @@ async function initApp() {
   ).text();
 
   // Define the examples section with example data
-  const examples = tmpl.ui.Examples({
+  const examples = tmpl.section.Examples({
     examples: () => {
       return [
         {
@@ -290,10 +292,10 @@ document.body.appendChild(userManagement.element);`,
   });
 
   // Define the documentation section
-  const documentation = tmpl.ui.Documentation({});
+  const documentation = tmpl.section.Documentation({});
 
   // Define the footer
-  const footer = tmpl.ui.Footer({});
+  const footer = tmpl.layout.Footer({});
 
   // Create the main app layout
   const appLayout = tmpl.app.Layout({
@@ -330,4 +332,213 @@ document.body.appendChild(userManagement.element);`,
       }
     });
   });
+
+  // Store the original layout for navigation
+  window.originalLayout = appLayout;
+  window.currentPage = "home";
 }
+
+// Global function to show different pages
+window.showPage = function (pageType) {
+  const appContainer = document.getElementById("app-container");
+
+  if (pageType === "tutorial") {
+    // Show tutorial page
+    window.currentPage = "tutorial";
+
+    // Define tutorial examples data
+    const tutorialExamples = [
+      {
+        id: "getting-started",
+        title: "Getting Started",
+        description:
+          "Learn the basics of Compomint and create your first component.",
+        code: `// Create a simple greeting component
+compomint.addTmpl('demo-greeting', '<div class="p-4 bg-blue-100 dark:bg-blue-800 rounded-lg">Hello, ##=data.name##!</div>');
+
+// Use the component
+const greeting = tmpl.demo.greeting({name: 'World'});
+document.body.appendChild(greeting.element);`,
+        interactive: true,
+        showConsole: false,
+      },
+      {
+        id: "basic-usage",
+        title: "Basic Usage",
+        description: "Understand data binding and component rendering.",
+        code: `// Template with data binding
+compomint.addTmpl('user-card', \`
+  <div class="p-4 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-800">
+    <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">##=data.name##</h3>
+    <p class="text-gray-600 dark:text-gray-300">##=data.email##</p>
+    <p class="text-sm text-gray-500 dark:text-gray-400">Age: ##=data.age##</p>
+  </div>\`);
+
+// Create and render component
+const userCard = tmpl.user.card({
+  name: 'John Doe',
+  email: 'john@example.com',
+  age: 30
+});
+
+document.body.appendChild(userCard.element);`,
+        interactive: true,
+        showConsole: false,
+      },
+      {
+        id: "template-syntax",
+        title: "Template Syntax",
+        description: "Explore different template expression types.",
+        code: `// Template with various syntax types
+compomint.addTmpl('syntax-demo', \`
+    ##
+      // JavaScript code block
+      const currentTime = new Date().toLocaleTimeString();
+      const items = ['Apple', 'Banana', 'Orange'];
+    ##
+    <div class="p-4 space-y-2 bg-gray-50 dark:bg-gray-700 rounded-lg">
+      <h3 class="font-bold text-gray-900 dark:text-gray-100">Template Syntax Demo</h3>
+      <p class="text-gray-700 dark:text-gray-300">Name: ##=data.name##</p>
+      <p class="text-gray-700 dark:text-gray-300">HTML: ##-data.html##</p>
+      <p class="text-gray-700 dark:text-gray-300">Time: ##=currentTime##</p>
+      ##if (data.showList) {##
+        <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300">
+          ##items.forEach(item => {##
+            <li>##=item##</li>
+          ##})##
+        </ul>
+      ##}##
+    </div>\`);
+
+// Use the component
+const syntaxDemo = tmpl.syntax.demo({
+  name: 'Alice',
+  html: '<strong>Bold Text</strong>',
+  showList: true
+});
+
+document.body.appendChild(syntaxDemo.element);`,
+        interactive: true,
+        showConsole: false,
+      },
+      {
+        id: "component-creation",
+        title: "Component Creation",
+        description:
+          "Learn how to create reusable components with state management.",
+        code: `// Counter component with state
+compomint.addTmpl('demo-counter', \`
+    ##
+      // Initialize state
+      status.count = status.count || data.initialCount || 0;
+
+      function increment() {
+        status.count++;
+        component.refresh();
+      }
+
+      function decrement() {
+        status.count--;
+        component.refresh();
+      }
+
+      function reset() {
+        status.count = 0;
+        component.refresh();
+      }
+    ##
+    <div class="p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800">
+      <h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">Counter: ##=status.count##</h3>
+      <div class="space-x-2">
+        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+                data-co-event="##:{click: increment}##">+</button>
+        <button class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+                data-co-event="##:{click: decrement}##">-</button>
+        <button class="px-3 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors"
+                data-co-event="##:{click: reset}##">Reset</button>
+      </div>
+    </div>
+\`);
+
+// Create counter component
+const counter = tmpl.demo.counter({initialCount: 5});
+document.body.appendChild(counter.element);`,
+        interactive: true,
+        showConsole: false,
+      },
+      {
+        id: "advanced-features",
+        title: "Advanced Features",
+        description: "Explore component composition and lifecycle management.",
+        code: `// Simple list component
+compomint.addTmpl('item-list', \`
+    ##
+      status.items = status.items || data.items || [];
+
+      function addItem() {
+        const input = component.element.querySelector('input');
+        if (input.value.trim()) {
+          status.items.push(input.value.trim());
+          input.value = \\'\\';
+          component.refresh();
+        }
+      }
+
+      function removeItem(index) {
+        status.items.splice(index, 1);
+        component.refresh();
+      }
+    ##
+    <div class="p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 max-w-md">
+      <h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">My List</h3>
+      <div class="mb-4 flex gap-2">
+        <input type="text" class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-gray-100"
+               placeholder="Add an item...">
+        <button class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"
+                data-co-event="##:{click: addItem}##">Add</button>
+      </div>
+      <ul class="space-y-2">
+        ##status.items.forEach((item, index) => {##
+          <li class="flex items-center gap-2 p-2 border border-gray-200 dark:border-gray-600 rounded">
+            <span class="flex-1 text-gray-700 dark:text-gray-300">##=item##</span>
+            <button class="px-2 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-sm"
+                    data-co-event="##:{click: () => removeItem(index)}##">✕</button>
+          </li>
+        ##})##
+      </ul>
+    </div>
+\`);
+
+// Create list component
+const itemList = tmpl.item.list({
+  items: ['Learn Compomint', 'Build awesome apps']
+});
+
+document.body.appendChild(itemList.element);`,
+        interactive: true,
+        showConsole: false,
+      },
+    ];
+
+    const tutorialPage = tmpl.page.Tutorial({ examples: tutorialExamples });
+    appContainer.innerHTML = "";
+    appContainer.appendChild(tutorialPage.element);
+
+    // Scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  } else if (pageType === "home") {
+    // Show home page
+    window.currentPage = "home";
+    appContainer.innerHTML = "";
+    appContainer.appendChild(window.originalLayout.element);
+
+    // Scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+};

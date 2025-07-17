@@ -1,8 +1,8 @@
 <!-- Documentation Section -->
-<template id="ui-Documentation">
+<template id="section-Documentation">
   ##!
     compomint.addI18ns({
-      'ui-Documentation': {
+      'section-Documentation': {
         'title': {
           'en': 'Learn More',
           'ko': '더 알아보기',
@@ -23,6 +23,12 @@
       <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">##=i18n.title##</h2>
       <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">##=i18n.description##</p>
       <div class="flex flex-wrap justify-center gap-4">
+        <a href="javascript:void(0)" onclick="showPage('tutorial')" class="bg-gradient-to-r from-emerald-500 to-blue-600 hover:from-emerald-600 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-semibold text-lg shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1"></path>
+          </svg>
+          <span>Interactive Tutorial</span>
+        </a>
         <a href="https://kurukona.github.io/compomint/" class="bg-indigo-50 dark:bg-indigo-900 hover:bg-indigo-100 dark:hover:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-6 py-3 rounded-lg font-medium transition-colors duration-200">
           Getting Started
         </a>

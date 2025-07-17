@@ -2,7 +2,7 @@
   "name": "compomint-website",
   "version": "1.0.0",
   "type": "module",
-  "description": "![Compomint Logo](img/favicon.svg)",
+  "description": "![Compomint Logo](img/favicon.png)",
   "main": "index.js",
   "directories": {
     "example": "examples"
@@ -29,7 +29,7 @@
   "homepage": "https://github.com/kurukona/compomint-website#readme",
   "dependencies": {
     "@playwright/test": "^1.53.2",
-    "compomint": "^1.1.0",
+    "compomint": "^1.1.2",
     "playwright": "^1.53.2"
   },
   "devDependencies": {

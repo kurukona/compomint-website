@@ -1,8 +1,8 @@
 <!-- Hero Section -->
-<template id="ui-Hero">
+<template id="section-Hero">
   ##!
     compomint.addI18ns({
-      'ui-Hero': {
+      'section-Hero': {
         'title': {
           'en': 'How to Create Web Components Easily',
           'ko': '웹 컴포넌트를 간단하게 만드는 방법',
@@ -24,7 +24,7 @@
       }
     });
   ##
-  <section id="home" class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white py-20">
+  <section id="home" class="section-Hero bg-gradient-to-br from-indigo-500 to-purple-600 text-white py-20">
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
       <div class="md:w-1/2 mb-10 md:mb-0">
         <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">

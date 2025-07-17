@@ -12,15 +12,15 @@
   if (data.documentation) data.documentation.refresh();
   if (data.footer) data.footer.refresh();
   ##
-  <div class="min-h-screen flex flex-col">
+  <div class="app-Layout min-h-screen flex flex-col">
     ##%data.header##
     <main class="flex-grow">
       ##%data.hero##
       ##%data.features##
+      ##%data.documentation##
       ##%data.vscodeExtension##
       ##%data.examples##
       ##%data.advancedExamples##
-      ##%data.documentation##
     </main>
     ##%data.footer##
   </div>

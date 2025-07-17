@@ -1,7 +1,7 @@
 <body>
-<template id="pg-TestArea">
-  <style id="style-pg-TestArea">
-    .pg-TestArea {
+<template id="cmint-Playground">
+  <style id="style-cmint-Playground">
+    .cmint-Playground {
       border-radius: 8px;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       background: white;
@@ -9,26 +9,26 @@
       position: relative;
     }
     
-    .dark .pg-TestArea {
+    .dark .cmint-Playground {
       background: #1f2937;
       border-color: #374151;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
     }
 
     /*
-    .pg-TestArea.console {
+    .cmint-Playground.console {
       height: 545px;
     }
-    .pg-TestArea.template {
+    .cmint-Playground.template {
       height: 667px;
     }
-    .pg-TestArea.template.console {
+    .cmint-Playground.template.console {
       height: 867px;
     }
     */
     
     /* console 상태에서 controlArea가 console 바로 위에 위치하도록 */
-    .pg-TestArea.console .controlArea {
+    .cmint-Playground.console .controlArea {
       z-index: 20; /* console보다 위에 표시 */
       position: relative;
       left: 0;
@@ -40,24 +40,24 @@
       z-index: 5;
     }
 
-    .pg-TestArea .brui-Splitter-Layout.code,
-    .pg-TestArea .brui-Splitter-Layout.template {
+    .cmint-Playground .brui-Splitter-Layout.code,
+    .cmint-Playground .brui-Splitter-Layout.template {
       height: calc(100% - 36px);
     }
-    .pg-TestArea.template .brui-Splitter-Layout.template .brui-Splitter-Layout.code {
+    .cmint-Playground.template .brui-Splitter-Layout.template .brui-Splitter-Layout.code {
       height: 100%;
     }
-    .pg-TestArea.console .brui-Splitter-Layout.code,
-    .pg-TestArea.console .brui-Splitter-Layout.template {
+    .cmint-Playground.console .brui-Splitter-Layout.code,
+    .cmint-Playground.console .brui-Splitter-Layout.template {
       height: calc(100% - 250px);
     }
     
-    .pg-TestArea .pg-Rendering-Area {
+    .cmint-Playground .pg-Rendering-Area {
       height: calc(100% - 32px);
     }
     
     /* 제어 영역 스타일 개선 */
-    .pg-TestArea .controlArea {
+    .cmint-Playground .controlArea {
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       border-top: 1px solid #e2e8f0;
       padding: 8px 12px;
@@ -73,13 +73,13 @@
       z-index: 10;
     }
     
-    .dark .pg-TestArea .controlArea {
+    .dark .cmint-Playground .controlArea {
       background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
       border-top: 1px solid #4b5563;
     }
     
     /* 스플리터 제목 스타일 개선 */
-    .pg-TestArea .splitter-title {
+    .cmint-Playground .splitter-title {
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       border-bottom: 1px solid #e2e8f0;
       font-size: 12px;
@@ -95,7 +95,7 @@
       box-sizing: border-box;
     }
     
-    .dark .pg-TestArea .splitter-title {
+    .dark .cmint-Playground .splitter-title {
       background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
       border-bottom: 1px solid #6b7280;
       color: #f3f4f6;
@@ -144,7 +144,7 @@
     });
   }
   ##
-  <div class="pg-TestArea h-full mb-1.5 ##=hasTemplate ? 'template' : ''## ##=showConsole ? 'console' : ''##">
+  <div class="cmint-Playground h-full mb-1.5 ##=hasTemplate ? 'template' : ''## ##=showConsole ? 'console' : ''##">
     ##%templateSpliteArea || codeSpliteArea##
     <div class="controlArea">
       ##%tmpl.pg.Button({label: 'AUTO REFRESH', icon: 'refresh', styleClass: 'xs ' + (autoRefresh ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
