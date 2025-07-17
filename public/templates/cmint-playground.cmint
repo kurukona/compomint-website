@@ -109,6 +109,7 @@
   var type = data.type;
   var showConsole = data.showConsole !== undefined ? data.showConsole : false;
   var autoRefresh = data.autoRefresh !== undefined ? data.autoRefresh : true;
+  var runOnStart = data.runOnStart !== undefined ? data.runOnStart : true;
 
   var runCodeArea = tmpl.cmint.PlaygroundCodeMirrorArea({
     value: code,
@@ -144,6 +145,7 @@
     });
   }
 
+
   ##
   <div class="cmint-Playground h-full mb-1.5 ##=hasTemplate ? 'template' : ''## ##=showConsole ? 'console' : ''##">
     ##%templateSpliteArea || codeSpliteArea##
@@ -172,7 +174,11 @@
     ##%consoleArea##
   </div>
   ###
-
+  if (runOnStart) {
+    setTimeout(() => {
+      renderingArea.refreshCode({template: templateCodeArea ? templateCodeArea.codeMirror.getValue() : null, code: runCodeArea.codeMirror.getValue()});
+    }, 100);
+  }
   ##
 </template>
 

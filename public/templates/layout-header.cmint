@@ -56,6 +56,11 @@
             </a>
           </li>
           <li class="text-center">
+            <a href="#documentation" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+              ##=i18n.documentation##
+            </a>
+          </li>
+          <li class="text-center">
             <a href="#vscode-extension" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
               ##=i18n.vscode##
             </a>
@@ -63,11 +68,6 @@
           <li class="text-center">
             <a href="#examples" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
               ##=i18n.examples##
-            </a>
-          </li>
-          <li class="text-center">
-            <a href="#documentation" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
-              ##=i18n.documentation##
             </a>
           </li>
           <li class="text-center">

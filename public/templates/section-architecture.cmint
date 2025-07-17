@@ -222,6 +222,116 @@
             'ja': 'DOM操作とコンポーネント初期化のための適切なタイミングを保証',
             'zh': '确保DOM操作和组件初始化的正确时序'
           }
+        },
+        'flow': {
+          'templateText': {
+            'title': {
+              'en': 'Template Text',
+              'ko': '템플릿 텍스트',
+              'ja': 'テンプレートテキスト',
+              'zh': '模板文本'
+            },
+            'description': {
+              'en': 'Raw template with expressions',
+              'ko': '표현식이 포함된 원시 템플릿',
+              'ja': '式を含む生のテンプレート',
+              'zh': '包含表达式的原始模板'
+            }
+          },
+          'parseExtract': {
+            'title': {
+              'en': 'Parse & Extract',
+              'ko': '파싱 & 추출',
+              'ja': 'パース & 抽出',
+              'zh': '解析 & 提取'
+            },
+            'description': {
+              'en': 'Analyze and categorize elements',
+              'ko': '요소를 분석하고 분류',
+              'ja': '要素を分析し分類',
+              'zh': '分析和分类元素'
+            }
+          },
+          'generateFunction': {
+            'title': {
+              'en': 'Generate Function',
+              'ko': '함수 생성',
+              'ja': '関数生成',
+              'zh': '生成函数'
+            },
+            'description': {
+              'en': 'Compile to JavaScript function',
+              'ko': 'JavaScript 함수로 컴파일',
+              'ja': 'JavaScript関数にコンパイル',
+              'zh': '编译为JavaScript函数'
+            }
+          },
+          'executeRender': {
+            'title': {
+              'en': 'Execute & Render',
+              'ko': '실행 & 렌더링',
+              'ja': '実行 & レンダリング',
+              'zh': '执行 & 渲染'
+            },
+            'description': {
+              'en': 'Generate DOM elements',
+              'ko': 'DOM 요소 생성',
+              'ja': 'DOM要素を生成',
+              'zh': '生成DOM元素'
+            }
+          }
+        },
+        'propertiesDescriptions': {
+          'element': {
+            'en': 'Rendered DOM element ready for insertion',
+            'ko': '삽입 준비가 완료된 렌더링된 DOM 요소',
+            'ja': '挿入準備が完了したレンダリングされたDOM要素',
+            'zh': '准备插入的渲染DOM元素'
+          },
+          'data': {
+            'en': 'Data object used for template rendering',
+            'ko': '템플릿 렌더링에 사용되는 데이터 객체',
+            'ja': 'テンプレートレンダリングに使用されるデータオブジェクト',
+            'zh': '用于模板渲染的数据对象'
+          },
+          'status': {
+            'en': 'Persistent component state object',
+            'ko': '지속적인 컴포넌트 상태 객체',
+            'ja': '永続的なコンポーネント状態オブジェクト',
+            'zh': '持久化组件状态对象'
+          },
+          'id': {
+            'en': 'Unique template instance identifier',
+            'ko': '고유한 템플릿 인스턴스 식별자',
+            'ja': '一意のテンプレートインスタンス識別子',
+            'zh': '唯一的模板实例标识符'
+          }
+        },
+        'methodsDescriptions': {
+          'render': {
+            'en': 'Complete re-render with new data',
+            'ko': '새로운 데이터로 완전 재렌더링',
+            'ja': '新しいデータで完全再レンダリング',
+            'zh': '使用新数据完全重新渲染'
+          },
+          'refresh': {
+            'en': 'Partial update with incremental data',
+            'ko': '증분 데이터로 부분 업데이트',
+            'ja': '増分データで部分更新',
+            'zh': '使用增量数据部分更新'
+          },
+          'remove': {
+            'en': 'Remove component from DOM tree',
+            'ko': 'DOM 트리에서 컴포넌트 제거',
+            'ja': 'DOMツリーからコンポーネントを削除',
+            'zh': '从DOM树中删除组件'
+          },
+          'replace': {
+            'en': 'Replace with another template instance',
+            'ko': '다른 템플릿 인스턴스로 교체',
+            'ja': '別のテンプレートインスタンスに置換',
+            'zh': '替换为另一个模板实例'
+          }
         }
       }
     });
@@ -249,8 +359,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
               </div>
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Template Text</h4>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Raw template with expressions</p>
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">##=i18n.flow.templateText.title##</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.flow.templateText.description##</p>
             </div>
 
             <div class="hidden lg:block">
@@ -266,8 +376,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
                 </svg>
               </div>
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Parse & Extract</h4>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Analyze and categorize elements</p>
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">##=i18n.flow.parseExtract.title##</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.flow.parseExtract.description##</p>
             </div>
 
             <div class="hidden lg:block">
@@ -283,8 +393,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                 </svg>
               </div>
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Generate Function</h4>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Compile to JavaScript function</p>
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">##=i18n.flow.generateFunction.title##</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.flow.generateFunction.description##</p>
             </div>
 
             <div class="hidden lg:block">
@@ -301,8 +411,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                 </svg>
               </div>
-              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Execute & Render</h4>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Generate DOM elements</p>
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">##=i18n.flow.executeRender.title##</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.flow.executeRender.description##</p>
             </div>
           </div>
         </div>
@@ -374,19 +484,19 @@
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <div class="bg-blue-500 text-white rounded-lg p-2 text-sm font-mono">.element</div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Rendered DOM element ready for insertion</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.propertiesDescriptions.element##</p>
               </div>
               <div class="flex items-start space-x-3">
                 <div class="bg-green-500 text-white rounded-lg p-2 text-sm font-mono">.data</div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Data object used for template rendering</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.propertiesDescriptions.data##</p>
               </div>
               <div class="flex items-start space-x-3">
                 <div class="bg-purple-500 text-white rounded-lg p-2 text-sm font-mono">.status</div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Persistent component state object</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.propertiesDescriptions.status##</p>
               </div>
               <div class="flex items-start space-x-3">
                 <div class="bg-orange-500 text-white rounded-lg p-2 text-sm font-mono">._id</div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Unique template instance identifier</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.propertiesDescriptions.id##</p>
               </div>
             </div>
           </div>
@@ -397,19 +507,19 @@
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <div class="bg-indigo-500 text-white rounded-lg p-2 text-sm font-mono">.render()</div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Complete re-render with new data</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.methodsDescriptions.render##</p>
               </div>
               <div class="flex items-start space-x-3">
                 <div class="bg-teal-500 text-white rounded-lg p-2 text-sm font-mono">.refresh()</div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Partial update with incremental data</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.methodsDescriptions.refresh##</p>
               </div>
               <div class="flex items-start space-x-3">
                 <div class="bg-red-500 text-white rounded-lg p-2 text-sm font-mono">.remove()</div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Remove component from DOM tree</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.methodsDescriptions.remove##</p>
               </div>
               <div class="flex items-start space-x-3">
                 <div class="bg-gray-500 text-white rounded-lg p-2 text-sm font-mono">.replace()</div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">Replace with another template instance</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.methodsDescriptions.replace##</p>
               </div>
             </div>
           </div>

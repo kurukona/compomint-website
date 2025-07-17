@@ -20,12 +20,12 @@
     <main class="flex-grow">
       ##%data.hero##
       ##%data.features##
+      ##%data.documentation##
       ##%data.vscodeExtension##
       ##%data.installation##
       ##%data.architecture##
       ##%data.syntax##
       ##%data.examples##
-      ##%data.documentation##
       ##%data.advancedExamples##
     </main>
     ##%data.footer##
