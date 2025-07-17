@@ -171,7 +171,7 @@
           <h3 class="font-semibold mb-2">##=i18n.cookie_consent_title##</h3>
           <p class="text-sm text-gray-300">##=i18n.cookie_consent_message##</p>
         </div>
-        <div class="flex flex-col sm:flex-row gap-2 flex-shrink-0">
+        <div class="flex flex-col sm:flex-row gap-2 flex-shrink-0 w-full sm:w-auto">
           <button 
             class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors text-sm"
             data-co-event="##:{click: acceptAll}##"

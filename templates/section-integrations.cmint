@@ -1,0 +1,213 @@
+<!-- Framework Integrations Section -->
+<template id="section-Integrations">
+  ##!
+    compomint.addI18ns({
+      'section-Integrations': {
+        'title': {
+          'en': 'Framework Integrations',
+          'ko': '프레임워크 통합',
+          'ja': 'フレームワーク統合',
+          'zh': '框架集成'
+        },
+        'subtitle': {
+          'en': 'Compomint can be integrated with popular UI frameworks with careful consideration',
+          'ko': 'Compomint는 신중한 고려를 통해 인기있는 UI 프레임워크와 통합할 수 있습니다',
+          'ja': 'Compomintは慎重な検討により人気のあるUIフレームワークと統合できます',
+          'zh': 'Compomint可以通过仔细考虑与流行的UI框架集成'
+        },
+        'description': {
+          'en': 'Compomint can be integrated with existing UI frameworks as a complementary templating solution. While full integration requires careful consideration of each framework\'s architecture, Compomint can work alongside React, Vue, and others for specific use cases. Please review the examples and limitations below.',
+          'ko': 'Compomint는 기존 UI 프레임워크와 보완적인 템플릿 솔루션으로 통합될 수 있습니다. 완전한 통합은 각 프레임워크의 아키텍처를 신중히 고려해야 하지만, Compomint는 특정 사용 사례에서 React, Vue 등과 함께 작동할 수 있습니다. 아래 예시와 제약사항을 확인해주세요.',
+          'ja': 'Compomintは既存のUIフレームワークと補完的なテンプレートソリューションとして統合できます。完全な統合には各フレームワークのアーキテクチャを慎重に検討する必要がありますが、Compomintは特定の使用例でReact、Vueなどと併用できます。以下の例と制限事項をご確認ください。',
+          'zh': 'Compomint可以作为补充模板解决方案与现有UI框架集成。虽然完全集成需要仔细考虑每个框架的架构，但Compomint可以在特定用例中与React、Vue等一起工作。请查看下面的示例和限制。'
+        },
+        'benefits': {
+          'title': {
+            'en': 'Integration Benefits',
+            'ko': '통합 이점',
+            'ja': '統合の利点',
+            'zh': '集成优势'
+          },
+          'items': {
+            'gradual': {
+              'en': 'Gradual adoption - Start small and scale progressively',
+              'ko': '점진적 도입 - 작게 시작하여 점진적으로 확장',
+              'ja': '段階的な採用 - 小さく始めて段階的に拡張',
+              'zh': '渐进式采用 - 从小规模开始，逐步扩展'
+            },
+            'coexistence': {
+              'en': 'Peaceful coexistence - Works alongside existing components',
+              'ko': '평화로운 공존 - 기존 컴포넌트와 함께 작동',
+              'ja': '平和な共存 - 既存のコンポーネントと一緒に動作',
+              'zh': '和谐共存 - 与现有组件并行工作'
+            },
+            'enhanced': {
+              'en': 'Enhanced templating - Powerful template syntax without complexity',
+              'ko': '향상된 템플릿 - 복잡성 없는 강력한 템플릿 문법',
+              'ja': '強化されたテンプレート - 複雑さなしで強力なテンプレート構文',
+              'zh': '增强的模板 - 无复杂性的强大模板语法'
+            },
+            'lightweight': {
+              'en': 'Lightweight footprint - Small size with no performance impact',
+              'ko': '가벼운 용량 - 성능 영향 없이 작은 크기',
+              'ja': '軽量フットプリント - 性能影響なしで小さなサイズ',
+              'zh': '轻量级 - 小体积，无性能影响'
+            }
+          }
+        },
+        'react': {
+          'title': {
+            'en': 'React Integration',
+            'ko': 'React 통합',
+            'ja': 'React統合',
+            'zh': 'React集成'
+          },
+          'description': {
+            'en': 'Use Compomint templates within React components for flexible UI templating',
+            'ko': '유연한 UI 템플릿을 위해 React 컴포넌트 내에서 Compomint 템플릿 사용',
+            'ja': '柔軟なUIテンプレートのためにReactコンポーネント内でCompomintテンプレートを使用',
+            'zh': '在React组件中使用Compomint模板以获得灵活的UI模板'
+          }
+        },
+        'vue': {
+          'title': {
+            'en': 'Vue Integration',
+            'ko': 'Vue 통합',
+            'ja': 'Vue統合',
+            'zh': 'Vue集成'
+          },
+          'description': {
+            'en': 'Combine Vue\'s reactivity with Compomint\'s powerful templating system',
+            'ko': 'Vue의 반응성과 Compomint의 강력한 템플릿 시스템 결합',
+            'ja': 'VueのリアクティブさとCompomintの強力なテンプレートシステムを組み合わせ',
+            'zh': '将Vue的响应性与Compomint的强大模板系统结合'
+          }
+        },
+        'other': {
+          'title': {
+            'en': 'Other Frameworks',
+            'ko': '기타 프레임워크',
+            'ja': 'その他のフレームワーク',
+            'zh': '其他框架'
+          },
+          'description': {
+            'en': 'Integration with Angular, Svelte, Solid.js, and other frameworks requires careful evaluation of compatibility',
+            'ko': 'Angular, Svelte, Solid.js 및 기타 프레임워크와의 통합은 호환성에 대한 신중한 평가가 필요합니다',
+            'ja': 'Angular、Svelte、Solid.js、その他のフレームワークとの統合には、互換性の慎重な評価が必要です',
+            'zh': '与Angular、Svelte、Solid.js和其他框架的集成需要仔细评估兼容性'
+          }
+        },
+      }
+    });
+  ##
+  ##
+    // Use integration examples data passed from main.js
+    const integrationExamples = data.integrationExamples ? data.integrationExamples() : [];
+  ##
+
+  <section id="integrations" class="section-Integrations py-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100">##=i18n.title##</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">##=i18n.subtitle##</p>
+        <div class="max-w-4xl mx-auto text-gray-700 dark:text-gray-300">
+          <p>##=i18n.description##</p>
+        </div>
+      </div>
+
+      <!-- Integration Benefits -->
+      <div class="mb-16">
+        <h3 class="text-2xl font-semibold text-center mb-8 text-gray-900 dark:text-gray-100">##=i18n.benefits.title##</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <div class="flex items-start gap-4 sm:block">
+              <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0 sm:mb-4">
+                <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">##=i18n.benefits.items.gradual().split(' - ')[0]##</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.benefits.items.gradual().split(' - ')[1]##</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <div class="flex items-start gap-4 sm:block">
+              <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0 sm:mb-4">
+                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">##=i18n.benefits.items.coexistence().split(' - ')[0]##</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.benefits.items.coexistence().split(' - ')[1]##</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <div class="flex items-start gap-4 sm:block">
+              <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center flex-shrink-0 sm:mb-4">
+                <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">##=i18n.benefits.items.enhanced().split(' - ')[0]##</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.benefits.items.enhanced().split(' - ')[1]##</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <div class="flex items-start gap-4 sm:block">
+              <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center flex-shrink-0 sm:mb-4">
+                <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">##=i18n.benefits.items.lightweight().split(' - ')[0]##</h4>
+                <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.benefits.items.lightweight().split(' - ')[1]##</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Integration Examples -->
+      <div class="space-y-12">
+        ##integrationExamples.forEach((example, index) => {##
+          <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+            <div class="p-6 border-b dark:border-gray-700">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-gradient-to-r ##=example.gradient## rounded-lg flex items-center justify-center mr-4">
+                  <span class="text-white font-bold text-lg">##=example.icon##</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">##=example.title##</h3>
+                  <p class="text-gray-600 dark:text-gray-300">##=example.description##</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Interactive Example -->
+            <div class="p-3 ##=example.class##">
+              ##%tmpl.cmint.Playground({
+                imports: example.imports || [],
+                template: example.template || null,
+                code: example.code,
+                type: example.type || 'code',
+                showConsole: example.showConsole || false
+              })##
+            </div>
+          </div>
+        ##})##
+      </div>
+
+
+    </div>
+  </section>
+</template>

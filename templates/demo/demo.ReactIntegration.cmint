@@ -1,0 +1,500 @@
+<!-- React + Compomint Integration Example -->
+<template id="demo-ReactIntegration">
+  <style id="style-demo-ReactIntegration">
+    .demo-ReactIntegration {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    .demo-ReactIntegration .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: white;
+    }
+    
+    .demo-ReactIntegration .section h3 {
+      margin-top: 0;
+      color: #2563eb;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    
+    .demo-ReactIntegration .react-container {
+      min-height: 100px;
+      border: 2px dashed #e0e0e0;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+      background: #f9f9f9;
+    }
+    
+    .demo-ReactIntegration .compomint-container {
+      border: 2px dashed #10b981;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 10px 0;
+      background: #f0fdf4;
+    }
+    
+    .demo-ReactIntegration .controls {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+      flex-wrap: wrap;
+    }
+    
+    .demo-ReactIntegration button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background: #3b82f6;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    
+    .demo-ReactIntegration button:hover {
+      background: #2563eb;
+    }
+    
+    .demo-ReactIntegration button.secondary {
+      background: #6b7280;
+    }
+    
+    .demo-ReactIntegration button.secondary:hover {
+      background: #4b5563;
+    }
+    
+    .demo-ReactIntegration .counter {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #1f2937;
+      margin: 10px 0;
+    }
+    
+    .demo-ReactIntegration .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .demo-ReactIntegration .todo-item:last-child {
+      border-bottom: none;
+    }
+    
+    .demo-ReactIntegration .todo-item input[type="checkbox"] {
+      margin: 0;
+    }
+    
+    .demo-ReactIntegration .todo-item.completed {
+      text-decoration: line-through;
+      color: #6b7280;
+    }
+    
+    .demo-ReactIntegration .add-todo {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    
+    .demo-ReactIntegration .add-todo input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .demo-ReactIntegration .shared-state {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    
+    .demo-ReactIntegration .error {
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    
+    .demo-ReactIntegration .success {
+      color: #065f46;
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    
+    .demo-ReactIntegration .info {
+      color: #1e40af;
+      background: #eff6ff;
+      border: 1px solid #93c5fd;
+      border-radius: 4px;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+  </style>
+  
+  ##
+    // Initialize component state
+    status.reactLoaded = status.reactLoaded || false;
+    status.sharedCounter = status.sharedCounter || 0;
+    status.todos = status.todos || [
+      { id: 1, text: 'Learn React', completed: true },
+      { id: 2, text: 'Learn Compomint', completed: true },
+      { id: 3, text: 'Combine React + Compomint', completed: false }
+    ];
+    
+    // React integration functions
+    function loadReact() {
+      if (status.reactLoaded) return;
+      
+      // Load React CDN
+      const reactScript = document.createElement('script');
+      reactScript.src = 'https://unpkg.com/react@18/umd/react.development.js';
+      reactScript.onload = () => {
+        const reactDomScript = document.createElement('script');
+        reactDomScript.src = 'https://unpkg.com/react-dom@18/umd/react-dom.development.js';
+        reactDomScript.onload = () => {
+          const babelScript = document.createElement('script');
+          babelScript.src = 'https://unpkg.com/@babel/standalone/babel.min.js';
+          babelScript.onload = () => {
+            status.reactLoaded = true;
+            component.refresh();
+            initializeReactComponents();
+          };
+          document.head.appendChild(babelScript);
+        };
+        document.head.appendChild(reactDomScript);
+      };
+      document.head.appendChild(reactScript);
+    }
+    
+    function initializeReactComponents() {
+      if (!status.reactLoaded) return;
+      
+      // React Counter Component
+      const counterCode = `
+        const { useState, useEffect } = React;
+        
+        function ReactCounter({ initialValue, onCountChange }) {
+          const [count, setCount] = useState(initialValue || 0);
+          
+          useEffect(() => {
+            onCountChange && onCountChange(count);
+          }, [count]);
+          
+          return React.createElement('div', { className: 'counter' },
+            React.createElement('p', null, 'React Counter: ', count),
+            React.createElement('div', { className: 'controls' },
+              React.createElement('button', { 
+                onClick: () => setCount(count + 1) 
+              }, '+1'),
+              React.createElement('button', { 
+                onClick: () => setCount(count - 1) 
+              }, '-1'),
+              React.createElement('button', { 
+                className: 'secondary',
+                onClick: () => setCount(0) 
+              }, 'Reset')
+            )
+          );
+        }
+        
+        ReactDOM.render(
+          React.createElement(ReactCounter, {
+            initialValue: ${status.sharedCounter},
+            onCountChange: (count) => {
+              // Update shared state
+              window.compomintSharedState = window.compomintSharedState || {};
+              window.compomintSharedState.counter = count;
+              
+              // Trigger Compomint update
+              const event = new CustomEvent('reactStateChange', { detail: { counter: count } });
+              document.dispatchEvent(event);
+            }
+          }),
+          document.getElementById('react-counter-container')
+        );
+      `;
+      
+      // Execute React code
+      try {
+        Babel.transform(counterCode, { presets: ['react'] }).code;
+        eval(Babel.transform(counterCode, { presets: ['react'] }).code);
+      } catch (error) {
+        console.error('React component initialization error:', error);
+      }
+      
+      // React Todo Component
+      const todoCode = `
+        const { useState } = React;
+        
+        function ReactTodoList({ initialTodos, onTodosChange }) {
+          const [todos, setTodos] = useState(initialTodos || []);
+          const [newTodo, setNewTodo] = useState('');
+          
+          const addTodo = () => {
+            if (newTodo.trim()) {
+              const updatedTodos = [...todos, {
+                id: Date.now(),
+                text: newTodo.trim(),
+                completed: false
+              }];
+              setTodos(updatedTodos);
+              setNewTodo('');
+              onTodosChange && onTodosChange(updatedTodos);
+            }
+          };
+          
+          const toggleTodo = (id) => {
+            const updatedTodos = todos.map(todo =>
+              todo.id === id ? { ...todo, completed: !todo.completed } : todo
+            );
+            setTodos(updatedTodos);
+            onTodosChange && onTodosChange(updatedTodos);
+          };
+          
+          const removeTodo = (id) => {
+            const updatedTodos = todos.filter(todo => todo.id !== id);
+            setTodos(updatedTodos);
+            onTodosChange && onTodosChange(updatedTodos);
+          };
+          
+          return React.createElement('div', null,
+            React.createElement('div', { className: 'add-todo' },
+              React.createElement('input', {
+                type: 'text',
+                value: newTodo,
+                onChange: (e) => setNewTodo(e.target.value),
+                onKeyPress: (e) => e.key === 'Enter' && addTodo(),
+                placeholder: 'Add new todo...'
+              }),
+              React.createElement('button', { onClick: addTodo }, 'Add')
+            ),
+            React.createElement('div', null,
+              todos.map(todo =>
+                React.createElement('div', {
+                  key: todo.id,
+                  className: 'todo-item' + (todo.completed ? ' completed' : '')
+                },
+                  React.createElement('input', {
+                    type: 'checkbox',
+                    checked: todo.completed,
+                    onChange: () => toggleTodo(todo.id)
+                  }),
+                  React.createElement('span', null, todo.text),
+                  React.createElement('button', {
+                    onClick: () => removeTodo(todo.id),
+                    className: 'secondary',
+                    style: { marginLeft: 'auto', fontSize: '12px', padding: '4px 8px' }
+                  }, 'Delete')
+                )
+              )
+            )
+          );
+        }
+        
+        ReactDOM.render(
+          React.createElement(ReactTodoList, {
+            initialTodos: ${JSON.stringify(status.todos)},
+            onTodosChange: (todos) => {
+              // Update shared state
+              window.compomintSharedState = window.compomintSharedState || {};
+              window.compomintSharedState.todos = todos;
+              
+              // Trigger Compomint update
+              const event = new CustomEvent('reactStateChange', { detail: { todos } });
+              document.dispatchEvent(event);
+            }
+          }),
+          document.getElementById('react-todo-container')
+        );
+      `;
+      
+      try {
+        eval(Babel.transform(todoCode, { presets: ['react'] }).code);
+      } catch (error) {
+        console.error('React todo component error:', error);
+      }
+    }
+    
+    // Compomint functions
+    function updateFromReact() {
+      if (window.compomintSharedState) {
+        if (window.compomintSharedState.counter !== undefined) {
+          status.sharedCounter = window.compomintSharedState.counter;
+        }
+        if (window.compomintSharedState.todos) {
+          status.todos = window.compomintSharedState.todos;
+        }
+        component.refresh();
+      }
+    }
+    
+    function updateCompomintCounter(delta) {
+      status.sharedCounter += delta;
+      
+      // Update React component
+      window.compomintSharedState = window.compomintSharedState || {};
+      window.compomintSharedState.counter = status.sharedCounter;
+      
+      // Re-render React component with new value
+      if (status.reactLoaded) {
+        setTimeout(() => {
+          initializeReactComponents();
+        }, 0);
+      }
+      
+      component.refresh();
+    }
+    
+    function resetDemo() {
+      status.sharedCounter = 0;
+      status.todos = [
+        { id: 1, text: 'Learn React', completed: true },
+        { id: 2, text: 'Learn Compomint', completed: true },
+        { id: 3, text: 'Combine React + Compomint', completed: false }
+      ];
+      
+      window.compomintSharedState = {
+        counter: 0,
+        todos: status.todos
+      };
+      
+      if (status.reactLoaded) {
+        setTimeout(() => {
+          initializeReactComponents();
+        }, 0);
+      }
+      
+      component.refresh();
+    }
+    
+    // Listen for React state changes
+    document.addEventListener('reactStateChange', updateFromReact);
+  ##
+  
+  <div class="demo-ReactIntegration">
+    <div class="section">
+      <h3>🚀 React + Compomint Integration Demo</h3>
+      <div class="info">
+        This demo shows how React and Compomint can work together in a hybrid architecture.
+        React handles complex UI logic while Compomint manages overall application state and templating.
+      </div>
+      
+      <div class="controls">
+        <button data-co-event="##:{click: loadReact}##" ##=status.reactLoaded ? 'disabled' : ''##>
+          ##=status.reactLoaded ? '✓ React Loaded' : 'Load React'##
+        </button>
+        <button data-co-event="##:{click: resetDemo}##" class="secondary">
+          Reset Demo
+        </button>
+      </div>
+      
+      ##if (!status.reactLoaded) {##
+        <div class="info">
+          Click "Load React" to initialize React components and see the integration in action.
+        </div>
+      ##}##
+    </div>
+    
+    ##if (status.reactLoaded) {##
+      <!-- Shared State Display -->
+      <div class="section">
+        <h3>🔄 Shared State</h3>
+        <div class="shared-state">
+          <strong>Counter:</strong> ##=status.sharedCounter## | 
+          <strong>Todos:</strong> ##=status.todos.length## items 
+          (##=status.todos.filter(t => t.completed).length## completed)
+        </div>
+      </div>
+      
+      <!-- React Counter Component -->
+      <div class="section">
+        <h3>⚛️ React Counter Component</h3>
+        <div class="react-container">
+          <div id="react-counter-container">Loading React component...</div>
+        </div>
+      </div>
+      
+      <!-- Compomint Counter Component -->
+      <div class="section">
+        <h3>🎯 Compomint Counter Component</h3>
+        <div class="compomint-container">
+          <div class="counter">Compomint Counter: ##=status.sharedCounter##</div>
+          <div class="controls">
+            <button data-co-event="##:{click: () => updateCompomintCounter(1)}##">+1</button>
+            <button data-co-event="##:{click: () => updateCompomintCounter(-1)}##">-1</button>
+            <button data-co-event="##:{click: () => updateCompomintCounter(-status.sharedCounter)}##" class="secondary">Reset</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- React Todo Component -->
+      <div class="section">
+        <h3>⚛️ React Todo List Component</h3>
+        <div class="react-container">
+          <div id="react-todo-container">Loading React component...</div>
+        </div>
+      </div>
+      
+      <!-- Compomint Todo Display -->
+      <div class="section">
+        <h3>🎯 Compomint Todo Display</h3>
+        <div class="compomint-container">
+          <div class="info">
+            This Compomint component displays the same todo data that React manages:
+          </div>
+          ##status.todos.forEach(todo => {##
+            <div class="todo-item ##=todo.completed ? 'completed' : ''##">
+              <input type="checkbox" ##=todo.completed ? 'checked' : ''## disabled>
+              <span>##=todo.text##</span>
+            </div>
+          ##})##
+        </div>
+      </div>
+      
+      <!-- Integration Tips -->
+      <div class="section">
+        <h3>💡 Integration Tips</h3>
+        <div class="info">
+          <strong>Best Practices for React + Compomint:</strong>
+          <ul>
+            <li>Use React for complex interactive components</li>
+            <li>Use Compomint for application layout and state management</li>
+            <li>Share state through custom events or global objects</li>
+            <li>Keep React components focused and stateless when possible</li>
+            <li>Use Compomint's templating for server-side rendering compatibility</li>
+          </ul>
+        </div>
+      </div>
+    ##}##
+  </div>
+  
+  ###
+    // Initialize React components after DOM is ready
+    setTimeout(() => {
+      if (status.reactLoaded) {
+        initializeReactComponents();
+      }
+    }, 100);
+  ##
+</template>

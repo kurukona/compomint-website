@@ -10,6 +10,7 @@
   if (data.installation) data.installation.refresh();
 
   if (data.examples) data.examples.refresh();
+  if (data.integrations) data.integrations.refresh();
   if (data.advancedExamples) data.advancedExamples.refresh();
 
   if (data.documentation) data.documentation.refresh();
@@ -26,6 +27,7 @@
       ##%data.architecture##
       ##%data.syntax##
       ##%data.examples##
+      ##%data.integrations##
       ##%data.advancedExamples##
     </main>
     ##%data.footer##
