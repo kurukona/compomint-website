@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     "templates/section-syntax.cmint",
     "templates/section-installation.cmint",
     "templates/section-documentation.cmint",
+    "templates/section-integrations.cmint",
     "templates/page-tutorial.cmint",
 
     "templates/ui-cookie-consent.cmint",
@@ -144,6 +145,34 @@ async function initApp() {
           ko: "여러 템플릿을 결합한 완전한 애플리케이션 예제",
           ja: "複数のテンプレートを組み合わせた完全なアプリケーション例",
           zh: "结合多个模板的完整应用程序示例",
+        },
+      },
+      reactIntegration: {
+        title: {
+          en: "React + Compomint Integration",
+          ko: "React + Compomint 통합",
+          ja: "React + Compomint統合",
+          zh: "React + Compomint 集成",
+        },
+        description: {
+          en: "Using Compomint templates inside React components for flexible UI templating",
+          ko: "유연한 UI 템플릿을 위해 React 컴포넌트 내에서 Compomint 템플릿 사용",
+          ja: "柔軟なUIテンプレートのためにReactコンポーネント内でCompomintテンプレートを使用",
+          zh: "在React组件中使用Compomint模板以获得灵活的UI模板",
+        },
+      },
+      vueIntegration: {
+        title: {
+          en: "Vue + Compomint Integration",
+          ko: "Vue + Compomint 통합",
+          ja: "Vue + Compomint統合",
+          zh: "Vue + Compomint 集成",
+        },
+        description: {
+          en: "Using Compomint templates within Vue.js components for enhanced templating",
+          ko: "Vue.js 컴포넌트 내에서 Compomint 템플릿을 사용하여 향상된 템플릿 기능 제공",
+          ja: "Vue.jsコンポーネント内でCompomintテンプレートを使用した拡張テンプレート機能",
+          zh: "在Vue.js组件中使用Compomint模板以增强模板功能",
         },
       },
     },
@@ -303,6 +332,340 @@ document.body.appendChild(userManagement.element);`,
     },
   });
 
+  // Define the integrations section
+  const integrations = tmpl.section.Integrations({
+    integrationExamples: () => [
+      {
+        title:
+          compomint.i18n.examples?.reactIntegration?.title("React Integration"),
+        description: compomint.i18n.examples?.reactIntegration?.description(
+          "Using Compomint templates inside React components for flexible UI templating"
+        ),
+        icon: "⚛️",
+        gradient: "from-blue-500 to-cyan-500",
+        class: "h-[600px]",
+        interactive: true,
+        code: `// Load React if not already loaded - Please Click Run Button!
+if (!window.React) {
+  const script = document.createElement('script');
+  script.src = 'https://unpkg.com/react@18/umd/react.production.min.js';
+  script.onload = () => {
+    const reactDomScript = document.createElement('script');
+    reactDomScript.src = 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js';
+    //reactDomScript.onload = initializeApp;
+    document.head.appendChild(reactDomScript);
+  };
+  document.head.appendChild(script);
+} else {
+  initializeApp();
+}
+
+function initializeApp() {
+  // 1. Create simple Compomint template
+  compomint.addTmpl('status-card', \`
+    ##
+      // text-green-800 text-yellow-800 text-blue-800
+      const statusColor = data.status === 'success' ? 'green' : 
+                         data.status === 'warning' ? 'yellow' : 'blue';
+    ##
+    <div class="p-4 bg-##=statusColor##-50 border border-##=statusColor##-200 rounded-lg">
+      <div class="flex items-center">
+        <span class="text-2xl mr-3">##=data.icon##</span>
+        <div>
+          <h3 class="font-bold text-##=statusColor##-800">##=data.title##</h3>
+          <p class="text-##=statusColor##-600">##=data.message##</p>
+        </div>
+      </div>
+    </div>
+  \`);
+
+  // 2. Simple React Hook for Compomint
+  function useCompomint(templateId, data) {
+    const [element, setElement] = React.useState(null);
+    const containerRef = React.useRef(null);
+    
+    React.useEffect(() => {
+      if (containerRef.current) {
+        const comp = compomint.tmpl(templateId)(data);
+        containerRef.current.innerHTML = '';
+        containerRef.current.appendChild(comp.element);
+      }
+    }, [templateId, JSON.stringify(data)]);
+    
+    return containerRef;
+  }
+
+  // 3. React Component using Compomint template
+  function StatusCard({ title, message, icon, status }) {
+    const containerRef = useCompomint('status-card', {
+      title, message, icon, status
+    });
+    
+    return React.createElement('div', { ref: containerRef });
+  }
+
+  // 4. Main React App
+  function App() {
+    const [count, setCount] = React.useState(0);
+    
+    return React.createElement('div', { className: 'p-6 space-y-4' },
+      React.createElement('h1', { className: 'text-2xl font-bold mb-4' }, 
+        'React + Compomint Demo'),
+      
+      React.createElement('div', { className: 'space-y-3' },
+        React.createElement(StatusCard, {
+          title: 'Counter Status',
+          message: \`Current count: \${count}\`,
+          icon: '📊',
+          status: count > 5 ? 'success' : count > 2 ? 'warning' : 'blue'
+        }),
+        
+        React.createElement(StatusCard, {
+          title: 'System Status', 
+          message: 'All systems operational',
+          icon: '✅',
+          status: 'success'
+        })
+      ),
+      
+      React.createElement('div', { className: 'pt-4' },
+        React.createElement('button', {
+          className: 'px-4 py-2 bg-blue-500 text-white rounded mr-2',
+          onClick: () => setCount(count + 1)
+        }, 'Increment: ' + count),
+        
+        React.createElement('button', {
+          className: 'px-4 py-2 bg-gray-500 text-white rounded',
+          onClick: () => setCount(0)
+        }, 'Reset')
+      )
+    );
+  }
+
+  // 5. Render the app
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  ReactDOM.render(React.createElement(App), container);
+}`,
+      },
+      {
+        title:
+          compomint.i18n.examples?.vueIntegration?.title("Vue Integration"),
+        description: compomint.i18n.examples?.vueIntegration?.description(
+          "Using Compomint templates within Vue.js components for enhanced templating"
+        ),
+        icon: "🔧",
+        gradient: "from-green-500 to-emerald-500",
+        class: "h-[600px]",
+        interactive: true,
+        code: `// Load Vue.js if not already loaded - Please Click Run Button!
+if (!window.Vue) {
+  const script = document.createElement('script');
+  script.src = 'https://unpkg.com/vue@3/dist/vue.global.js';
+  //script.onload = initializeVueApp;
+  document.head.appendChild(script);
+} else {
+  initializeVueApp();
+}
+
+function initializeVueApp() {
+  const { createApp, ref, onMounted, onUnmounted, watchEffect } = Vue;
+
+  // 1. Create Compomint templates for Vue components
+  compomint.addTmpl('product-card', \`
+    ##
+      const priceColor = data.onSale ? 'text-red-600' : 'text-gray-800';
+      const badgeClass = data.onSale ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800';
+    ##
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
+      ##if (data.onSale) {##
+        <span class="inline-block px-2 py-1 text-xs font-semibold ##=badgeClass## rounded-full mb-2">
+          SALE
+        </span>
+      ##}##
+      <img src="##=data.image##" alt="##=data.name##" class="w-full h-32 object-cover rounded mb-3">
+      <h3 class="font-semibold text-gray-900 mb-2">##=data.name##</h3>
+      <p class="text-sm text-gray-600 mb-3">##=data.description##</p>
+      <div class="flex justify-between items-center">
+        <span class="##=priceColor## font-bold">##=data.price##</span>
+        <button class="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
+                data-co-event="##:data.onAddToCart##">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  \`);
+
+  compomint.addTmpl('shopping-cart', \`
+    ##
+      const totalPrice = data.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    ##
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+      <h3 class="font-semibold text-gray-900 mb-3">Shopping Cart (##=data.items.length##)</h3>
+      ##if (data.items.length === 0) {##
+        <p class="text-gray-500">Your cart is empty</p>
+      ##} else {##
+        <div class="space-y-2 mb-3">
+          ##data.items.forEach(item => {##
+            <div class="flex justify-between items-center py-1">
+              <span class="text-sm">##=item.name## x##=item.quantity##</span>
+              <span class="text-sm font-medium">$##=(item.price * item.quantity).toFixed(2)##</span>
+            </div>
+          ##})##
+        </div>
+        <div class="border-t pt-2">
+          <div class="flex justify-between items-center font-semibold">
+            <span>Total:</span>
+            <span>$##=totalPrice.toFixed(2)##</span>
+          </div>
+        </div>
+      ##}##
+    </div>
+  \`);
+
+  // 2. Vue composable for Compomint integration
+  function useCompomint(templateId, data) {
+    const containerRef = ref(null);
+    let compomintInstance = null;
+
+    const updateCompomint = () => {
+      if (containerRef.value) {
+        // Remove previous instance
+        if (compomintInstance) {
+          compomintInstance.remove();
+        }
+        
+        // Create new instance
+        compomintInstance = compomint.tmpl(templateId)(data.value);
+        containerRef.value.innerHTML = '';
+        containerRef.value.appendChild(compomintInstance.element);
+      }
+    };
+
+    onMounted(() => {
+      updateCompomint();
+    });
+
+    watchEffect(() => {
+      updateCompomint();
+    });
+
+    onUnmounted(() => {
+      if (compomintInstance) {
+        compomintInstance.remove();
+      }
+    });
+
+    return containerRef;
+  }
+
+  // 3. Vue app with Compomint components
+  const app = createApp({
+    setup() {
+      // State
+      const cartItems = ref([]);
+      
+      const products = ref([
+        {
+          id: 1,
+          name: 'Wireless Headphones',
+          description: 'High-quality sound with noise cancellation',
+          price: 99.99,
+          onSale: true,
+          image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmMGYwZjAiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIyMCIgZmlsbD0iIzMzMzMzMyIvPjwvc3ZnPg=='
+        },
+        {
+          id: 2,
+          name: 'Smart Watch',
+          description: 'Track your fitness and stay connected',
+          price: 199.99,
+          onSale: false,
+          image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmMGYwZjAiLz48cmVjdCB4PSIzMCIgeT0iMzAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzMzMzMzMyIvPjwvc3ZnPg=='
+        }
+      ]);
+
+      // Methods
+      const addToCart = (product) => {
+        const existingItem = cartItems.value.find(item => item.id === product.id);
+        if (existingItem) {
+          existingItem.quantity++;
+        } else {
+          cartItems.value.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1
+          });
+        }
+      };
+
+      // Compomint refs
+      const cartRef = useCompomint('shopping-cart', ref({
+        items: cartItems
+      }));
+
+      return {
+        products,
+        cartItems,
+        addToCart,
+        cartRef
+      };
+    },
+
+    template: \`
+      <div class="p-6">
+        <h1 class="text-2xl font-bold mb-6">Vue + Compomint Shop</h1>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Products (Vue components using Compomint templates) -->
+          <div class="lg:col-span-2">
+            <h2 class="text-lg font-semibold mb-4">Products</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <CompomintProductCard 
+                v-for="product in products" 
+                :key="product.id"
+                :product="product"
+                @add-to-cart="addToCart"
+              />
+            </div>
+          </div>
+          
+          <!-- Cart (Compomint template) -->
+          <div>
+            <h2 class="text-lg font-semibold mb-4">Cart</h2>
+            <div ref="cartRef"></div>
+          </div>
+        </div>
+      </div>
+    \`
+  });
+
+  // 4. Register Vue component that uses Compomint
+  app.component('CompomintProductCard', {
+    props: ['product'],
+    emits: ['add-to-cart'],
+    setup(props, { emit }) {
+      const productData = ref({
+        ...props.product,
+        onAddToCart: () => emit('add-to-cart', props.product)
+      });
+
+      const containerRef = useCompomint('product-card', productData);
+
+      return { containerRef };
+    },
+    template: '<div ref="containerRef"></div>'
+  });
+
+  // 5. Mount the app
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  app.mount(container);
+}`,
+      },
+    ],
+  });
+
   // Define the documentation section
   const documentation = tmpl.section.Documentation({});
 
@@ -319,6 +682,7 @@ document.body.appendChild(userManagement.element);`,
     syntax: syntax,
     installation: installation,
     examples: examples,
+    integrations: integrations,
     documentation: documentation,
     footer: footer,
   });
@@ -532,6 +896,7 @@ const itemList = tmpl.item.list({
 document.body.appendChild(itemList.element);`,
         interactive: true,
         showConsole: false,
+        //runOnStart: true,
       },
     ];
 

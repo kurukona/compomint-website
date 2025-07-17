@@ -27,6 +27,12 @@
           'ja': '例',
           'zh': '示例'
         },
+        'integrations': {
+          'en': 'Integrations',
+          'ko': '통합',
+          'ja': '統合',
+          'zh': '集成'
+        },
         'documentation': {
           'en': 'Documentation',
           'ko': '문서',
@@ -68,6 +74,11 @@
           <li class="text-center">
             <a href="#examples" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
               ##=i18n.examples##
+            </a>
+          </li>
+          <li class="text-center">
+            <a href="#integrations" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+              ##=i18n.integrations##
             </a>
           </li>
           <li class="text-center">

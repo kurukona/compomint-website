@@ -177,7 +177,7 @@
   if (runOnStart) {
     setTimeout(() => {
       renderingArea.refreshCode({template: templateCodeArea ? templateCodeArea.codeMirror.getValue() : null, code: runCodeArea.codeMirror.getValue()});
-    }, 100);
+    }, 10);
   }
   ##
 </template>

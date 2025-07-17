@@ -18,10 +18,10 @@
               'zh': '轻量级大小'
             },
             'description': {
-              'en': 'Fast loading and execution with a small footprint (~14KB gzipped).',
-              'ko': '약 14KB(gzip 압축)의 작은 크기로 빠른 로딩과 실행이 가능합니다.',
-              'ja': '小さなフットプリント（gzip圧縮で約14KB）で高速なロードと実行が可能です。',
-              'zh': '小体积（gzip压缩后约14KB）实现快速加载和执行。'
+              'en': 'Fast loading and execution with a small footprint.',
+              'ko': '작은 크기로 빠른 로딩과 실행이 가능합니다.',
+              'ja': '小さなフットプリントで高速なロードと実行が可能です。',
+              'zh': '小体积实现快速加载和执行。'
             }
           },
           'template': {
