@@ -5,7 +5,7 @@
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://compomint.dev/</loc>
-    <lastmod>2025-05-12</lastmod> <!-- TODO: Please update this date to the actual last modification date. -->
+    <lastmod>2025-07-17</lastmod> <!-- TODO: Please update this date to the actual last modification date. -->
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
