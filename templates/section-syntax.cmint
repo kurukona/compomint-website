@@ -1,0 +1,452 @@
+<!-- Syntax Guide Section -->
+<template id="section-Syntax">
+  ##!
+    compomint.addI18ns({
+      'section-Syntax': {
+        'title': {
+          'en': 'Template Syntax Guide',
+          'ko': '템플릿 문법 가이드',
+          'ja': 'テンプレート構文ガイド',
+          'zh': '模板语法指南'
+        },
+        'subtitle': {
+          'en': 'Master Compomint\'s powerful template expression system',
+          'ko': 'Compomint의 강력한 템플릿 표현식 시스템을 마스터하세요',
+          'ja': 'Compomintの強力なテンプレート表現システムをマスター',
+          'zh': '掌握Compomint强大的模板表达式系统'
+        },
+        'expressions': {
+          'title': {
+            'en': 'Template Expressions',
+            'ko': '템플릿 표현식',
+            'ja': 'テンプレート表現',
+            'zh': '模板表达式'
+          }
+        },
+        'dataOutput': {
+          'title': {
+            'en': 'Data Output',
+            'ko': '데이터 출력',
+            'ja': 'データ出力',
+            'zh': '数据输出'
+          },
+          'syntax': {
+            'en': 'Data interpolation - outputs values directly',
+            'ko': '데이터 보간 - 값을 직접 출력합니다',
+            'ja': 'データ補間 - 値を直接出力',
+            'zh': '数据插值 - 直接输出值'
+          }
+        },
+        'htmlEscape': {
+          'title': {
+            'en': 'HTML Escaped Output',
+            'ko': 'HTML 이스케이프 출력',
+            'ja': 'HTMLエスケープ出力',
+            'zh': 'HTML转义输出'
+          },
+          'syntax': {
+            'en': 'Safe HTML rendering - prevents XSS attacks',
+            'ko': '안전한 HTML 렌더링 - XSS 공격을 방지합니다',
+            'ja': '安全なHTMLレンダリング - XSS攻撃を防ぐ',
+            'zh': '安全的HTML渲染 - 防止XSS攻击'
+          }
+        },
+        'elementInsertion': {
+          'title': {
+            'en': 'Element Insertion',
+            'ko': '요소 삽입',
+            'ja': '要素挿入',
+            'zh': '元素插入'
+          },
+          'syntax': {
+            'en': 'Embed components and DOM elements',
+            'ko': '컴포넌트와 DOM 요소를 삽입합니다',
+            'ja': 'コンポーネントとDOM要素を埋め込み',
+            'zh': '嵌入组件和DOM元素'
+          }
+        },
+        'codeBlocks': {
+          'title': {
+            'en': 'JavaScript Code',
+            'ko': 'JavaScript 코드',
+            'ja': 'JavaScriptコード',
+            'zh': 'JavaScript代码'
+          },
+          'syntax': {
+            'en': 'Execute JavaScript logic and define functions',
+            'ko': 'JavaScript 로직을 실행하고 함수를 정의합니다',
+            'ja': 'JavaScriptロジックを実行し関数を定義',
+            'zh': '执行JavaScript逻辑并定义函数'
+          }
+        },
+        'preEvaluation': {
+          'title': {
+            'en': 'Pre-evaluation',
+            'ko': '사전 평가',
+            'ja': '事前評価',
+            'zh': '预评估'
+          },
+          'syntax': {
+            'en': 'Runs once when template loads - i18n setup',
+            'ko': '템플릿 로드 시 한 번 실행 - i18n 설정',
+            'ja': 'テンプレート読み込み時に一度実行 - i18n設定',
+            'zh': '模板加载时运行一次 - i18n设置'
+          }
+        },
+        'lazyEvaluation': {
+          'title': {
+            'en': 'Lazy Evaluation',
+            'ko': '지연 평가',
+            'ja': '遅延評価',
+            'zh': '延迟评估'
+          },
+          'syntax': {
+            'en': 'Executes after DOM render - event binding',
+            'ko': 'DOM 렌더링 후 실행 - 이벤트 바인딩',
+            'ja': 'DOMレンダリング後に実行 - イベントバインディング',
+            'zh': 'DOM渲染后执行 - 事件绑定'
+          }
+        },
+        'attributes': {
+          'title': {
+            'en': 'HTML Attributes',
+            'ko': 'HTML 속성',
+            'ja': 'HTML属性',
+            'zh': 'HTML属性'
+          }
+        },
+        'eventHandling': {
+          'title': {
+            'en': 'Event Handling',
+            'ko': '이벤트 처리',
+            'ja': 'イベント処理',
+            'zh': '事件处理'
+          },
+          'description': {
+            'en': 'Attach event listeners to elements',
+            'ko': '요소에 이벤트 리스너를 연결합니다',
+            'ja': '要素にイベントリスナーをアタッチ',
+            'zh': '为元素附加事件监听器'
+          }
+        },
+        'namedElement': {
+          'title': {
+            'en': 'Named Elements',
+            'ko': '명명된 요소',
+            'ja': '名前付き要素',
+            'zh': '命名元素'
+          },
+          'description': {
+            'en': 'Create references to DOM elements',
+            'ko': 'DOM 요소에 대한 참조를 생성합니다',
+            'ja': 'DOM要素への参照を作成',
+            'zh': '创建对DOM元素的引用'
+          }
+        },
+        'elementRef': {
+          'title': {
+            'en': 'Element Variables',
+            'ko': '요소 변수',
+            'ja': '要素変数',
+            'zh': '元素变量'
+          },
+          'description': {
+            'en': 'Store element references in variables',
+            'ko': '요소 참조를 변수에 저장합니다',
+            'ja': '要素参照を変数に格納',
+            'zh': '将元素引用存储在变量中'
+          }
+        },
+        'loadCallback': {
+          'title': {
+            'en': 'Load Callbacks',
+            'ko': '로드 콜백',
+            'ja': 'ロードコールバック',
+            'zh': '加载回调'
+          },
+          'description': {
+            'en': 'Execute functions when element loads',
+            'ko': '요소가 로드될 때 함수를 실행합니다',
+            'ja': '要素の読み込み時に関数を実行',
+            'zh': '元素加载时执行函数'
+          }
+        },
+        'builtinVars': {
+          'title': {
+            'en': 'Built-in Variables',
+            'ko': '내장 변수',
+            'ja': '組み込み変数',
+            'zh': '内置变量'
+          }
+        },
+        'dataVar': {
+          'description': {
+            'en': 'Data passed to the component',
+            'ko': '컴포넌트에 전달된 데이터',
+            'ja': 'コンポーネントに渡されたデータ',
+            'zh': '传递给组件的数据'
+          }
+        },
+        'statusVar': {
+          'description': {
+            'en': 'Component state (persists across refreshes)',
+            'ko': '컴포넌트 상태 (새로고침 시에도 유지)',
+            'ja': 'コンポーネント状態 (更新時も維持)',
+            'zh': '组件状态（刷新时保持）'
+          }
+        },
+        'componentVar': {
+          'description': {
+            'en': 'Component instance with methods',
+            'ko': '메서드가 있는 컴포넌트 인스턴스',
+            'ja': 'メソッド付きコンポーネントインスタンス',
+            'zh': '带有方法的组件实例'
+          }
+        },
+        'i18nVar': {
+          'description': {
+            'en': 'Internationalization object',
+            'ko': '국제화 객체',
+            'ja': '国際化オブジェクト',
+            'zh': '国际化对象'
+          }
+        },
+        'tmplVar': {
+          'description': {
+            'en': 'Template registry for component access',
+            'ko': '컴포넌트 접근을 위한 템플릿 레지스트리',
+            'ja': 'コンポーネントアクセス用テンプレートレジストリ',
+            'zh': '用于组件访问的模板注册表'
+          }
+        },
+        'examples': {
+          'title': {
+            'en': 'Interactive Examples',
+            'ko': '인터랙티브 예제',
+            'ja': 'インタラクティブ例',
+            'zh': '交互式示例'
+          }
+        },
+        'basicExample': {
+          'title': {
+            'en': 'Basic Template',
+            'ko': '기본 템플릿',
+            'ja': '基本テンプレート',
+            'zh': '基础模板'
+          },
+          'description': {
+            'en': 'Simple data binding and output',
+            'ko': '간단한 데이터 바인딩과 출력',
+            'ja': '簡単なデータバインディングと出力',
+            'zh': '简单的数据绑定和输出'
+          }
+        },
+        'interactiveExample': {
+          'title': {
+            'en': 'Interactive Component',
+            'ko': '인터랙티브 컴포넌트',
+            'ja': 'インタラクティブコンポーネント',
+            'zh': '交互式组件'
+          },
+          'description': {
+            'en': 'Event handling and state management',
+            'ko': '이벤트 처리와 상태 관리',
+            'ja': 'イベント処理と状態管理',
+            'zh': '事件处理和状态管理'
+          }
+        }
+      }
+    });
+  ##
+
+  <section id="syntax" class="section-Syntax py-16 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">##=i18n.title##</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">##=i18n.subtitle##</p>
+      </div>
+
+      <!-- Template Expressions -->
+      <div class="mb-16">
+        <h3 class="text-3xl font-semibold text-center mb-12 text-gray-900 dark:text-gray-100">##=i18n.expressions.title##</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Data Output -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100">##=i18n.dataOutput.title##</h4>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">#\#=data.name#\#</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.dataOutput.syntax##</p>
+          </div>
+
+          <!-- HTML Escape -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100">##=i18n.htmlEscape.title##</h4>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">#\#-data.html#\#</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.htmlEscape.syntax##</p>
+          </div>
+
+          <!-- Element Insertion -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100">##=i18n.elementInsertion.title##</h4>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">#\#%component#\#</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.elementInsertion.syntax##</p>
+          </div>
+
+          <!-- JavaScript Code -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100">##=i18n.codeBlocks.title##</h4>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">#\# let x = 5; #\#</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.codeBlocks.syntax##</p>
+          </div>
+
+          <!-- Pre-evaluation -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100">##=i18n.preEvaluation.title##</h4>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">#\#! setup() #\#</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.preEvaluation.syntax##</p>
+          </div>
+
+          <!-- Lazy Evaluation -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100">##=i18n.lazyEvaluation.title##</h4>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">#\#\# initEvents() #\#</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.lazyEvaluation.syntax##</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HTML Attributes -->
+      <div class="mb-16">
+        <h3 class="text-3xl font-semibold text-center mb-12 text-gray-900 dark:text-gray-100">##=i18n.attributes.title##</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Event Handling -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">##=i18n.eventHandling.title##</h4>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">data-co-event="#\#:{click: handleClick}#\#"</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.eventHandling.description##</p>
+          </div>
+
+          <!-- Named Elements -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">##=i18n.namedElement.title##</h4>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">data-co-named-element="#\\#:'inputField'#\\#"</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.namedElement.description##</p>
+          </div>
+
+          <!-- Element Variables -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">##=i18n.elementRef.title##</h4>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">data-co-element-ref="#\#:container#\#"</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.elementRef.description##</p>
+          </div>
+
+          <!-- Load Callbacks -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">##=i18n.loadCallback.title##</h4>
+            <div class="bg-gray-800 rounded-lg p-3 mb-3">
+              <code class="text-green-400 font-mono text-sm">data-co-load="#\#:initElement#\#"</code>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.loadCallback.description##</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Built-in Variables -->
+      <div class="mb-16">
+        <h3 class="text-3xl font-semibold text-center mb-12 text-gray-900 dark:text-gray-100">##=i18n.builtinVars.title##</h3>
+        
+        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="flex items-start space-x-3">
+              <div class="bg-blue-500 text-white rounded-lg p-2 text-sm font-mono">data</div>
+              <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.dataVar.description##</p>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="bg-green-500 text-white rounded-lg p-2 text-sm font-mono">status</div>
+              <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.statusVar.description##</p>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="bg-purple-500 text-white rounded-lg p-2 text-sm font-mono">component</div>
+              <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.componentVar.description##</p>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="bg-orange-500 text-white rounded-lg p-2 text-sm font-mono">i18n</div>
+              <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.i18nVar.description##</p>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="bg-red-500 text-white rounded-lg p-2 text-sm font-mono">tmpl</div>
+              <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.tmplVar.description##</p>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="bg-indigo-500 text-white rounded-lg p-2 text-sm font-mono">compomint</div>
+              <p class="text-gray-600 dark:text-gray-300 text-sm">Global compomint object</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</template>

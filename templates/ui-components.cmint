@@ -1,6 +1,0 @@
-<template id="ui-Button">
-  <button class="ui-Button ##=data.variant ? 'ui-Button--' + data.variant : ''##"
-    data-co-event="##:data.onClick##">
-    ##=data.label##
-  </button>
-</template>

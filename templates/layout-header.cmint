@@ -1,8 +1,8 @@
 <!-- Header Component -->
-<template id="ui-Header">
+<template id="layout-Header">
   ##!
     compomint.addI18ns({
-      'ui-Header': {
+      'layout-Header': {
         'home': {
           'en': 'Home',
           'ko': '홈',
@@ -36,7 +36,7 @@
       }
     });
   ##
-  <header class="bg-white shadow-sm sticky top-0 z-50 dark:bg-gray-800">
+  <header class="layout-Header bg-white shadow-sm sticky top-0 z-50 dark:bg-gray-800">
     <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
       <div class="flex items-center space-x-2 mb-4 md:mb-0">
         <img src="img/icon.png" alt="Compomint Logo" class="w-8 h-8 logo-primary">
@@ -56,6 +56,11 @@
             </a>
           </li>
           <li class="text-center">
+            <a href="#documentation" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+              ##=i18n.documentation##
+            </a>
+          </li>
+          <li class="text-center">
             <a href="#vscode-extension" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
               ##=i18n.vscode##
             </a>
@@ -63,11 +68,6 @@
           <li class="text-center">
             <a href="#examples" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
               ##=i18n.examples##
-            </a>
-          </li>
-          <li class="text-center">
-            <a href="#documentation" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
-              ##=i18n.documentation##
             </a>
           </li>
           <li class="text-center">
