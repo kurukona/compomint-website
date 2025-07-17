@@ -36,7 +36,7 @@
     }
     
     /* 콘솔 영역의 z-index 설정 */
-    .pg-Console-Area {
+    .cmint-Playground-Console-Area {
       z-index: 5;
     }
 
@@ -52,7 +52,7 @@
       height: calc(100% - 250px);
     }
     
-    .cmint-Playground .pg-Rendering-Area {
+    .cmint-Playground .cmint-Playground-Rendering-Area {
       height: calc(100% - 32px);
     }
     
@@ -107,17 +107,17 @@
   var hasTemplate = !!template;
   var code = data.code;
   var type = data.type;
-  var showConsole = data.showConsole || false;
-  var autoRefresh = true;
+  var showConsole = data.showConsole !== undefined ? data.showConsole : false;
+  var autoRefresh = data.autoRefresh !== undefined ? data.autoRefresh : true;
 
-  var runCodeArea = tmpl.pg.CodeMirrorArea({
+  var runCodeArea = tmpl.cmint.PlaygroundCodeMirrorArea({
     value: code,
     changeEvent: function(cMirror) {
       if (autoRefresh) renderingArea.refreshCode({code: cMirror.getValue(), type: type});
     }
   });
-  var consoleArea = tmpl.pg.ConsoleArea({show: showConsole});
-  var renderingArea = tmpl.pg.RenderingArea({imports: imports, code: code, type: type, template: template, loadCallback: function(iframe) {
+  var consoleArea = tmpl.cmint.PlaygroundConsoleArea({show: showConsole});
+  var renderingArea = tmpl.cmint.PlaygroundRenderingArea({imports: imports, code: code, type: type, template: template, loadCallback: function(iframe) {
     setTimeout(function() {
       consoleArea.setWindow(iframe.contentWindow);
     });
@@ -131,7 +131,7 @@
 
   var templateSpliteArea, templateCodeArea = null;
   if (hasTemplate) {
-    templateCodeArea = tmpl.pg.CodeMirrorArea({
+    templateCodeArea = tmpl.cmint.PlaygroundCodeMirrorArea({
       value: template,
       changeEvent: function(cMirror) {
         if (autoRefresh) renderingArea.refreshCode({template: cMirror.getValue(), type: type});
@@ -143,23 +143,24 @@
       items: [[compomint.tmpl('co-Element')({tag: 'div', props: {class: 'splitter-title'}, content: 'Template'}), templateCodeArea], codeSpliteArea]
     });
   }
+
   ##
   <div class="cmint-Playground h-full mb-1.5 ##=hasTemplate ? 'template' : ''## ##=showConsole ? 'console' : ''##">
     ##%templateSpliteArea || codeSpliteArea##
     <div class="controlArea">
-      ##%tmpl.pg.Button({label: 'AUTO REFRESH', icon: 'refresh', styleClass: 'xs ' + (autoRefresh ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
+      ##%tmpl.cmint.PlaygroundButton({label: 'AUTO REFRESH', icon: 'refresh', styleClass: 'xs ' + (autoRefresh ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
         autoRefresh = !autoRefresh;
         element.style.backgroundColor = autoRefresh ? '#10b981' : '#f3f4f6';
         element.style.color = autoRefresh ? 'white' : '#374151';
         element.style.borderColor = autoRefresh ? '#10b981' : '#d1d5db';
       }})##
-      ##%tmpl.pg.Button({label: 'CODE RESET', icon: 'repeat', styleClass: 'xs btn-default', event: function() {
+      ##%tmpl.cmint.PlaygroundButton({label: 'CODE RESET', icon: 'repeat', styleClass: 'xs btn-default', event: function() {
         runCodeArea.codeMirror.setValue(code);
       }})##
-      ##%tmpl.pg.Button({label: 'RUN', icon: 'play', styleClass: 'xs btn-primary', event: function() {
+      ##%tmpl.cmint.PlaygroundButton({label: 'RUN', icon: 'play', styleClass: 'xs btn-primary', event: function() {
         renderingArea.refreshCode({template: templateCodeArea ? templateCodeArea.codeMirror.getValue() : null, code: runCodeArea.codeMirror.getValue()});
       }})##
-      ##%tmpl.pg.Button({label: 'CONSOLE', icon: '', styleClass: 'xs right ' + (showConsole ? 'btn-info' : 'btn-default'), event: function(e, {element, componentElement}) {
+      ##%tmpl.cmint.PlaygroundButton({label: 'CONSOLE', icon: '', styleClass: 'xs right ' + (showConsole ? 'btn-info' : 'btn-default'), event: function(e, {element, componentElement}) {
         showConsole = !showConsole;
         consoleArea.show(showConsole);
         component.element.classList[showConsole ? 'add' : 'remove']('console');
@@ -175,42 +176,42 @@
   ##
 </template>
 
-<template id="pg-Component-PlayGround">
-  <style id="style-pg-Component-PlayGround">
-    .pg-Component-PlayGround {
+<template id="cmint-Playground-Component-PlayGround">
+  <style id="style-cmint-Playground-Component-PlayGround">
+    .cmint-Playground-Component-PlayGround {
       height: 200px;
       border: 1px solid #d1d5db;
       margin: 10px 0;
     }
-    .pg-Component-PlayGround .renderingArea {
+    .cmint-Playground-Component-PlayGround .renderingArea {
       width: 200px;
       height: 100%;
       float: left;
     }
-    .pg-Component-PlayGround .renderingArea .pg-Rendering-Area {
+    .cmint-Playground-Component-PlayGround .renderingArea .cmint-Playground-Rendering-Area {
       height: calc(100% - 22px);
       padding: 20px;
     }
-    .pg-Component-PlayGround .runCodeArea {
+    .cmint-Playground-Component-PlayGround .runCodeArea {
       width: calc(100% - 201px);
       height: 100%;
       float: right;
       position: relative;
       border-left: 1px solid #d1d5db;
     }
-    .pg-Component-PlayGround .runCodeArea .pg-CodeMirror-Area {
+    .cmint-Playground-Component-PlayGround .runCodeArea .cmint-Playground-CodeMirror-Area {
       /* 스타일 추가 예정 */
     }
-    .pg-Component-PlayGround .runCodeAreaTitle {
+    .cmint-Playground-Component-PlayGround .runCodeAreaTitle {
       background-color: #f3f4f6;
       border-bottom: 1px solid #d1d5db;
       height: 20px;
       padding-left: 6px;
     }
-    .pg-Component-PlayGround .runCodeAreaTitle .control {
+    .cmint-Playground-Component-PlayGround .runCodeAreaTitle .control {
       float: right;
     }
-    .pg-Component-PlayGround .runCodeAreaTitle .btn {
+    .cmint-Playground-Component-PlayGround .runCodeAreaTitle .btn {
       border-radius: 0;
       padding: 0 4px;
       vertical-align: top;
@@ -235,21 +236,21 @@
     "});";
     return realCode;
   }
-  var renderingArea = tmpl.pg.RenderingArea({imports: imports, code: toRenderingCode(), type: type});
-  var runCodeArea = tmpl.pg.CodeMirrorArea({
+  var renderingArea = tmpl.cmint.PlaygroundRenderingArea({imports: imports, code: toRenderingCode(), type: type});
+  var runCodeArea = tmpl.cmint.PlaygroundCodeMirrorArea({
     value: code,
     changeEvent: function(cMirror) {
       if (autoRefresh) renderingArea.refreshCode({code: cMirror.getValue(), type: type});
     }
   });
   ##
-  <div class="pg-Component-PlayGround">
+  <div class="cmint-Playground-Component-PlayGround">
     <div class="renderingArea">##%renderingArea##</div>
     <div class="runCodeArea">
       <div class="runCodeAreaTitle">
         <span>Code</span>
         <div class="control">
-          ##%tmpl.pg.Button({label: 'AUTO REFRESH', icon: 'refresh', styleClass: 'xs ' + (autoRefresh ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
+          ##%tmpl.cmint.PlaygroundButton({label: 'AUTO REFRESH', icon: 'refresh', styleClass: 'xs ' + (autoRefresh ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
             autoRefresh = !autoRefresh;
             element.style.backgroundColor = autoRefresh ? '#10b981' : '#f3f4f6';
             element.style.color = autoRefresh ? 'white' : '#374151';
@@ -262,12 +263,12 @@
   </div>
 </template>
 
-<template id="pg-CodeMirror-Area">
-  <style id="style-pg-CodeMirror-Area">
-    .pg-CodeMirror-Area .CodeMirror {
+<template id="cmint-Playground-CodeMirror-Area">
+  <style id="style-cmint-Playground-CodeMirror-Area">
+    .cmint-Playground-CodeMirror-Area .CodeMirror {
       height: 100%;
     }
-    .pg-CodeMirror-Area {
+    .cmint-Playground-CodeMirror-Area {
       position: absolute;
       top: 32px;
       bottom: 0;
@@ -281,7 +282,7 @@
   var value = data.value;
   var changeEvent = data.changeEvent;
   ##
-  <div class="pg-CodeMirror-Area"></div>
+  <div class="cmint-Playground-CodeMirror-Area"></div>
   ###
   var element = this;
   setTimeout(function() {
@@ -323,9 +324,9 @@
   ##
 </template>
 
-<template id="pg-Rendering-Area">
-  <style id="style-pg-Rendering-Area">
-    .pg-Rendering-Area .render-container {
+<template id="cmint-Playground-Rendering-Area">
+  <style id="style-cmint-Playground-Rendering-Area">
+    .cmint-Playground-Rendering-Area .render-container {
       border: 1px solid #e5e7eb;
       width: 100%;
       height: 100%;
@@ -335,7 +336,7 @@
       box-sizing: border-box;
     }
     
-    .dark .pg-Rendering-Area .render-container {
+    .dark .cmint-Playground-Rendering-Area .render-container {
       border: 1px solid #4b5563;
       background-color: #1f2937;
       color: #f3f4f6;
@@ -491,7 +492,7 @@
     }
   };
   ##
-  <div class="pg-Rendering-Area">
+  <div class="cmint-Playground-Rendering-Area">
     <div class="render-container border border-gray-300 w-full h-full overflow-auto bg-white p-2.5 box-border" data-co-element-ref="##:renderContainer##"></div>
   </div>
   ###
@@ -506,19 +507,19 @@
   ##
 </template>
 
-<template id="pg-Console-Area">
-  <style id="style-pg-Console-Area">
-    .pg-Console-Area {
+<template id="cmint-Playground-Console-Area">
+  <style id="style-cmint-Playground-Console-Area">
+    .cmint-Playground-Console-Area {
       background: #f8fafc;
       border-top: 1px solid #e2e8f0;
     }
     
-    .dark .pg-Console-Area {
+    .dark .cmint-Playground-Console-Area {
       background: #374151;
       border-top: 1px solid #4b5563;
     }
     
-    .pg-Console-Area .logArea {
+    .cmint-Playground-Console-Area .logArea {
       background: #ffffff;
       border: 1px solid #e5e7eb;
       border-radius: 4px;
@@ -526,17 +527,17 @@
       padding: 8px;
     }
     
-    .dark .pg-Console-Area .logArea {
+    .dark .cmint-Playground-Console-Area .logArea {
       background: #1f2937;
       border: 1px solid #4b5563;
       color: #f3f4f6;
     }
     
-    .pg-Console-Area .logArea p {
+    .cmint-Playground-Console-Area .logArea p {
       margin: 0;
       margin-bottom: 4px;
     }
-    .pg-Console-Area .logArea pre {
+    .cmint-Playground-Console-Area .logArea pre {
       font-size: 11px;
       border: 0;
       margin: 0;
@@ -547,28 +548,28 @@
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
     }
     
-    .dark .pg-Console-Area .logArea pre {
+    .dark .cmint-Playground-Console-Area .logArea pre {
       background: rgba(255, 255, 255, 0.05);
       color: #e5e7eb;
     }
     
-    .pg-Console-Area .logArea .error {
+    .cmint-Playground-Console-Area .logArea .error {
       color: #dc2626;
       background: rgba(220, 38, 38, 0.1);
     }
     
-    .dark .pg-Console-Area .logArea .error {
+    .dark .cmint-Playground-Console-Area .logArea .error {
       color: #f87171;
       background: rgba(248, 113, 113, 0.1);
     }
     
-    .pg-Console-Area .console-controlArea {
+    .cmint-Playground-Console-Area .console-controlArea {
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       border-top: 1px solid #e2e8f0;
       padding: 8px;
     }
     
-    .dark .pg-Console-Area .console-controlArea {
+    .dark .cmint-Playground-Console-Area .console-controlArea {
       background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
       border-top: 1px solid #6b7280;
     }
@@ -659,10 +660,10 @@
 
   component.setWindow(targetWindow);
   ##
-  <div class="pg-Console-Area h-[200px] clear-both flex flex-col bottom-0 left-0 right-0" style="##=show ? '' : 'display: none'##">
+  <div class="cmint-Playground-Console-Area h-[200px] clear-both flex flex-col bottom-0 left-0 right-0" style="##=show ? '' : 'display: none'##">
     <div class="logArea overflow-y-auto flex-1 border border-gray-300 rounded-md m-2 p-2 bg-white dark:bg-gray-800 dark:border-gray-600" data-co-element-ref="##:area##"></div>
     <div class="console-controlArea h-[50px] flex items-center gap-2 px-2 border-t border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700">
-      ##%tmpl.pg.Field({containerClass: 'console-input-container flex-1 mr-2', size: 'sm', placeholder: 'Enter command...', enterKeyEvent: function(e) {
+      ##%tmpl.cmint.PlaygroundField({containerClass: 'console-input-container flex-1 mr-2', size: 'sm', placeholder: 'Enter command...', enterKeyEvent: function(e) {
         var command = e.target.value.trim();
         e.target.value = '';
         if (!command) return;
@@ -673,13 +674,13 @@
           component.console.error(error);
         }
       }})##
-      ##%tmpl.pg.Button({label: 'AUTO SCROLL', styleClass: 'xs ' + (autoScroll ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
+      ##%tmpl.cmint.PlaygroundButton({label: 'AUTO SCROLL', styleClass: 'xs ' + (autoScroll ? 'btn-success' : 'btn-default'), event: function(e, {element, componentElement, component, compomint}) {
         autoScroll = !autoScroll;
         element.style.backgroundColor = autoScroll ? '#10b981' : '#f3f4f6';
         element.style.color = autoScroll ? 'white' : '#374151';
         element.style.borderColor = autoScroll ? '#10b981' : '#d1d5db';
       }})##
-      ##%tmpl.pg.Button({label: 'CLEAR', styleClass: 'xs btn-default', event: function() {
+      ##%tmpl.cmint.PlaygroundButton({label: 'CLEAR', styleClass: 'xs btn-default', event: function() {
         component.clear();
       }})##
     </div>
@@ -687,7 +688,7 @@
 </template>
 
 <!-- Playground UI Components with Tailwind CSS -->
-<template id="pg-Button">
+<template id="cmint-Playground-Button">
   ##
   var label = data.label || 'Button';
   var icon = data.icon || '';
@@ -728,7 +729,7 @@
   </button>
 </template>
 
-<template id="pg-Field">
+<template id="cmint-Playground-Field">
   ##
   var type = data.type || 'text';
   var value = data.value || '';

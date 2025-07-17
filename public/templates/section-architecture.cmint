@@ -1,0 +1,479 @@
+<!-- Internal Workings Section -->
+<template id="section-Architecture">
+  ##!
+    compomint.addI18ns({
+      'section-Architecture': {
+        'title': {
+          'en': 'Internal Workings',
+          'ko': '내부 작동 원리',
+          'ja': '内部動作',
+          'zh': '内部工作原理'
+        },
+        'subtitle': {
+          'en': 'Understanding how Compomint processes templates and manages components under the hood',
+          'ko': 'Compomint가 템플릿을 처리하고 컴포넌트를 관리하는 내부 원리를 이해해보세요',
+          'ja': 'Compomintがテンプレートを処理し、コンポーネントを管理する内部原理を理解する',
+          'zh': '了解Compomint如何处理模板和管理组件的内部原理'
+        },
+        'compilationProcess': {
+          'title': {
+            'en': 'Template Compilation Process',
+            'ko': '템플릿 컴파일 과정',
+            'ja': 'テンプレートコンパイル過程',
+            'zh': '模板编译过程'
+          }
+        },
+        'parsing': {
+          'title': {
+            'en': 'Parsing',
+            'ko': '파싱',
+            'ja': 'パース',
+            'zh': '解析'
+          },
+          'description': {
+            'en': 'Template text is analyzed using regex patterns to identify code blocks and expressions',
+            'ko': '정규식 패턴을 사용하여 코드 블록과 표현식을 식별하는 템플릿 텍스트 분석',
+            'ja': '正規表現パターンを使用してコードブロックと式を識別するテンプレートテキストの解析',
+            'zh': '使用正则表达式模式分析模板文本以识别代码块和表达式'
+          }
+        },
+        'extraction': {
+          'title': {
+            'en': 'Extraction',
+            'ko': '추출',
+            'ja': '抽出',
+            'zh': '提取'
+          },
+          'description': {
+            'en': 'Code blocks, expressions, and template elements are extracted and categorized',
+            'ko': '코드 블록, 표현식, 템플릿 요소를 추출하고 분류',
+            'ja': 'コードブロック、式、テンプレート要素を抽出し分類',
+            'zh': '提取和分类代码块、表达式和模板元素'
+          }
+        },
+        'compilation': {
+          'title': {
+            'en': 'Compilation',
+            'ko': '컴파일',
+            'ja': 'コンパイル',
+            'zh': '编译'
+          },
+          'description': {
+            'en': 'JavaScript function is generated that produces HTML when executed with data',
+            'ko': '데이터와 함께 실행될 때 HTML을 생성하는 JavaScript 함수 생성',
+            'ja': 'データと一緒に実行されるとHTMLを生成するJavaScript関数の生成',
+            'zh': '生成在与数据一起执行时产生HTML的JavaScript函数'
+          }
+        },
+        'caching': {
+          'title': {
+            'en': 'Caching',
+            'ko': '캐싱',
+            'ja': 'キャッシュ',
+            'zh': '缓存'
+          },
+          'description': {
+            'en': 'Generated functions are stored for efficient reuse across multiple renders',
+            'ko': '여러 렌더링에서 효율적인 재사용을 위해 생성된 함수 저장',
+            'ja': '複数のレンダリングで効率的な再利用のため生成された関数を保存',
+            'zh': '存储生成的函数以便在多次渲染中高效重用'
+          }
+        },
+        'execution': {
+          'title': {
+            'en': 'Execution',
+            'ko': '실행',
+            'ja': '実行',
+            'zh': '执行'
+          },
+          'description': {
+            'en': 'Cached function is called with component data to generate final HTML output',
+            'ko': '컴포넌트 데이터와 함께 캐시된 함수를 호출하여 최종 HTML 출력 생성',
+            'ja': 'コンポーネントデータと共にキャッシュされた関数を呼び出し最終HTML出力を生成',
+            'zh': '使用组件数据调用缓存函数以生成最终HTML输出'
+          }
+        },
+        'domCreation': {
+          'title': {
+            'en': 'DOM Creation',
+            'ko': 'DOM 생성',
+            'ja': 'DOM作成',
+            'zh': 'DOM创建'
+          },
+          'description': {
+            'en': 'Generated HTML is converted to DOM elements and inserted into the document',
+            'ko': '생성된 HTML을 DOM 요소로 변환하고 문서에 삽입',
+            'ja': '生成されたHTMLをDOM要素に変換し文書に挿入',
+            'zh': '将生成的HTML转换为DOM元素并插入到文档中'
+          }
+        },
+        'postProcessing': {
+          'title': {
+            'en': 'Post-processing',
+            'ko': '후처리',
+            'ja': 'ポストプロセシング',
+            'zh': '后处理'
+          },
+          'description': {
+            'en': 'Lazy evaluation handlers are applied for deferred operations and event binding',
+            'ko': '지연된 작업과 이벤트 바인딩을 위한 지연 평가 핸들러 적용',
+            'ja': '遅延操作とイベントバインディングのための遅延評価ハンドラーを適用',
+            'zh': '应用延迟评估处理程序进行延迟操作和事件绑定'
+          }
+        },
+        'scopeCreation': {
+          'title': {
+            'en': 'Scope Creation',
+            'ko': '스코프 생성',
+            'ja': 'スコープ作成',
+            'zh': '作用域创建'
+          },
+          'description': {
+            'en': 'Template scope object is created with properties and methods for component control',
+            'ko': '컴포넌트 제어를 위한 속성과 메서드가 있는 템플릿 스코프 객체 생성',
+            'ja': 'コンポーネント制御のためのプロパティとメソッドを持つテンプレートスコープオブジェクトを作成',
+            'zh': '创建具有组件控制属性和方法的模板作用域对象'
+          }
+        },
+        'templateScope': {
+          'title': {
+            'en': 'Template Scope Architecture',
+            'ko': '템플릿 스코프 아키텍처',
+            'ja': 'テンプレートスコープアーキテクチャ',
+            'zh': '模板作用域架构'
+          }
+        },
+        'properties': {
+          'title': {
+            'en': 'Properties',
+            'ko': '속성',
+            'ja': 'プロパティ',
+            'zh': '属性'
+          }
+        },
+        'methods': {
+          'title': {
+            'en': 'Methods',
+            'ko': '메서드',
+            'ja': 'メソッド',
+            'zh': '方法'
+          }
+        },
+        'lazyEvaluation': {
+          'title': {
+            'en': 'Lazy Evaluation System',
+            'ko': '지연 평가 시스템',
+            'ja': '遅延評価システム',
+            'zh': '延迟评估系统'
+          }
+        },
+        'placeholders': {
+          'title': {
+            'en': 'Placeholder Insertion',
+            'ko': '플레이스홀더 삽입',
+            'ja': 'プレースホルダー挿入',
+            'zh': '占位符插入'
+          },
+          'description': {
+            'en': 'Special placeholders are inserted during template rendering for deferred operations',
+            'ko': '지연된 작업을 위해 템플릿 렌더링 중에 특수 플레이스홀더 삽입',
+            'ja': '遅延操作のためにテンプレートレンダリング中に特別なプレースホルダーを挿入',
+            'zh': '在模板渲染期间插入特殊占位符以进行延迟操作'
+          }
+        },
+        'deferredProcessing': {
+          'title': {
+            'en': 'Deferred Processing',
+            'ko': '지연 처리',
+            'ja': '遅延処理',
+            'zh': '延迟处理'
+          },
+          'description': {
+            'en': 'After DOM creation, placeholders are processed to execute complex operations',
+            'ko': 'DOM 생성 후 플레이스홀더를 처리하여 복잡한 작업 실행',
+            'ja': 'DOM作成後、プレースホルダーを処理して複雑な操作を実行',
+            'zh': 'DOM创建后，处理占位符以执行复杂操作'
+          }
+        },
+        'eventAttachment': {
+          'title': {
+            'en': 'Event Attachment',
+            'ko': '이벤트 연결',
+            'ja': 'イベントアタッチメント',
+            'zh': '事件附加'
+          },
+          'description': {
+            'en': 'Events are attached and dynamic actions are performed at the optimal time',
+            'ko': '최적의 시간에 이벤트를 연결하고 동적 작업 수행',
+            'ja': '最適なタイミングでイベントをアタッチし動的アクションを実行',
+            'zh': '在最佳时机附加事件并执行动态操作'
+          }
+        },
+        'timingControl': {
+          'title': {
+            'en': 'Timing Control',
+            'ko': '타이밍 제어',
+            'ja': 'タイミング制御',
+            'zh': '时序控制'
+          },
+          'description': {
+            'en': 'Ensures proper timing for DOM manipulation and component initialization',
+            'ko': 'DOM 조작과 컴포넌트 초기화를 위한 적절한 타이밍 보장',
+            'ja': 'DOM操作とコンポーネント初期化のための適切なタイミングを保証',
+            'zh': '确保DOM操作和组件初始化的正确时序'
+          }
+        }
+      }
+    });
+  ##
+  
+  <section id="architecture" class="section-Architecture py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="container mx-auto px-4">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">##=i18n.title##</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">##=i18n.subtitle##</p>
+      </div>
+
+      <!-- Template Compilation Process -->
+      <div class="mb-16">
+        <h3 class="text-3xl font-semibold text-center mb-12 text-gray-900 dark:text-gray-100">##=i18n.compilationProcess.title##</h3>
+        
+        <!-- Flow Diagram -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 mb-12">
+          <div class="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0 lg:space-x-4">
+            <!-- Step 1: Parsing -->
+            <div class="flex-1 text-center">
+              <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Template Text</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Raw template with expressions</p>
+            </div>
+
+            <div class="hidden lg:block">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+
+            <!-- Step 2: Parse & Extract -->
+            <div class="flex-1 text-center">
+              <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Parse & Extract</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Analyze and categorize elements</p>
+            </div>
+
+            <div class="hidden lg:block">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+
+            <!-- Step 3: Generate Function -->
+            <div class="flex-1 text-center">
+              <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Generate Function</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Compile to JavaScript function</p>
+            </div>
+
+            <div class="hidden lg:block">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+
+            <!-- Step 4: Execute & Render -->
+            <div class="flex-1 text-center">
+              <div class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Execute & Render</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Generate DOM elements</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Parsing -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v1m9 0V7a2 2 0 00-2-2H9m2 0h2m-2 0v6m2-6h2"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.parsing.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.parsing.description##</p>
+          </div>
+
+          <!-- Extraction -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.extraction.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.extraction.description##</p>
+          </div>
+
+          <!-- Compilation -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.compilation.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.compilation.description##</p>
+          </div>
+
+          <!-- Execution -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.execution.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.execution.description##</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template Scope Architecture -->
+      <div class="mb-16">
+        <h3 class="text-3xl font-semibold text-center mb-12 text-gray-900 dark:text-gray-100">##=i18n.templateScope.title##</h3>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Properties -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6">##=i18n.properties.title##</h4>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div class="bg-blue-500 text-white rounded-lg p-2 text-sm font-mono">.element</div>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Rendered DOM element ready for insertion</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="bg-green-500 text-white rounded-lg p-2 text-sm font-mono">.data</div>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Data object used for template rendering</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="bg-purple-500 text-white rounded-lg p-2 text-sm font-mono">.status</div>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Persistent component state object</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="bg-orange-500 text-white rounded-lg p-2 text-sm font-mono">._id</div>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Unique template instance identifier</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Methods -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6">##=i18n.methods.title##</h4>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div class="bg-indigo-500 text-white rounded-lg p-2 text-sm font-mono">.render()</div>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Complete re-render with new data</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="bg-teal-500 text-white rounded-lg p-2 text-sm font-mono">.refresh()</div>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Partial update with incremental data</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="bg-red-500 text-white rounded-lg p-2 text-sm font-mono">.remove()</div>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Remove component from DOM tree</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="bg-gray-500 text-white rounded-lg p-2 text-sm font-mono">.replace()</div>
+                <p class="text-gray-600 dark:text-gray-300 text-sm">Replace with another template instance</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lazy Evaluation System -->
+      <div>
+        <h3 class="text-3xl font-semibold text-center mb-12 text-gray-900 dark:text-gray-100">##=i18n.lazyEvaluation.title##</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Placeholders -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.placeholders.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.placeholders.description##</p>
+          </div>
+
+          <!-- Deferred Processing -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.deferredProcessing.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.deferredProcessing.description##</p>
+          </div>
+
+          <!-- Event Attachment -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.eventAttachment.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.eventAttachment.description##</p>
+          </div>
+
+          <!-- Timing Control -->
+          <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.timingControl.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">##=i18n.timingControl.description##</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>

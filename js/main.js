@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     "templates/section-features.cmint",
     "templates/section-vscode-extension.cmint",
     "templates/section-examples.cmint",
+    "templates/section-architecture.cmint",
+    "templates/section-syntax.cmint",
+    "templates/section-installation.cmint",
     "templates/section-documentation.cmint",
     "templates/page-tutorial.cmint",
 
@@ -172,6 +175,15 @@ async function initApp() {
     await fetch("templates/demo/demo.UserManagementTable.cmint")
   ).text();
 
+  // Define the architecture section
+  const architecture = tmpl.section.Architecture({});
+
+  // Define the syntax section
+  const syntax = tmpl.section.Syntax({});
+
+  // Define the installation section
+  const installation = tmpl.section.Installation({});
+
   // Define the examples section with example data
   const examples = tmpl.section.Examples({
     examples: () => {
@@ -303,6 +315,9 @@ document.body.appendChild(userManagement.element);`,
     hero: hero,
     features: features,
     vscodeExtension: vscodeExtension,
+    architecture: architecture,
+    syntax: syntax,
+    installation: installation,
     examples: examples,
     documentation: documentation,
     footer: footer,
