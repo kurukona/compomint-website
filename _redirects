@@ -1,0 +1,10 @@
+# Netlify/Vercel redirects
+/*    /404.html   404
+
+# Handle SPA routing fallback
+/docs    /docs.html    200
+/examples    /examples.html    200  
+/tutorial    /tutorial.html    200
+
+# 404 fallback for any other routes
+/*    /404.html   404
