@@ -494,16 +494,10 @@
     </style>
 
     <!-- CodeMirror -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="lib/codemirror/codemirror.css" />
+    <link rel="stylesheet" href="lib/codemirror/monokai.css" />
+    <script src="lib/codemirror/codemirror.js"></script>
+    <script src="lib/codemirror/javascript.js"></script>
 
     <!-- Theme switcher -->
 
@@ -542,7 +536,7 @@
       if (localStorage.getItem("analyticsEnabled") === "true") {
         const script = document.createElement("script");
         script.async = true;
-        script.src = "https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW";
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW"; // cspell:ignore NXSW
         document.head.appendChild(script);
 
         script.onload = function () {
