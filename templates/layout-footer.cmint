@@ -81,7 +81,14 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <div class="flex items-center space-x-2 mb-6">
-            <img src="img/icon.png" alt="Compomint Logo" class="w-8 h-8 logo-light">
+            <picture>
+              <source srcset="img/icon-32w.webp 32w, img/icon-64w.webp 64w" type="image/webp">
+              <img src="img/icon-32w.png" 
+                   srcset="img/icon-32w.png 32w, img/icon-64w.png 64w"
+                   alt="Compomint Logo" 
+                   class="w-8 h-8 logo-light"
+                   loading="lazy">
+            </picture>
             <span class="text-xl font-bold text-white">Compomint</span>
           </div>
           <p class="text-gray-400">##=footerData.description##</p>
