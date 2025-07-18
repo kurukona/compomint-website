@@ -42,6 +42,55 @@
       }
     });
   ##
+  ##
+    // Scroll spy functionality
+    status.activeSection = status.activeSection || 'home';
+    
+    function updateActiveSection() {
+      const sections = ['home', 'features', 'documentation', 'vscode-extension', 'examples', 'integrations'];
+      const scrollPosition = window.scrollY + 100; // Offset for header height
+      
+      let currentSection = 'home';
+      
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element && element.offsetTop <= scrollPosition) {
+          currentSection = sectionId;
+        }
+      }
+      
+      if (currentSection !== status.activeSection) {
+        status.activeSection = currentSection;
+        component.refresh();
+      }
+    }
+    
+    // Throttled scroll handler
+    let scrollTimeout;
+    function handleScroll() {
+      if (scrollTimeout) return;
+      scrollTimeout = setTimeout(() => {
+        updateActiveSection();
+        scrollTimeout = null;
+      }, 100);
+    }
+    
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Also update on hash change
+    window.addEventListener('hashchange', () => {
+      setTimeout(updateActiveSection, 100);
+    });
+    
+    // Clean up on component removal
+    component.onRemove = function() {
+      window.removeEventListener('scroll', handleScroll);
+    };
+    
+    // Initial check
+    setTimeout(updateActiveSection, 500);
+  ##
   <header class="layout-Header bg-white shadow-sm sticky top-0 z-50 dark:bg-gray-800">
     <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
       <div class="flex items-center space-x-2 mb-4 md:mb-0">
@@ -52,32 +101,32 @@
       <nav class="w-full md:w-auto">
         <ul class="flex flex-wrap justify-center gap-4 md:gap-0 md:space-x-6 text-gray-600 dark:text-gray-300">
           <li class="text-center">
-            <a href="#home" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 font-medium text-indigo-600 dark:text-indigo-400">
+            <a href="#home" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 font-medium ##=status.activeSection === 'home' ? 'text-indigo-600 dark:text-indigo-400' : ''##">
               ##=i18n.home##
             </a>
           </li>
           <li class="text-center">
-            <a href="#features" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+            <a href="#features" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=status.activeSection === 'features' ? 'text-indigo-600 dark:text-indigo-400 font-medium' : ''##">
               ##=i18n.features##
             </a>
           </li>
           <li class="text-center">
-            <a href="#documentation" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+            <a href="#documentation" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=status.activeSection === 'documentation' ? 'text-indigo-600 dark:text-indigo-400 font-medium' : ''##">
               ##=i18n.documentation##
             </a>
           </li>
           <li class="text-center">
-            <a href="#vscode-extension" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+            <a href="#vscode-extension" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=status.activeSection === 'vscode-extension' ? 'text-indigo-600 dark:text-indigo-400 font-medium' : ''##">
               ##=i18n.vscode##
             </a>
           </li>
           <li class="text-center">
-            <a href="#examples" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+            <a href="#examples" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=status.activeSection === 'examples' ? 'text-indigo-600 dark:text-indigo-400 font-medium' : ''##">
               ##=i18n.examples##
             </a>
           </li>
           <li class="text-center">
-            <a href="#integrations" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
+            <a href="#integrations" class="block py-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=status.activeSection === 'integrations' ? 'text-indigo-600 dark:text-indigo-400 font-medium' : ''##">
               ##=i18n.integrations##
             </a>
           </li>

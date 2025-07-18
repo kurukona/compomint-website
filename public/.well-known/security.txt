@@ -1,0 +1,42 @@
+Contact: https://github.com/kurukona/compomint/issues
+Contact: mailto:security@compomint.dev
+Expires: 2026-07-18T00:00:00.000Z
+Encryption: https://compomint.dev/pgp-key.txt
+Acknowledgments: https://compomint.dev/security-acknowledgments.html
+Preferred-Languages: en, ko, ja, zh
+Canonical: https://compomint.dev/.well-known/security.txt
+Policy: https://compomint.dev/security-policy.html
+
+# Security Policy for Compomint Framework
+# 
+# We take security seriously and encourage responsible disclosure
+# of security vulnerabilities in the Compomint framework and website.
+#
+# Please report security issues through:
+# 1. GitHub Issues (preferred): https://github.com/kurukona/compomint/issues
+# 2. Email: security@compomint.dev
+#
+# What to include in your report:
+# - Description of the vulnerability
+# - Steps to reproduce the issue
+# - Potential impact assessment
+# - Suggested fix (if available)
+#
+# What to expect:
+# - Acknowledgment within 48 hours
+# - Initial assessment within 7 days
+# - Regular updates on progress
+# - Public acknowledgment (with permission)
+#
+# Scope includes:
+# - Compomint framework core (https://github.com/kurukona/compomint)
+# - Official website (https://compomint.dev)
+# - Documentation and examples
+# - Associated tooling and utilities
+#
+# Out of scope:
+# - Third-party integrations
+# - User-generated content
+# - Infrastructure not directly controlled by us
+#
+# We appreciate your help in keeping Compomint secure!

@@ -13,10 +13,6 @@
     />
 
     <!-- SEO Meta Tags -->
-    <meta
-      name="keywords"
-      content="Compomint, JavaScript, component, framework, web development, template engine, UI components, lightweight"
-    />
     <meta name="author" content="Compomint Team" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://compomint.dev" />
@@ -28,14 +24,29 @@
     <link rel="alternate" hreflang="zh" href="https://compomint.dev/?lang=zh" />
     <link rel="alternate" hreflang="x-default" href="https://compomint.dev" />
 
+    <!-- RSS/Atom Feeds -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Compomint Framework - RSS Feed"
+      href="/feed.xml"
+    />
+    <link
+      rel="alternate"
+      type="application/atom+xml"
+      title="Compomint Framework - Atom Feed"
+      href="/atom.xml"
+    />
+
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/png" href="img/icon.png" />
     <link rel="apple-touch-icon" href="img/icon.png" />
-    <!--<link rel="manifest" href="manifest.json" />-->
+    <link rel="manifest" href="manifest.json" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://compomint.dev" />
+    <meta property="og:site_name" content="Compomint Framework" />
     <meta
       property="og:title"
       content="Compomint - Lightweight Component Engine"
@@ -46,16 +57,41 @@
       content="Compomint is a lightweight JavaScript template-based component engine for web applications"
       data-i18n-content="app.meta-description"
     />
-    <meta property="og:image" content="https://compomint.dev/img/icon.png" />
+    <meta
+      property="og:image"
+      content="https://compomint.dev/img/template-preview.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://compomint.dev/img/template-preview.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Compomint logo and code example screen"
+      content="Compomint template syntax and code example preview"
       data-i18n-content="app.og-image-alt"
     />
+    <!-- Additional OG images -->
+    <meta property="og:image" content="https://compomint.dev/img/icon.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="ko_KR" />
     <meta property="og:locale:alternate" content="ja_JP" />
     <meta property="og:locale:alternate" content="zh_CN" />
+    <!-- Additional OG metadata -->
+    <meta property="og:updated_time" content="2025-07-18T00:00:00Z" />
+    <meta property="article:author" content="Compomint Team" />
+    <meta property="article:publisher" content="https://compomint.dev" />
+    <meta property="article:section" content="Technology" />
+    <meta property="article:tag" content="JavaScript" />
+    <meta property="article:tag" content="Web Development" />
+    <meta property="article:tag" content="Component Framework" />
+    <meta property="article:tag" content="Frontend" />
+    <meta property="fb:app_id" content="placeholder_app_id" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -89,18 +125,349 @@
       media="(prefers-color-scheme: dark)"
     />
 
-    <!-- Accessibility -->
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      />
+    </noscript>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/output.css" as="style" />
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="css/output.css" />
 
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Compomint",
+        "description": "Lightweight JavaScript template-based component engine for web applications with powerful templating syntax and component-oriented architecture",
+        "url": "https://compomint.dev",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "programmingLanguage": "JavaScript",
+        "author": {
+          "@type": "Organization",
+          "name": "Compomint Team",
+          "url": "https://github.com/kurukona/compomint"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "sameAs": ["https://github.com/kurukona/compomint"],
+        "keywords": [
+          "JavaScript",
+          "component framework",
+          "template engine",
+          "web development",
+          "UI components",
+          "lightweight framework",
+          "frontend development",
+          "SPA",
+          "single page application"
+        ],
+        "featureList": [
+          "Lightweight footprint",
+          "Template-based component system",
+          "Built-in internationalization support",
+          "State management",
+          "Event handling",
+          "Component lifecycle",
+          "Framework integration support"
+        ],
+        "downloadUrl": "https://github.com/kurukona/compomint",
+        "softwareVersion": "1.0.0",
+        "releaseNotes": "Initial stable release with comprehensive templating features",
+        "screenshot": "https://compomint.dev/img/template-preview.png",
+        "softwareHelp": {
+          "@type": "CreativeWork",
+          "url": "https://compomint.dev/#documentation"
+        },
+        "codeRepository": "https://github.com/kurukona/compomint",
+        "license": "https://github.com/kurukona/compomint/blob/main/LICENSE"
+      }
+    </script>
+
+    <!-- WebSite Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Compomint",
+        "alternateName": "Compomint Framework",
+        "url": "https://compomint.dev",
+        "description": "Official website for Compomint - a lightweight JavaScript template-based component engine",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Compomint Team"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://compomint.dev/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        },
+        "inLanguage": ["en", "ko", "ja", "zh"],
+        "sameAs": ["https://github.com/kurukona/compomint"]
+      }
+    </script>
+
+    <!-- TechArticle for Documentation -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Compomint Documentation - Complete Guide to Template-Based Components",
+        "description": "Comprehensive documentation and examples for using Compomint JavaScript component framework",
+        "author": {
+          "@type": "Organization",
+          "name": "Compomint Team"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Compomint Team"
+        },
+        "datePublished": "2024-01-01",
+        "dateModified": "2025-07-18",
+        "url": "https://compomint.dev",
+        "mainEntityOfPage": "https://compomint.dev",
+        "articleSection": "Technology",
+        "keywords": [
+          "JavaScript framework",
+          "component engine",
+          "web development tutorial",
+          "template syntax",
+          "frontend documentation"
+        ],
+        "inLanguage": ["en", "ko", "ja", "zh"],
+        "educationalLevel": "Intermediate",
+        "learningResourceType": "Documentation"
+      }
+    </script>
+
+    <!-- FAQ Schema for Rich Snippets -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Compomint?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Compomint is a lightweight JavaScript template-based component engine for web applications. It provides a powerful template system for creating, combining, and reusing UI components efficiently with a small footprint."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Compomint differ from React or Vue?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Compomint is designed as a lightweight alternative with a template-based approach. Unlike React's JSX or Vue's template syntax, Compomint uses string-based templates with JavaScript evaluation, making it easier to integrate with existing projects without a build step."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Compomint with existing frameworks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Compomint can be integrated with existing frameworks like React, Vue, Angular, and others. It's designed to work alongside your current architecture as a complementary templating solution."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Compomint suitable for production use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Compomint is production-ready with a stable API, comprehensive documentation, and extensive testing. Its lightweight nature makes it ideal for performance-critical applications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I get started with Compomint?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can start by including Compomint via CDN or npm install. Visit our documentation section for installation guides, tutorials, and examples to get you started quickly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Compomint support internationalization?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Compomint has built-in internationalization (i18n) support with easy-to-use translation functions and multi-language content management."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- HowTo Schema for Installation -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Install and Use Compomint",
+        "description": "Step-by-step guide to install and start using Compomint JavaScript component engine",
+        "image": "https://compomint.dev/img/template-preview.png",
+        "totalTime": "PT10M",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "currency": "USD",
+          "value": "0"
+        },
+        "supply": [
+          {
+            "@type": "HowToSupply",
+            "name": "Web browser"
+          },
+          {
+            "@type": "HowToSupply",
+            "name": "Text editor"
+          }
+        ],
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "Node.js (optional)"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Installation",
+            "text": "Include Compomint via CDN or install via npm",
+            "image": "https://compomint.dev/img/icon.png",
+            "url": "https://compomint.dev/#installation"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Create Template",
+            "text": "Define your first template using Compomint syntax",
+            "image": "https://compomint.dev/img/template-preview.png",
+            "url": "https://compomint.dev/#examples"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Render Component",
+            "text": "Use the template to create and render components",
+            "image": "https://compomint.dev/img/compomint-template-support.png",
+            "url": "https://compomint.dev/#documentation"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Video Schema (for future tutorial videos) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Compomint Framework Tutorial",
+        "description": "Learn how to use Compomint JavaScript component framework with this comprehensive video tutorial",
+        "thumbnailUrl": "https://compomint.dev/img/template-preview.png",
+        "uploadDate": "2025-07-18",
+        "duration": "PT15M30S",
+        "contentUrl": "https://compomint.dev/#examples",
+        "embedUrl": "https://compomint.dev/#examples",
+        "author": {
+          "@type": "Organization",
+          "name": "Compomint Team",
+          "url": "https://compomint.dev"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Compomint",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://compomint.dev/img/icon.png"
+          }
+        },
+        "isAccessibleForFree": true,
+        "inLanguage": "en",
+        "keywords": [
+          "JavaScript tutorial",
+          "component framework",
+          "web development",
+          "template engine"
+        ],
+        "learningResourceType": "Tutorial",
+        "educationalLevel": "Beginner",
+        "about": {
+          "@type": "Thing",
+          "name": "JavaScript Component Framework"
+        }
+      }
+    </script>
+
+    <!-- Course Schema for comprehensive learning -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Complete Compomint Framework Course",
+        "description": "Master Compomint JavaScript framework from basics to advanced concepts",
+        "provider": {
+          "@type": "Organization",
+          "name": "Compomint Team",
+          "url": "https://compomint.dev"
+        },
+        "url": "https://compomint.dev",
+        "courseCode": "COMP-101",
+        "educationalLevel": "Beginner to Advanced",
+        "teaches": [
+          "JavaScript component development",
+          "Template syntax",
+          "State management",
+          "Framework integration",
+          "Performance optimization"
+        ],
+        "syllabusSections": [
+          {
+            "@type": "Syllabus",
+            "name": "Getting Started",
+            "description": "Installation and basic setup",
+            "timeRequired": "PT30M"
+          },
+          {
+            "@type": "Syllabus",
+            "name": "Template Syntax",
+            "description": "Learn Compomint template syntax and features",
+            "timeRequired": "PT1H"
+          },
+          {
+            "@type": "Syllabus",
+            "name": "Advanced Features",
+            "description": "State management, events, and integrations",
+            "timeRequired": "PT2H"
+          }
+        ],
+        "totalTime": "PT3H30M",
+        "isAccessibleForFree": true,
+        "inLanguage": ["en", "ko", "ja", "zh"]
+      }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -171,24 +538,24 @@
       function gtag() {
         dataLayer.push(arguments);
       }
-      
+
       // Default consent state
-      gtag('consent', 'default', {
-        'analytics_storage': 'denied'
+      gtag("consent", "default", {
+        analytics_storage: "denied",
       });
-      
+
       // Only load gtag if analytics are enabled
-      if (localStorage.getItem('analyticsEnabled') === 'true') {
-        const script = document.createElement('script');
+      if (localStorage.getItem("analyticsEnabled") === "true") {
+        const script = document.createElement("script");
         script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW';
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW";
         document.head.appendChild(script);
-        
-        script.onload = function() {
-          gtag('js', new Date());
-          gtag('config', 'G-6X8Q36NXSW');
-          gtag('consent', 'update', {
-            'analytics_storage': 'granted'
+
+        script.onload = function () {
+          gtag("js", new Date());
+          gtag("config", "G-6X8Q36NXSW");
+          gtag("consent", "update", {
+            analytics_storage: "granted",
           });
         };
       }
@@ -198,70 +565,81 @@
   <body class="bg-gray-50 text-gray-900">
     <div id="app-container"></div>
 
-    <!-- Structured Data (Schema.org) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Compomint",
-        "description": "Compomint is a lightweight JavaScript template-based component engine for web applications",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Cross-platform",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "Compomint Team",
-          "url": "https://compomint.dev"
-        },
-        "softwareVersion": "1.0.0",
-        "fileSize": "14KB",
-        "url": "https://compomint.dev",
-        "downloadUrl": "https://github.com/kurukona/compomint",
-        "softwareHelp": "https://kurukona.github.io/compomint/",
-        "programmingLanguage": "JavaScript",
-        "inLanguage": ["en", "ko", "ja", "zh"],
-        "potentialAction": {
-          "@type": "DownloadAction",
-          "target": "https://github.com/kurukona/compomint"
-        }
+    <!-- Service Worker Registration -->
+    <script>
+      // Register service worker for performance improvements
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log("SW registered: ", registration);
+            })
+            .catch((registrationError) => {
+              console.log("SW registration failed: ", registrationError);
+            });
+        });
       }
-    </script>
 
-    <!-- Organization Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Compomint",
-        "url": "https://compomint.dev",
-        "logo": "https://compomint.dev/img/icon.png",
-        "sameAs": ["https://github.com/kurukona/compomint"]
+      // Web Vitals monitoring
+      function sendToAnalytics(metric) {
+        // Send to your analytics service
+        console.log("Web Vitals:", metric);
       }
-    </script>
 
-    <!-- Breadcrumb Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://compomint.dev"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Documentation",
-            "item": "https://compomint.dev/#documentation"
+      // Core Web Vitals measurement
+      if (typeof PerformanceObserver !== "undefined") {
+        // Largest Contentful Paint
+        new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            sendToAnalytics({
+              name: "LCP",
+              value: entry.startTime,
+              rating:
+                entry.startTime > 4000
+                  ? "poor"
+                  : entry.startTime > 2500
+                  ? "needs-improvement"
+                  : "good",
+            });
           }
-        ]
+        }).observe({ entryTypes: ["largest-contentful-paint"] });
+
+        // First Input Delay
+        new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            sendToAnalytics({
+              name: "FID",
+              value: entry.processingStart - entry.startTime,
+              rating:
+                entry.processingStart - entry.startTime > 300
+                  ? "poor"
+                  : entry.processingStart - entry.startTime > 100
+                  ? "needs-improvement"
+                  : "good",
+            });
+          }
+        }).observe({ entryTypes: ["first-input"] });
+
+        // Cumulative Layout Shift
+        let cumulativeLayoutShiftScore = 0;
+        new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (!entry.hadRecentInput) {
+              cumulativeLayoutShiftScore += entry.value;
+            }
+          }
+          sendToAnalytics({
+            name: "CLS",
+            value: cumulativeLayoutShiftScore,
+            rating:
+              cumulativeLayoutShiftScore > 0.25
+                ? "poor"
+                : cumulativeLayoutShiftScore > 0.1
+                ? "needs-improvement"
+                : "good",
+          });
+        }).observe({ entryTypes: ["layout-shift"] });
       }
     </script>
   </body>

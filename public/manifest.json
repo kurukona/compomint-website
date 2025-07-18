@@ -1,0 +1,93 @@
+{
+  "name": "Compomint - Lightweight Component Engine",
+  "short_name": "Compomint",
+  "description": "Lightweight JavaScript template-based component engine for web applications with powerful templating syntax and component-oriented architecture",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["developer", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "img/icon.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "img/favicon.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "img/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "img/template-preview.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Compomint Template Syntax Preview"
+    },
+    {
+      "src": "img/compomint-template-support.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Compomint Template Features"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Documentation",
+      "short_name": "Docs",
+      "description": "View Compomint documentation",
+      "url": "/#documentation",
+      "icons": [
+        {
+          "src": "img/icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Examples",
+      "short_name": "Examples",
+      "description": "Browse code examples",
+      "url": "/#examples",
+      "icons": [
+        {
+          "src": "img/icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Playground",
+      "short_name": "Playground",
+      "description": "Try Compomint online",
+      "url": "/#examples",
+      "icons": [
+        {
+          "src": "img/icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://github.com/kurukona/compomint"
+    }
+  ],
+  "prefer_related_applications": false
+}

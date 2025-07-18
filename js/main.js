@@ -45,6 +45,92 @@ document.addEventListener("DOMContentLoaded", async function () {
   initDarkMode();
 });
 
+// Initialize hash navigation
+function initHashNavigation() {
+  // Function to scroll to target element
+  function scrollToElement(targetId) {
+    if (!targetId || targetId === "#") return false;
+
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 70, // Accounting for fixed header
+        behavior: "smooth",
+      });
+      return true;
+    }
+    return false;
+  }
+
+  // Handle initial hash on page load
+  function handleInitialHash() {
+    if (window.location.hash) {
+      // Wait for DOM to be fully rendered
+      setTimeout(() => {
+        scrollToElement(window.location.hash);
+      }, 100);
+    }
+  }
+
+  // Add click handlers for hash links
+  function addHashLinkHandlers() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute("href");
+
+        if (scrollToElement(targetId)) {
+          // Update URL hash without triggering hashchange event
+          history.pushState(null, null, targetId);
+        }
+      });
+    });
+  }
+
+  // Handle browser back/forward navigation
+  window.addEventListener("hashchange", function () {
+    scrollToElement(window.location.hash);
+  });
+
+  // Handle popstate for browser navigation
+  window.addEventListener("popstate", function () {
+    if (window.location.hash) {
+      scrollToElement(window.location.hash);
+    }
+  });
+
+  // Initialize everything
+  addHashLinkHandlers();
+  handleInitialHash();
+
+  // Re-initialize when DOM changes (for dynamic content)
+  const observer = new MutationObserver(function (mutations) {
+    let shouldReinitialize = false;
+    mutations.forEach(function (mutation) {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach(function (node) {
+          if (
+            node.nodeType === 1 &&
+            node.querySelector &&
+            node.querySelector('a[href^="#"]')
+          ) {
+            shouldReinitialize = true;
+          }
+        });
+      }
+    });
+
+    if (shouldReinitialize) {
+      setTimeout(addHashLinkHandlers, 100);
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+}
+
 // Initialize the dark mode
 function initDarkMode() {
   // Check for saved theme preference
@@ -692,25 +778,8 @@ function initializeVueApp() {
   appContainer.appendChild(appLayout.element);
   window.appLayout = appLayout;
 
-  // Add smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href");
-      if (targetId === "#") return;
-
-      const targetElement = document.querySelector(targetId);
-      console.log("Target ID:", targetId, "Target Element:", targetElement); // Debugging
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 70, // Accounting for fixed header
-          behavior: "smooth",
-        });
-      } else {
-        console.warn("Target element not found:", targetId);
-      }
-    });
-  });
+  // Initialize hash navigation
+  initHashNavigation();
 
   // Store the original layout for navigation
   window.originalLayout = appLayout;
