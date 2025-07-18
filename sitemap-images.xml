@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main page images -->
+  <url>
+    <loc>https://compomint.dev/</loc>
+    <image:image>
+      <image:loc>https://compomint.dev/img/icon.png</image:loc>
+      <image:title>Compomint Logo</image:title>
+      <image:caption>Official logo of Compomint JavaScript component framework</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://compomint.dev/img/template-preview.png</image:loc>
+      <image:title>Compomint Template Preview</image:title>
+      <image:caption>Code example showing Compomint template syntax and component structure</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://compomint.dev/img/compomint-template-support.png</image:loc>
+      <image:title>Compomint Template Support</image:title>
+      <image:caption>Visual guide showing template syntax support and features in Compomint</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://compomint.dev/img/favicon.png</image:loc>
+      <image:title>Compomint Favicon</image:title>
+      <image:caption>Compomint website favicon and app icon</image:caption>
+    </image:image>
+  </url>
+
+  <!-- English version images -->
+  <url>
+    <loc>https://compomint.dev/?lang=en</loc>
+    <image:image>
+      <image:loc>https://compomint.dev/img/icon.png</image:loc>
+      <image:title>Compomint Logo</image:title>
+      <image:caption>Official logo of Compomint JavaScript component framework</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://compomint.dev/img/template-preview.png</image:loc>
+      <image:title>Compomint Template Preview</image:title>
+      <image:caption>Code example showing Compomint template syntax and component structure</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Korean version images -->
+  <url>
+    <loc>https://compomint.dev/?lang=ko</loc>
+    <image:image>
+      <image:loc>https://compomint.dev/img/icon.png</image:loc>
+      <image:title>Compomint 로고</image:title>
+      <image:caption>Compomint JavaScript 컴포넌트 프레임워크 공식 로고</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://compomint.dev/img/template-preview.png</image:loc>
+      <image:title>Compomint 템플릿 미리보기</image:title>
+      <image:caption>Compomint 템플릿 문법과 컴포넌트 구조를 보여주는 코드 예제</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Japanese version images -->
+  <url>
+    <loc>https://compomint.dev/?lang=ja</loc>
+    <image:image>
+      <image:loc>https://compomint.dev/img/icon.png</image:loc>
+      <image:title>Compomintロゴ</image:title>
+      <image:caption>CompomintJavaScriptコンポーネントフレームワークの公式ロゴ</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://compomint.dev/img/template-preview.png</image:loc>
+      <image:title>Compomintテンプレートプレビュー</image:title>
+      <image:caption>Compomintテンプレート構文とコンポーネント構造を示すコード例</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Chinese version images -->
+  <url>
+    <loc>https://compomint.dev/?lang=zh</loc>
+    <image:image>
+      <image:loc>https://compomint.dev/img/icon.png</image:loc>
+      <image:title>Compomint标志</image:title>
+      <image:caption>Compomint JavaScript组件框架官方标志</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://compomint.dev/img/template-preview.png</image:loc>
+      <image:title>Compomint模板预览</image:title>
+      <image:caption>显示Compomint模板语法和组件结构的代码示例</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

@@ -1,26 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Main page (English) with hreflang alternates -->
   <url>
     <loc>https://compomint.dev/</loc>
-    <lastmod>2025-07-17</lastmod> <!-- TODO: Please update this date to the actual last modification date. -->
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://compomint.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://compomint.dev/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://compomint.dev/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://compomint.dev/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compomint.dev/"/>
   </url>
-  <!--
-    If your website has other unique pages, add them here.
-    Pages with hash fragments (e.g., /#documentation, /#examples) are
-    generally considered part of the main page and do not need to be added as separate entries in the sitemap.
-    The content of these fragments will be crawled as part of the base URL (https://compomint.dev/).
+  
+  <!-- English version (explicit) -->
+  <url>
+    <loc>https://compomint.dev/?lang=en</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://compomint.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://compomint.dev/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://compomint.dev/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://compomint.dev/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compomint.dev/"/>
+  </url>
+  
+  <!-- Korean version -->
+  <url>
+    <loc>https://compomint.dev/?lang=ko</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://compomint.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://compomint.dev/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://compomint.dev/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://compomint.dev/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compomint.dev/"/>
+  </url>
+  
+  <!-- Japanese version -->
+  <url>
+    <loc>https://compomint.dev/?lang=ja</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://compomint.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://compomint.dev/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://compomint.dev/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://compomint.dev/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compomint.dev/"/>
+  </url>
+  
+  <!-- Chinese version -->
+  <url>
+    <loc>https://compomint.dev/?lang=zh</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://compomint.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://compomint.dev/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://compomint.dev/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://compomint.dev/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compomint.dev/"/>
+  </url>
 
-    Example of adding another page:
-    <url>
-      <loc>https://compomint.dev/another-page.html</loc>
-      <lastmod>YYYY-MM-DD</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-  -->
+  <!-- Main page sections -->
+  <url>
+    <loc>https://compomint.dev/#home</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/#features</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/#documentation</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/#vscode-extension</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/#installation</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/#architecture</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/#syntax</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/#examples</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/#integrations</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Documentation pages -->
+  <url>
+    <loc>https://compomint.dev/docs.html</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/examples.html</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/tutorial.html</loc>
+    <lastmod>2025-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+
 </urlset>

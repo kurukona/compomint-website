@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Compomint Framework - Updates and News</title>
+    <link>https://compomint.dev</link>
+    <description>Latest updates, tutorials, and news about Compomint JavaScript component framework</description>
+    <language>en</language>
+    <copyright>Copyright © 2025 Compomint Team</copyright>
+    <lastBuildDate>Fri, 18 Jul 2025 00:00:00 GMT</lastBuildDate>
+    <pubDate>Fri, 18 Jul 2025 00:00:00 GMT</pubDate>
+    <ttl>1440</ttl>
+    <managingEditor>hello@compomint.dev (Compomint Team)</managingEditor>
+    <webMaster>hello@compomint.dev (Compomint Team)</webMaster>
+    <category>Technology</category>
+    <category>Web Development</category>
+    <category>JavaScript</category>
+    <category>Frontend Framework</category>
+    
+    <image>
+      <url>https://compomint.dev/img/icon.png</url>
+      <title>Compomint Framework</title>
+      <link>https://compomint.dev</link>
+      <width>144</width>
+      <height>144</height>
+    </image>
+    
+    <atom:link href="https://compomint.dev/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <!-- Sample items - replace with actual content -->
+    <item>
+      <title>Compomint Framework v1.0 - Official Release</title>
+      <link>https://compomint.dev</link>
+      <description>Introducing Compomint v1.0 - A lightweight JavaScript template-based component engine for modern web applications.</description>
+      <content:encoded><![CDATA[
+        <h2>Compomint v1.0 Released!</h2>
+        <p>We're excited to announce the official release of Compomint v1.0, a revolutionary JavaScript component framework that brings template-based development to modern web applications.</p>
+        
+        <h3>Key Features</h3>
+        <ul>
+          <li>Lightweight architecture with small footprint</li>
+          <li>Powerful template syntax with JavaScript evaluation</li>
+          <li>Built-in internationalization support</li>
+          <li>State management and event handling</li>
+          <li>Framework integration capabilities</li>
+          <li>Progressive Web App support</li>
+        </ul>
+        
+        <h3>Getting Started</h3>
+        <p>Visit our <a href="https://compomint.dev/#installation">installation guide</a> to get started with Compomint today!</p>
+        
+        <p><a href="https://compomint.dev/#examples">Try the interactive examples</a> to see Compomint in action.</p>
+      ]]></content:encoded>
+      <category>Release</category>
+      <category>Framework</category>
+      <pubDate>Fri, 18 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">compomint-v1.0-release-2025-07-18</guid>
+      <author>hello@compomint.dev (Compomint Team)</author>
+    </item>
+    
+    <item>
+      <title>Template Syntax Guide - Advanced Features</title>
+      <link>https://compomint.dev/docs.html</link>
+      <description>Learn advanced Compomint template syntax features including data interpolation, element insertion, and component composition.</description>
+      <content:encoded><![CDATA[
+        <h2>Mastering Compomint Template Syntax</h2>
+        <p>Discover the powerful template syntax that makes Compomint unique among JavaScript frameworks.</p>
+        
+        <h3>Template Expressions</h3>
+        <ul>
+          <li><code>##= ##</code> - Data interpolation</li>
+          <li><code>##- ##</code> - HTML-escaped output</li>
+          <li><code>##% ##</code> - Element insertion</li>
+          <li><code>##! ##</code> - Pre-evaluation</li>
+          <li><code>### ##</code> - Lazy evaluation</li>
+        </ul>
+        
+        <p>Visit our <a href="https://compomint.dev/#documentation">complete documentation</a> for detailed examples and best practices.</p>
+      ]]></content:encoded>
+      <category>Tutorial</category>
+      <category>Documentation</category>
+      <pubDate>Thu, 17 Jul 2025 12:00:00 GMT</pubDate>
+      <guid isPermaLink="false">template-syntax-guide-2025-07-17</guid>
+      <author>hello@compomint.dev (Compomint Team)</author>
+    </item>
+    
+    <item>
+      <title>Framework Integration Best Practices</title>
+      <link>https://compomint.dev/#integrations</link>
+      <description>Learn how to integrate Compomint with React, Vue, Angular, and other popular frontend frameworks.</description>
+      <content:encoded><![CDATA[
+        <h2>Integrating Compomint with Existing Frameworks</h2>
+        <p>Compomint is designed to work alongside your existing frontend architecture, not replace it.</p>
+        
+        <h3>Integration Benefits</h3>
+        <ul>
+          <li>Gradual adoption - Start small and scale progressively</li>
+          <li>Peaceful coexistence - Works alongside existing components</li>
+          <li>Enhanced templating - Powerful template syntax without complexity</li>
+          <li>Lightweight footprint - Small size with no performance impact</li>
+        </ul>
+        
+        <p>Check out our <a href="https://compomint.dev/#integrations">integration examples</a> for React, Vue, and more.</p>
+      ]]></content:encoded>
+      <category>Integration</category>
+      <category>Best Practices</category>
+      <pubDate>Wed, 16 Jul 2025 09:00:00 GMT</pubDate>
+      <guid isPermaLink="false">framework-integration-guide-2025-07-16</guid>
+      <author>hello@compomint.dev (Compomint Team)</author>
+    </item>
+    
+    <item>
+      <title>Template Syntax Deep Dive</title>
+      <link>https://compomint.dev/#syntax</link>
+      <description>Master Compomint's powerful template syntax with advanced expressions and techniques.</description>
+      <content:encoded><![CDATA[
+        <h2>Understanding Compomint Template Syntax</h2>
+        <p>Dive deep into Compomint's unique template syntax that combines HTML with JavaScript evaluation.</p>
+        
+        <h3>Core Template Expressions</h3>
+        <ul>
+          <li><code>##= ##</code> - Data interpolation for dynamic content</li>
+          <li><code>##- ##</code> - HTML-escaped output for security</li>
+          <li><code>##% ##</code> - Component insertion for composition</li>
+          <li><code>##! ##</code> - Pre-evaluation for setup code</li>
+          <li><code>### ##</code> - Lazy evaluation for post-render tasks</li>
+        </ul>
+        
+        <p>Learn more about <a href="https://compomint.dev/#syntax">template syntax</a> and advanced techniques.</p>
+      ]]></content:encoded>
+      <category>Syntax</category>
+      <category>Tutorial</category>
+      <pubDate>Tue, 15 Jul 2025 09:00:00 GMT</pubDate>
+      <guid isPermaLink="false">template-syntax-deep-dive-2025-07-15</guid>
+      <author>hello@compomint.dev (Compomint Team)</author>
+    </item>
+    
+    <item>
+      <title>Component Architecture Guide</title>
+      <link>https://compomint.dev/#architecture</link>
+      <description>Learn about Compomint's component architecture and design principles.</description>
+      <content:encoded><![CDATA[
+        <h2>Building Scalable Component Architecture</h2>
+        <p>Understand how to structure your Compomint applications for maximum maintainability and performance.</p>
+        
+        <h3>Architecture Principles</h3>
+        <ul>
+          <li>Component-based design with clear separation of concerns</li>
+          <li>Template-driven development for rapid prototyping</li>
+          <li>State management with persistent component status</li>
+          <li>Event-driven communication between components</li>
+        </ul>
+        
+        <p>Explore our <a href="https://compomint.dev/#architecture">architecture guide</a> for detailed patterns and best practices.</p>
+      ]]></content:encoded>
+      <category>Architecture</category>
+      <category>Best Practices</category>
+      <pubDate>Mon, 14 Jul 2025 15:30:00 GMT</pubDate>
+      <guid isPermaLink="false">component-architecture-guide-2025-07-14</guid>
+      <author>hello@compomint.dev (Compomint Team)</author>
+    </item>
+    
+    <item>
+      <title>Performance Optimization Tips</title>
+      <link>https://compomint.dev/examples.html</link>
+      <description>Optimize your Compomint applications for maximum performance with these practical tips and techniques.</description>
+      <content:encoded><![CDATA[
+        <h2>Optimizing Compomint Performance</h2>
+        <p>Learn how to build high-performance applications with Compomint's efficient architecture.</p>
+        
+        <h3>Performance Tips</h3>
+        <ul>
+          <li>Use <code>refresh()</code> for minor updates instead of <code>render()</code></li>
+          <li>Cache element references with <code>data-co-named-element</code></li>
+          <li>Implement non-blocking insertion for heavy components</li>
+          <li>Optimize template structure and logic</li>
+        </ul>
+        
+        <p>Explore our <a href="https://compomint.dev/#examples">performance examples</a> to see these techniques in action.</p>
+      ]]></content:encoded>
+      <category>Performance</category>
+      <category>Tutorial</category>
+      <pubDate>Tue, 15 Jul 2025 14:30:00 GMT</pubDate>
+      <guid isPermaLink="false">performance-optimization-tips-2025-07-15</guid>
+      <author>hello@compomint.dev (Compomint Team)</author>
+    </item>
+  </channel>
+</rss>

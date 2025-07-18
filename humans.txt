@@ -1,0 +1,110 @@
+/* TEAM */
+
+Creator & Lead Developer: Compomint Team
+Site: https://github.com/kurukona/compomint
+Location: Global
+
+/* THANKS */
+
+Framework Inspiration: React, Vue, Angular communities
+Design Inspiration: Modern web development practices
+Community Support: JavaScript developers worldwide
+Testing & Feedback: Early adopters and contributors
+
+/* SITE */
+
+Last update: 2025/07/18
+Language: JavaScript, HTML, CSS
+Doctype: HTML5
+IDE: VS Code, WebStorm, Vim
+Standards: W3C, ECMAScript 2020+
+Components: Compomint Framework, Tailwind CSS, Vite
+Fonts: Inter (Google Fonts)
+Tools: Node.js, npm, Git, GitHub
+Hosting: GitHub Pages / Netlify / Vercel
+CDN: jsDelivr, unpkg
+Version Control: Git
+Testing: Manual, Automated
+Performance: Lighthouse, Core Web Vitals
+SEO: Comprehensive optimization
+Accessibility: WCAG 2.1 AA compliance
+Browser Support: Modern browsers (ES6+)
+
+/* FRAMEWORK */
+
+Name: Compomint
+Version: 1.0.0+
+License: MIT
+Repository: https://github.com/kurukona/compomint
+Documentation: https://compomint.dev
+Demo: https://compomint.dev/#examples
+Features: 
+  - Template-based components
+  - Lightweight architecture
+  - Multi-language support
+  - State management
+  - Event handling
+  - Framework integration
+  - Progressive Web App support
+  - Service Worker caching
+  - Core Web Vitals optimization
+
+/* TECHNOLOGY STACK */
+
+Frontend Framework: Compomint
+Styling: Tailwind CSS
+Build Tool: Vite
+Package Manager: npm
+Language: JavaScript (ES6+)
+Module System: ES Modules
+Bundler: Vite/Rollup
+Minifier: Terser
+CSS Processor: PostCSS
+Linter: ESLint
+Formatter: Prettier
+Testing: Custom test suite
+Documentation: Markdown, JSDoc
+Deployment: CI/CD Pipeline
+
+/* SPECIAL THANKS */
+
+Open Source Community: For inspiring collaborative development
+Web Standards: W3C, WHATWG for web platform evolution
+Developer Tools: Chrome DevTools, Firefox Developer Tools
+Performance: Google Lighthouse team
+Security: Security researchers and ethical hackers
+Accessibility: A11Y community and advocates
+Internationalization: Unicode Consortium, i18n experts
+
+                              .     .
+                            \/     \/
+    .-..-'``'-..-..-'``'-..-..-'``'-..-.
+  .'     ..     '.     ..     '.     ..'
+ .    Compomint    .    Web     .   Dev  .
+'.      is       .'  Framework .'  Love .'
+  '-..-'``'-..-..-'``'-..-..-'``'-..-..'
+                            /\     /\
+                              '   '
+
+/* CONTACT */
+
+Website: https://compomint.dev
+GitHub: https://github.com/kurukona/compomint
+Issues: https://github.com/kurukona/compomint/issues
+Discussions: https://github.com/kurukona/compomint/discussions
+Twitter: @compomint (if available)
+Email: hello@compomint.dev
+
+/* PHILOSOPHY */
+
+We believe in:
+- Simplicity over complexity
+- Performance over features
+- Developer experience
+- Community-driven development
+- Open source collaboration
+- Continuous improvement
+- Accessible web development
+- Sustainable code practices
+
+Built with ❤️ for the JavaScript community

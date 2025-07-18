@@ -1,0 +1,126 @@
+# Robots.txt for Compomint.dev
+# Optimized for SEO and crawl efficiency
+
+# Default rules for all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap locations
+Sitemap: https://compomint.dev/sitemapindex.xml
+Sitemap: https://compomint.dev/sitemap.xml
+Sitemap: https://compomint.dev/sitemap-images.xml
+
+# Crawl optimization
+Crawl-delay: 1
+
+# Important: Allow rendering resources
+Allow: /css/
+Allow: /js/
+Allow: /img/
+Allow: /manifest.json
+Allow: /sw.js
+
+# Explicit allowances for content pages
+Allow: /docs.html
+Allow: /examples.html
+Allow: /tutorial.html
+
+# Language-specific pages
+Allow: /?lang=en
+Allow: /?lang=ko
+Allow: /?lang=ja
+Allow: /?lang=zh
+
+# Block development and system files
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /dist/
+Disallow: /src/
+Disallow: /.vscode/
+Disallow: /.idea/
+Disallow: /vendor/
+Disallow: /tests/
+Disallow: /test/
+
+# Block temporary and log files
+Disallow: /*.log$
+Disallow: /*.tmp$
+Disallow: /*.bak$
+Disallow: /*~$
+Disallow: /*.swp$
+
+# Block sensitive files
+Disallow: /.env
+Disallow: /.env.*
+Disallow: /config/
+Disallow: /wp-admin/
+Disallow: /admin/
+Disallow: /private/
+
+# Block query parameters that might create duplicate content
+Disallow: /*?*utm_*
+Disallow: /*?*fbclid*
+Disallow: /*?*gclid*
+Disallow: /*?*ref=*
+Disallow: /*?*source=*
+
+# Special rules for specific crawlers
+
+# Google bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing bots
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yandex bot
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Baidu bot (for Chinese market)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Social media crawlers
+User-agent: facebookexternalhit
+Allow: /
+User-agent: Twitterbot
+Allow: /
+User-agent: LinkedInBot
+Allow: /
+
+# Block problematic or resource-heavy bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Archive crawlers (allow but with delay)
+User-agent: archive.org_bot
+Allow: /
+Crawl-delay: 10
+
+User-agent: ia_archiver
+Allow: /
+Crawl-delay: 10
+
+# Host directive for canonicalization
+Host: https://compomint.dev
+
+# Request-rate limiting (optional, for future use)
+# Request-rate: 1/10s
+
+# Visit-time preferences (Google-specific)
+# Visit-time: 0400-0800
