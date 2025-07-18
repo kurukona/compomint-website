@@ -563,6 +563,7 @@
 
     <!-- Service Worker Registration -->
     <script>
+      /*
       // Register service worker for performance improvements
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
@@ -576,6 +577,7 @@
             });
         });
       }
+      */
 
       // Web Vitals monitoring
       function sendToAnalytics(metric) {
@@ -583,30 +585,30 @@
           // Send to Google Analytics 4 (GA4) for Core Web Vitals tracking
           try {
             // Use gtag if available (Google Analytics)
-            if (typeof gtag !== 'undefined') {
-              gtag('event', metric.name, {
-                event_category: 'Web Vitals',
+            if (typeof gtag !== "undefined") {
+              gtag("event", metric.name, {
+                event_category: "Web Vitals",
                 value: Math.round(metric.value),
                 metric_rating: metric.rating,
                 page_location: window.location.href,
-                custom_parameter_1: 'Core Web Vitals'
+                custom_parameter_1: "Core Web Vitals",
               });
             }
-            
+
             // Also send to custom analytics endpoint if needed
             const data = {
-              site: 'compomint.dev', // cspell:ignore compomint
+              site: "compomint.dev", // cspell:ignore compomint
               url: window.location.href,
               metric: metric.name,
               value: metric.value,
               rating: metric.rating,
               timestamp: Date.now(),
-              userAgent: navigator.userAgent
+              userAgent: navigator.userAgent,
             };
-            
+
             // Use Beacon API to send data reliably to your analytics service
-            navigator.sendBeacon('/api/analytics', JSON.stringify(data));
-            
+            navigator.sendBeacon("/api/analytics", JSON.stringify(data));
+
             console.log("Web Vitals sent to analytics:", metric);
           } catch (error) {
             console.error("Failed to send analytics:", error);
