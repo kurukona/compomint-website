@@ -10,6 +10,11 @@ export default defineConfig({
     open: false, // 서버 시작 시 브라우저 자동 열기
     cors: true,
     host: true, // 네트워크 접근 허용
+    // 개발 환경에서 404 페이지 처리
+    middlewareMode: false,
+    fs: {
+      strict: false,
+    },
   },
   build: {
     outDir: "dist",
@@ -17,6 +22,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: "./index.html",
+        "404": "./404.html",
+        docs: "./docs.html",
+        examples: "./examples.html",
+        tutorial: "./tutorial.html",
       },
     },
   },
