@@ -94,7 +94,14 @@
   <header class="layout-Header bg-white shadow-sm sticky top-0 z-50 dark:bg-gray-800">
     <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
       <div class="flex items-center space-x-2 mb-4 md:mb-0">
-        <img src="img/icon.png" alt="Compomint Logo" class="w-8 h-8 logo-primary">
+        <picture>
+          <source srcset="img/icon-32w.webp 32w, img/icon-64w.webp 64w" type="image/webp">
+          <img src="img/icon-32w.png" 
+               srcset="img/icon-32w.png 32w, img/icon-64w.png 64w"
+               alt="Compomint Logo" 
+               class="w-8 h-8 logo-primary"
+               loading="eager">
+        </picture>
         <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">Compomint</span>
       </div>
       

@@ -1,0 +1,19 @@
+{
+  "id": 2,
+  "title": "Component State Management",
+  "description": "Master state management patterns using the status object in Compomint.",
+  "category": "Advanced",
+  "tags": ["state", "management", "status", "component"],
+  "author": {
+    "name": "Sarah Frontend",
+    "email": "sarah.frontend@example.com"
+  },
+  "content": "The status object persists data across component re-renders. Leverage this for efficient state management in your applications.",
+  "stats": {
+    "views": 2567,
+    "likes": 156,
+    "comments": 23
+  },
+  "created_at": "2024-02-10T11:15:00Z",
+  "updated_at": "2024-02-15T16:45:00Z"
+}

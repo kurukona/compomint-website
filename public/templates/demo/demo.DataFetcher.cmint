@@ -1,0 +1,119 @@
+<!-- Data fetching component template -->
+<template id="demo-DataFetcher">
+  ##
+    const dataFiles = data.dataFiles || [];
+console.log(123)
+    // Initialize state
+    status.currentIndex = status.currentIndex || 0;
+    status.loading = status.loading || false;
+    status.data = status.data || null;
+    status.error = status.error || null;
+    
+    function fetchData(index) {
+      status.loading = true;
+      status.error = null;
+  
+      const response = fetch(dataFiles[index])
+        .then((response) => {
+          console.log(`[Fetch] Response status: ${response.status}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = response.json();
+          console.log('[Fetch] Data loaded successfully:', data.title);
+          return data;
+        })
+        .then((data) => {
+          status.data = data;
+          status.loading = false;
+          component.refresh();
+        }).catch(error => {
+          console.error('[Fetch] Error loading data:', error.message);
+          status.error = error.message;
+          status.loading = false;
+          //component.refresh();
+        });
+    }
+    
+    function nextData() {
+      status.currentIndex = (status.currentIndex + 1) % dataFiles.length;
+      console.log(`[Navigation] Moving to index ${status.currentIndex}`);
+      fetchData(status.currentIndex);
+    }
+    
+    function prevData() {
+      status.currentIndex = status.currentIndex === 0 ? dataFiles.length - 1 : status.currentIndex - 1;
+      console.log(`[Navigation] Moving to index ${status.currentIndex}`);
+      fetchData(status.currentIndex);
+    }
+    
+    // Load initial data if not loaded
+    if (!status.data && !status.loading) {
+      console.log('[Init] Loading initial data...');
+      fetchData(status.currentIndex);
+    }
+  ##
+  <div class="demo-DataFetcher p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-2xl mx-auto">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">Data Fetcher Demo</h3>
+      <div class="text-sm text-gray-500 dark:text-gray-400">
+        ##=status.currentIndex + 1## / ##=dataFiles.length##
+      </div>
+    </div>
+    
+    <div class="flex gap-2 mb-6">
+      <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+              data-co-event="##:{click: prevData}##"
+              ##=status.loading ? 'disabled' : ''##>
+        ← Previous
+      </button>
+      <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+              data-co-event="##:{click: nextData}##"
+              ##=status.loading ? 'disabled' : ''##>
+        Next →
+      </button>
+    </div>
+    
+    ##if (status.loading) {##
+      <div class="flex items-center justify-center py-8">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        <span class="ml-2 text-gray-600 dark:text-gray-300">Loading data...</span>
+      </div>
+    ##} else if (status.error) {##
+      <div class="bg-red-100 dark:bg-red-900 border border-red-400 text-red-700 dark:text-red-200 px-4 py-3 rounded">
+        <strong>Error:</strong> ##=status.error##
+      </div>
+    ##} else if (status.data) {##
+      <div class="space-y-4">
+        <div class="border-b pb-2">
+          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=status.data.title##</h4>
+          <div class="flex gap-2 mt-1">
+            <span class="px-2 py-1 bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-200 text-xs rounded">
+              ##=status.data.category##
+            </span>
+            ##status.data.tags.forEach(tag => {##
+              <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded">
+                ##=tag##
+              </span>
+            ##})##
+          </div>
+        </div>
+        
+        <p class="text-gray-600 dark:text-gray-300">##=status.data.description##</p>
+        
+        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+          <p class="text-sm text-gray-700 dark:text-gray-300">##=status.data.content##</p>
+        </div>
+        
+        <div class="text-sm text-gray-500 dark:text-gray-400">
+          <div>By: ##=status.data.author.name## (##=status.data.author.email##)</div>
+          <div class="mt-1">
+            Views: ##=status.data.stats.views## | 
+            Likes: ##=status.data.stats.likes## | 
+            Comments: ##=status.data.stats.comments##
+          </div>
+        </div>
+      </div>
+    ##}##
+  </div>
+</template>

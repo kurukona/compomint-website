@@ -202,18 +202,36 @@
           <!-- Right side - Screenshots -->
           <div class="space-y-4">
             <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">
-              <img src="img/compomint-template-support.png" 
-                   alt="Compomint Template Support in VSCode" 
-                   class="w-full h-auto">
+              <picture>
+                <source 
+                  srcset="img/compomint-template-support-380w.webp 380w, img/compomint-template-support-760w.webp 760w, img/compomint-template-support-1106w.webp 1106w"
+                  sizes="(max-width: 768px) 380px, (max-width: 1200px) 760px, 1106px"
+                  type="image/webp">
+                <img src="img/compomint-template-support-380w.png" 
+                     srcset="img/compomint-template-support-380w.png 380w, img/compomint-template-support-760w.png 760w"
+                     sizes="(max-width: 768px) 380px, 760px"
+                     alt="Compomint Template Support in VSCode" 
+                     class="w-full h-auto"
+                     loading="lazy">
+              </picture>
               <div class="p-4">
                 <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-1">##=i18n.screenshots.template.title##</h4>
                 <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.screenshots.template.description##</p>
               </div>
             </div>
             <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden">
-              <img src="img/template-preview.png" 
-                   alt="Template Preview Feature" 
-                   class="w-full h-auto">
+              <picture>
+                <source 
+                  srcset="img/template-preview-380w.webp 380w, img/template-preview-760w.webp 760w, img/template-preview-1650w.webp 1650w"
+                  sizes="(max-width: 768px) 380px, (max-width: 1200px) 760px, 1650px"
+                  type="image/webp">
+                <img src="img/template-preview-380w.png" 
+                     srcset="img/template-preview-380w.png 380w, img/template-preview-760w.png 760w"
+                     sizes="(max-width: 768px) 380px, 760px"
+                     alt="Template Preview Feature" 
+                     class="w-full h-auto"
+                     loading="lazy">
+              </picture>
               <div class="p-4">
                 <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-1">##=i18n.screenshots.preview.title##</h4>
                 <p class="text-sm text-gray-600 dark:text-gray-300">##=i18n.screenshots.preview.description##</p>

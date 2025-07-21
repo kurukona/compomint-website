@@ -1,0 +1,19 @@
+{
+  "id": 3,
+  "title": "Event Handling Guide",
+  "description": "Comprehensive guide to event handling using data-co-event attributes.",
+  "category": "Guide",
+  "tags": ["events", "handlers", "interaction", "dom"],
+  "author": {
+    "name": "Mike JavaScript",
+    "email": "mike.js@example.com"
+  },
+  "content": "Use data-co-event attributes to handle various DOM events like clicks, inputs, and more. Event handlers execute within the component context.",
+  "stats": {
+    "views": 1876,
+    "likes": 143,
+    "comments": 31
+  },
+  "created_at": "2024-03-05T13:20:00Z",
+  "updated_at": "2024-03-08T10:30:00Z"
+}

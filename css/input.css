@@ -14,8 +14,12 @@
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideInUp {
@@ -36,7 +40,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
 }
@@ -54,7 +58,7 @@ section > div {
 pre code {
   display: block;
   padding: 1rem;
-  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-family: "Menlo", "Monaco", "Courier New", monospace;
   font-size: 0.85rem;
   line-height: 1.5;
   background-color: #1a202c;
@@ -87,7 +91,7 @@ code .comment {
 }
 
 .hero-shine::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -104,8 +108,12 @@ code .comment {
 }
 
 @keyframes shine {
-  from { transform: translateX(-30%) rotate(30deg); }
-  to { transform: translateX(30%) rotate(30deg); }
+  from {
+    transform: translateX(-30%) rotate(30deg);
+  }
+  to {
+    transform: translateX(30%) rotate(30deg);
+  }
 }
 
 /* Button hover effects */
@@ -121,7 +129,7 @@ code .comment {
 }
 
 .button-hover-effect::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -166,7 +174,7 @@ code .comment {
   .hero-content h1 {
     font-size: 2.25rem;
   }
-  
+
   .hero-content p {
     font-size: 1.125rem;
   }
@@ -175,11 +183,12 @@ code .comment {
 /* Dark mode support */
 /* Tailwind 4 dark mode with class approach */
 :root {
-  --text-primary: #1F2937;
-  --text-secondary: #4B5563;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
 }
 
-html.dark, html.dark body {
+html.dark,
+html.dark body {
   --text-primary: #f3f4f6;
   --text-secondary: #e5e7eb;
 }
@@ -269,6 +278,10 @@ body.dark-mode .text-gray-900 {
   color: #f3f4f6;
 }
 
+body.dark-mode .text-gray-800 {
+  color: #e5e7eb;
+}
+
 body.dark-mode .text-gray-600 {
   color: #e5e7eb;
 }
@@ -313,18 +326,22 @@ body.dark-mode .hover\:bg-gray-100:hover {
 
 /* Logo color filters */
 .logo-primary {
-  filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(215deg) brightness(119%) contrast(119%);
+  filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%)
+    hue-rotate(215deg) brightness(119%) contrast(119%);
 }
 
 .logo-light {
-  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%) hue-rotate(215deg) brightness(91%) contrast(91%);
+  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%)
+    hue-rotate(215deg) brightness(91%) contrast(91%);
 }
 
 /* Dark mode logo adjustments */
 .dark .logo-primary {
-  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%) hue-rotate(215deg) brightness(91%) contrast(91%);
+  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%)
+    hue-rotate(215deg) brightness(91%) contrast(91%);
 }
 
 body.dark-mode .logo-primary {
-  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%) hue-rotate(215deg) brightness(91%) contrast(91%);
+  filter: brightness(0) saturate(100%) invert(56%) sepia(55%) saturate(6193%)
+    hue-rotate(215deg) brightness(91%) contrast(91%);
 }

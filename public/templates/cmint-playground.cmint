@@ -117,11 +117,11 @@
       if (autoRefresh) renderingArea.refreshCode({code: cMirror.getValue(), type: type});
     }
   });
-  var consoleArea = tmpl.cmint.PlaygroundConsoleArea({show: showConsole});
+  const consoleArea = tmpl.cmint.PlaygroundConsoleArea({show: showConsole});
   var renderingArea = tmpl.cmint.PlaygroundRenderingArea({imports: imports, code: code, type: type, template: template, loadCallback: function(iframe) {
     setTimeout(function() {
       consoleArea.setWindow(iframe.contentWindow);
-    });
+    }, 10);
   }});
 
   var codeSpliteArea = compomint.tmpl('brui-Splitter-Layout')({

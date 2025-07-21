@@ -1,0 +1,19 @@
+{
+  "id": 4,
+  "title": "Implementing Internationalization (i18n)",
+  "description": "Learn how to use Compomint's i18n features for multilingual support.",
+  "category": "Feature",
+  "tags": ["i18n", "internationalization", "localization", "multilingual"],
+  "author": {
+    "name": "Emma Global",
+    "email": "emma.global@example.com"
+  },
+  "content": "Use compomint.addI18ns() to register multilingual text and the i18n object to display content in the current language.",
+  "stats": {
+    "views": 987,
+    "likes": 76,
+    "comments": 8
+  },
+  "created_at": "2024-04-12T15:40:00Z",
+  "updated_at": "2024-04-18T09:15:00Z"
+}

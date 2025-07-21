@@ -39,6 +39,7 @@
     />
 
     <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
     <link rel="icon" type="image/png" href="img/icon.png" />
     <link rel="apple-touch-icon" href="img/icon.png" />
     <link rel="manifest" href="manifest.json" />
@@ -495,27 +496,6 @@
       }
     </style>
 
-    <!-- CodeMirror -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
-
-    <!-- Theme switcher -->
-    <script src="js/theme-switcher.js" type="module" defer></script>
-
-    <!-- Syntax highlighter -->
-    <script src="js/syntax-highlighter.js" type="module" defer></script>
-
-    <!-- Language switcher -->
-    <script src="js/language-switcher.js" type="module" defer></script>
-
     <!-- Main script -->
     <script src="js/main.js" type="module" defer></script>
 
@@ -548,7 +528,7 @@
       if (localStorage.getItem("analyticsEnabled") === "true") {
         const script = document.createElement("script");
         script.async = true;
-        script.src = "https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW";
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-6X8Q36NXSW"; // cspell:ignore NXSW
         document.head.appendChild(script);
 
         script.onload = function () {
@@ -567,8 +547,8 @@
 
     <!-- Service Worker Registration -->
     <script>
-      /*
       // Register service worker for performance improvements
+      /*
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker

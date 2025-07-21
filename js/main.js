@@ -1,5 +1,16 @@
 import { compomint, tmpl } from "compomint";
-import "../css/input.css";
+import CodeMirror from "codemirror";
+import "codemirror/lib/codemirror.css";
+import "codemirror/theme/monokai.css";
+import "codemirror/mode/javascript/javascript.js";
+
+// Import other modules
+import "./theme-switcher.js";
+import "./syntax-highlighter.js";
+import "./language-switcher.js";
+
+// Make CodeMirror available globally
+window.CodeMirror = CodeMirror;
 
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", async function () {
@@ -205,6 +216,20 @@ async function initApp() {
           zh: "更复杂的组件示例：待办事项列表",
         },
       },
+      fetchDataLoading: {
+        title: {
+          en: "Fetch Data Loading",
+          ko: "데이터 가져오기 로딩",
+          ja: "データ取得ローディング",
+          zh: "数据获取加载",
+        },
+        description: {
+          en: "Real-time data fetching with pagination and loading states.",
+          ko: "페이지네이션과 로딩 상태를 포함한 실시간 데이터 가져오기",
+          ja: "ページネーションとローディング状態を含むリアルタイムデータ取得",
+          zh: "具有分页和加载状态的实时数据获取",
+        },
+      },
       userManagementTable: {
         title: {
           en: "Data Table Component",
@@ -282,6 +307,9 @@ async function initApp() {
   ).text();
   const todoTemplate = await (
     await fetch("templates/demo/demo.TodoList.cmint")
+  ).text();
+  const fetcherTemplate = await (
+    await fetch("templates/demo/demo.DataFetcher.cmint")
   ).text();
   const userManagementTemplate = await (
     await fetch("templates/demo/demo.UserManagement.cmint")
@@ -367,6 +395,34 @@ const todoList = tmpl.demo.TodoList({
 });
 document.body.appendChild(todoList.element);`,
         },
+
+        {
+          class: "h-[1000px]",
+          interactive: true,
+          title:
+            compomint.i18n.examples?.fetchDataLoading?.title(
+              "Fetch Data Loading"
+            ),
+          description: compomint.i18n.examples?.fetchDataLoading?.description(
+            "Real-time data fetching with pagination and loading states."
+          ),
+          type: "codeIsTemplateFile",
+          template: fetcherTemplate,
+          code: `// Create and render the data fetcher component
+console.log('[App] Initializing Data Fetcher Demo');
+const dataFetcher = tmpl.demo.DataFetcher({
+  dataFiles: [
+    'templates/fetch-data/data1.json',
+    'templates/fetch-data/data2.json', 
+    'templates/fetch-data/data3.json',
+    'templates/fetch-data/data4.json',
+    'templates/fetch-data/data5.json'
+  ]
+});
+document.body.appendChild(dataFetcher.element);`,
+          showConsole: false,
+        },
+
         {
           class: "h-[1400px]",
           interactive: true,
@@ -564,21 +620,20 @@ function initializeVueApp() {
       const badgeClass = data.onSale ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800';
     ##
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
-      ##if (data.onSale) {##
-        <span class="inline-block px-2 py-1 text-xs font-semibold ##=badgeClass## rounded-full mb-2">
-          SALE
-        </span>
-      ##}##
       <img src="##=data.image##" alt="##=data.name##" class="w-full h-32 object-cover rounded mb-3">
       <h3 class="font-semibold text-gray-900 mb-2">##=data.name##</h3>
       <p class="text-sm text-gray-600 mb-3">##=data.description##</p>
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between flex-row-reverse items-center">
         <span class="##=priceColor## font-bold">##=data.price##</span>
-        <button class="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
-                data-co-event="##:data.onAddToCart##">
-          Add to Cart
-        </button>
+        ##if (data.onSale) {##
+          <span class="px-2 text-xs font-semibold ##=badgeClass## rounded-full mb-2">
+            SALE
+          </span>
+        ##}##
       </div>
+      <button class="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600" data-co-event="##:data.onAddToCart##">
+        Add to Cart
+      </button>
     </div>
   \`);
 
