@@ -81,6 +81,12 @@
   ##
     // examples 데이터는 main.js에서 주입받습니다
     const examples = data.examples || [];
+
+    const imports = [];
+    imports.push({type: 'js', text: 'https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.umd.min.js'});
+    const outputcssPath = document.querySelectorAll('link[rel="stylesheet"]').forEach(css => {
+      if (css.href.includes('css/output')) imports.push({type: 'css', text: css.href});
+    });
   ##
 <div class="page-Tutorial page-content">
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
@@ -151,11 +157,7 @@
 
       <!-- Interactive Examples -->
       <div class="mt-16 space-y-12">
-        ##examples.forEach((example, index) => {
-          const imports = example.imports || [];
-          imports.push({type: 'js', text: 'https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.umd.min.js'});
-          imports.push({type: 'css', text: '/css/output.css'});
-        ##
+        ##examples.forEach((example, index) => {##
           <div class="bg-white dark:bg-gray-800 rounded-xl rounded-br-none shadow-lg overflow-hidden">
             <div class="p-6 border-b border-gray-200 dark:border-gray-700">
               <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
@@ -173,7 +175,7 @@
             <div class="p-6 bg-gray-50 dark:bg-gray-700">
               <div class="resize-y overflow-hidden h-[500px] bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
                 ##%tmpl.cmint.Playground({
-                  imports: imports,
+                  imports: imports.concat(example.imports || []),
                   template: null,
                   code: example.code,
                   type: 'code',

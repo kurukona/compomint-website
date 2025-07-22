@@ -21,6 +21,12 @@
   ##
     // Use examples data passed from main.js
     const examples = data.examples ? data.examples() : [];
+
+    const imports = [];
+    imports.push({type: 'js', text: 'https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.umd.min.js'});
+    const outputcssPath = document.querySelectorAll('link[rel="stylesheet"]').forEach(css => {
+      if (css.href.includes('css/output')) imports.push({type: 'css', text: css.href});
+    });
   ##
 
   <section id="examples" class="section-Examples py-16 bg-gray-100 dark:bg-gray-900">
@@ -35,15 +41,11 @@
               <p class="text-gray-600 dark:text-gray-300">##=example.description##</p>
             </div>
             
-            ##if (example.interactive) {
-              const imports = example.imports || [];
-              imports.push({type: 'js', text: 'https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.umd.min.js'});
-              imports.push({type: 'css', text: '/css/output.css'});
-            ##
+            ##if (example.interactive) {##
               <!-- Interactive Example using pg-TestArea -->
               <div class="resize-y overflow-hidden p-3 ##=example.class##">
               ##%tmpl.cmint.Playground({
-                imports: imports,
+                imports: imports.concat(example.imports || []),
                 template: example.template || null,
                 code: example.code,
                 type: example.type || 'code',
