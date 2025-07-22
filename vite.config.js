@@ -26,7 +26,6 @@ export default defineConfig({
         docs: "./docs.html",
         examples: "./examples.html",
         tutorial: "./tutorial.html",
-        ㄴㅈ: "./tutorial.html",
       },
     },
   },

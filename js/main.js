@@ -9,6 +9,8 @@ import "./theme-switcher.js";
 import "./syntax-highlighter.js";
 import "./language-switcher.js";
 
+//import "/Users/choish/workspaces/kurukona/compomint-website/public/templates/section-examples.cmint";
+
 // Make CodeMirror available globally
 window.CodeMirror = CodeMirror;
 

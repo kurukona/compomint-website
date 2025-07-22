@@ -140,7 +140,7 @@
     function refreshAllComponents() {
       // Update meta tags with i18n content
       updateMetaTags();
-      window.appLayout.refresh();
+      window.appLayout.changeI18n();
     }
   ##
   

@@ -103,6 +103,12 @@
   ##
     // Use integration examples data passed from main.js
     const integrationExamples = data.integrationExamples ? data.integrationExamples() : [];
+
+    const imports = [];
+    imports.push({type: 'js', text: 'https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.umd.min.js'});
+    document.querySelectorAll('link[rel="stylesheet"]').forEach(css => {
+      if (css.href.includes('/output')) imports.push({type: 'css', text: css.href});
+    });
   ##
 
   <section id="integrations" class="section-Integrations py-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
@@ -179,11 +185,7 @@
 
       <!-- Integration Examples -->
       <div class="space-y-12">
-        ##integrationExamples.forEach((example, index) => {
-          const imports = example.imports || [];
-          imports.push({type: 'js', text: 'https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.umd.min.js'});
-          imports.push({type: 'css', text: '/css/output.css'});
-        ##
+        ##integrationExamples.forEach((example, index) => {##
           <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg rounded-br-none overflow-hidden">
             <div class="p-6 border-b dark:border-gray-700">
               <div class="flex items-center mb-4">
@@ -200,7 +202,7 @@
             <!-- Interactive Example -->
             <div class="resize-y overflow-hidden p-3 ##=example.class##">
               ##%tmpl.cmint.Playground({
-                imports: imports,
+                imports: imports.concat(example.imports || []),
                 template: example.template || null,
                 code: example.code,
                 type: example.type || 'code',
