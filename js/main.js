@@ -420,7 +420,7 @@ const dataFetcher = tmpl.demo.DataFetcher({
   ]
 });
 document.body.appendChild(dataFetcher.element);`,
-          showConsole: false,
+          showConsole: true,
         },
 
         {
@@ -494,7 +494,7 @@ if (!window.React) {
   script.onload = () => {
     const reactDomScript = document.createElement('script');
     reactDomScript.src = 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js';
-    //reactDomScript.onload = initializeApp;
+    reactDomScript.onload = initializeApp;
     document.head.appendChild(reactDomScript);
   };
   document.head.appendChild(script);
@@ -604,7 +604,7 @@ function initializeApp() {
 if (!window.Vue) {
   const script = document.createElement('script');
   script.src = 'https://unpkg.com/vue@3/dist/vue.global.js';
-  //script.onload = initializeVueApp;
+  script.onload = initializeVueApp;
   document.head.appendChild(script);
 } else {
   initializeVueApp();
