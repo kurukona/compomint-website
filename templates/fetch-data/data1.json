@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "title": "Getting Started with Compomint",
+  "description": "Learn the fundamentals of Compomint framework and its template syntax.",
+  "category": "Tutorial",
+  "tags": ["basic", "template", "syntax"],
+  "author": {
+    "name": "Alex Developer",
+    "email": "alex.dev@example.com"
+  },
+  "content": "Compomint is a lightweight JavaScript template-based component engine. Use ##= ## syntax to bind data dynamically in your templates.",
+  "stats": {
+    "views": 1234,
+    "likes": 89,
+    "comments": 12
+  },
+  "created_at": "2024-01-15T09:00:00Z",
+  "updated_at": "2024-01-20T14:30:00Z"
+}

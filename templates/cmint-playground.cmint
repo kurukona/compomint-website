@@ -42,7 +42,7 @@
 
     .cmint-Playground .brui-Splitter-Layout.code,
     .cmint-Playground .brui-Splitter-Layout.template {
-      height: calc(100% - 36px);
+      height: calc(100% - 40px);
     }
     .cmint-Playground.template .brui-Splitter-Layout.template .brui-Splitter-Layout.code {
       height: 100%;
@@ -102,26 +102,34 @@
     }
   </style>
   ##
-  var imports = data.imports;
-  var template = data.template;
-  var hasTemplate = !!template;
-  var code = data.code;
-  var type = data.type;
-  var showConsole = data.showConsole !== undefined ? data.showConsole : false;
-  var autoRefresh = data.autoRefresh !== undefined ? data.autoRefresh : true;
-  var runOnStart = data.runOnStart !== undefined ? data.runOnStart : true;
+  let imports = data.imports;
+  let template = data.template;
+  let hasTemplate = !!template;
+  let code = data.code;
+  let type = data.type;
+  let showConsole = data.showConsole !== undefined ? data.showConsole : false;
+  let autoRefresh = data.autoRefresh !== undefined ? data.autoRefresh : true;
+  let runOnStart = data.runOnStart !== undefined ? data.runOnStart : true;
 
-  var runCodeArea = tmpl.cmint.PlaygroundCodeMirrorArea({
+  const renderingAreaOnload = data.renderingAreaOnload;
+
+  const runCodeArea = tmpl.cmint.PlaygroundCodeMirrorArea({
     value: code,
     changeEvent: function(cMirror) {
       if (autoRefresh) renderingArea.refreshCode({code: cMirror.getValue(), type: type});
     }
   });
-  var consoleArea = tmpl.cmint.PlaygroundConsoleArea({show: showConsole});
-  var renderingArea = tmpl.cmint.PlaygroundRenderingArea({imports: imports, code: code, type: type, template: template, loadCallback: function(iframe) {
-    setTimeout(function() {
+  const consoleArea = tmpl.cmint.PlaygroundConsoleArea({show: showConsole});
+  const renderingArea = tmpl.cmint.PlaygroundRenderingArea({
+    imports: imports, 
+    code: code, 
+    type: type, 
+    template: template, 
+    renderingAreaOnload: renderingAreaOnload,
+    loadCallback: function(iframe) {
+    //setTimeout(function() {
       consoleArea.setWindow(iframe.contentWindow);
-    });
+    //}, 10);
   }});
 
   var codeSpliteArea = compomint.tmpl('brui-Splitter-Layout')({
@@ -349,13 +357,14 @@
     }
   </style>
   ##
-  var imports = data.imports || [];
-  var template = data.template;
-  var code = data.code;
-  var type = data.type;
-  var loadCallback = data.loadCallback;
-  var loadCount = 0;
-  var hasImport = false;
+  let imports = data.imports || [];
+  let template = data.template;
+  let code = data.code;
+  let type = data.type;
+  let loadCallback = data.loadCallback;
+  let loadCount = 0;
+  let hasImport = false;
+  let renderingAreaOnload = data.renderingAreaOnload;
 
   var importOptionTags = {
     css: function(item) {
@@ -412,103 +421,121 @@
     return tag ? tag(item) : null;
   }
 
+  const importStrings = imports.map(obj => createImportElement(obj).element.outerHTML).join('');
+  let iframeElement = null;
+
+  function genSrcDoc() {
+    const codeLine = Function('return (function() {/*' + code + ' */}).toString().match(/\\/\\*([^]*)\\*\\//)[1];')();
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    return `&lt;!DOCTYPE html>
+        &lt;html class="w-full h-full ${isDarkMode ? 'dark' : ''}" data-theme="${isDarkMode ? 'dark' : ''}" class="w-full h-full">
+          &lt;head>
+            &lt;base href="${location.origin + location.pathname}">
+            ${importStrings}
+            &lt;script type="module">
+              // import { compomint, tmpl } from "https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.esm.min.js";
+              window.rendering = function() {
+                try {
+                  ${codeLine}
+                } catch(e) {
+                  document.body.innerHTML= e;
+                  console.error(e);
+                }
+              };
+            &lt;/script>
+          &lt;/head>
+          
+          &lt;body class="w-full h-full bg-gray-50 text-gray-900 ${isDarkMode ? 'dark-mode' : ''}">
+            &lt;div id="render-container" class="render-container w-full h-full text-gray-900 overflow-auto bg-white p-2.5 box-border">
+            &lt;/div>
+          &lt;/body>
+        &lt;/html>`;
+  }
+
+
   var execScript = function(code) {
     if (!code) {
       console.warn('Cannot execute script: missing code');
       return;
     }
-
-    // 렌더링 컨테이너 초기화
-    if (renderContainer) {
-      renderContainer.innerHTML = '';
-    }
+    /*
+    var head = iframeDocument.head;
+    var body = iframeDocument.body;
 
     if (template && type == 'codeIsTemplate') {
+      var oldTemplateSctipt = iframeDocument.getElementById('templateScript');
+      if (oldTemplateSctipt) head.removeChild(oldTemplateSctipt);
       template.forEach(function(tmplData) {
-        compomint.addTmpl(tmplData.key, tmplData.code);
-      });
+        iframeWindow.Compomint.compomint.addTmpl(tmplData.key, tmplData.code);
+      });f
     } else if (template && type == 'codeIsTemplateFile') {
-      compomint.addTmpls(template);
+      var oldTemplateSctipt = iframeDocument.getElementById('templateScript');
+      if (oldTemplateSctipt) head.removeChild(oldTemplateSctipt);
+      iframeWindow.Compomint.compomint.addTmpls(template);
     }
+    */
 
     if (type == 'codeIsPage') {
-      if (renderContainer) {
-        renderContainer.innerHTML = code;
-      }
+      iframeDocument.write(code);
     } else {
-      try {
-        var codeLine = Function('return (function() {/*' + code + ' */}).toString().match(/\\/\\*([^]*)\\*\\//)[1];')();
-        
-        // 안전한 코드 실행을 위한 컨텍스트 생성
-        var executeInContext = function() {
-          try {
-            // 임시 컨테이너에서 코드 실행
-            var tempContainer = renderContainer || document.createElement('div');
-            var originalAppend = document.body.appendChild;
-            
-            // document.body.appendChild를 임시로 오버라이드
-            document.body.appendChild = function(element) {
-              return tempContainer.appendChild(element);
-            };
-            
-            eval(codeLine);
-            
-            // 원래 함수 복구
-            document.body.appendChild = originalAppend;
-          } catch(e) {
-            if (renderContainer) {
-              renderContainer.innerHTML = '&lt;div style="color: red; padding: 10px;"&gt;Error: ' + e.message + '&lt;/div&gt;';
-            }
-            console.error(e);
-          }
-        };
-        
-        executeInContext();
-      } catch(e) {
-        if (renderContainer) {
-          renderContainer.innerHTML = '&lt;div style="color: red; padding: 10px;"&gt;Parse Error: ' + e.message + '&lt;/div&gt;';
-        }
-        console.error(e);
-      }
+      iframeElement.srcdoc = genSrcDoc();
     }
   }
 
-  var iframeDocument, iframeWindow = null;
-  var clearBody = function() {
-    if (renderContainer) {
-      renderContainer.innerHTML = '';
+  //var iframeDocument, iframeWindow = null;
+
+  var clearBody = function(iframeDocument) {
+    var body = iframeDocument.body;
+    while (body && body.firstChild) {
+      body.removeChild(body.firstChild);
     }
   }
+
   component.refreshCode = function(newCode) {
-    if (!renderContainer) {
-      console.warn('Cannot refresh code: render container not available');
+    if (!component.iframeWindow) {
       return;
     };
-    try {
-      clearBody();
+
+    clearBody(component.iframeWindow.document);
+
     if (newCode.code) {
       code = data.code = newCode.code;
     };
     if (newCode.template) {
       template = data.template = newCode.template;
     };
-      execScript(code);
-    } catch(e) {
-      console.warn('Error refreshing code:', e.message);
-    }
+
+    //execScript(code);
+    renderingIframe.srcdoc = genSrcDoc()
   };
+
+
   ##
   <div class="cmint-Playground-Rendering-Area">
-    <div class="render-container border border-gray-300 w-full h-full overflow-auto bg-white p-2.5 box-border" data-co-element-ref="##:renderContainer##"></div>
+    <iframe class="w-full h-full" data-co-element-ref="##:renderingIframe##" sandbox="allow-same-origin allow-scripts allow-modals"
+    ></iframe>
   </div>
+
   ###
-  // iframe 대신 직접 렌더링 컨테이너 사용
-  iframeDocument = document;
-  iframeWindow = window;
-  
+  renderingIframe.onload = (event) => {
+    const iframeWindow = event.target.contentWindow;
+    const iframeDocument = iframeWindow.contentDocument || iframeWindow.document;
+    component.iframeWindow = iframeWindow;
+    
+    if (renderingAreaOnload) renderingAreaOnload(iframeWindow);
+
+    if (template) {
+      (iframeWindow.compomint || iframeWindow.Compomint.compomint).addTmpls(template);
+    }
+    iframeWindow.rendering();
+    if (loadCallback) loadCallback({contentWindow: iframeWindow, contentDocument: iframeDocument});
+  }
+  renderingIframe.srcdoc = genSrcDoc();
+
+
   setTimeout(function() {
     // 즉시 로드 완료 콜백 호출
-    if (loadCallback) loadCallback({contentWindow: window, contentDocument: document});
+    //if (loadCallback) loadCallback({contentWindow: window, contentDocument: document});
   }, 10);
   ##
 </template>
@@ -664,7 +691,8 @@
     }
   }
 
-  component.setWindow(targetWindow);
+  // 초기에 global window console을 오버라이드
+  if (targetWindow) component.setWindow(targetWindow);
   ##
   <div class="cmint-Playground-Console-Area h-[200px] clear-both flex flex-col bottom-0 left-0 right-0" style="##=show ? '' : 'display: none'##">
     <div class="logArea overflow-y-auto flex-1 border border-gray-300 rounded-md m-2 p-2 bg-white dark:bg-gray-800 dark:border-gray-600" data-co-element-ref="##:area##"></div>

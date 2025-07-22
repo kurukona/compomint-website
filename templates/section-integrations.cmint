@@ -179,8 +179,12 @@
 
       <!-- Integration Examples -->
       <div class="space-y-12">
-        ##integrationExamples.forEach((example, index) => {##
-          <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+        ##integrationExamples.forEach((example, index) => {
+          const imports = example.imports || [];
+          imports.push({type: 'js', text: 'https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.umd.min.js'});
+          imports.push({type: 'css', text: '/css/output.css'});
+        ##
+          <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg rounded-br-none overflow-hidden">
             <div class="p-6 border-b dark:border-gray-700">
               <div class="flex items-center mb-4">
                 <div class="w-10 h-10 bg-gradient-to-r ##=example.gradient## rounded-lg flex items-center justify-center mr-4">
@@ -194,13 +198,21 @@
             </div>
             
             <!-- Interactive Example -->
-            <div class="p-3 ##=example.class##">
+            <div class="resize-y overflow-hidden p-3 ##=example.class##">
               ##%tmpl.cmint.Playground({
-                imports: example.imports || [],
+                imports: imports,
                 template: example.template || null,
                 code: example.code,
                 type: example.type || 'code',
-                showConsole: example.showConsole || false
+                showConsole: example.showConsole || false,
+                renderingAreaOnload: (iframeWindow) => {
+                  iframeWindow.compomint = iframeWindow.Compomint.compomint;
+                  iframeWindow.tmpl = iframeWindow.Compomint.tmpl;
+
+                  iframeWindow.document.body.appendChild = function(element) {
+                    return iframeWindow.document.getElementById('render-container').appendChild(element);
+                  };
+                }
               })##
             </div>
           </div>
