@@ -24,7 +24,7 @@
 
     const imports = [];
     imports.push({type: 'js', text: 'https://cdn.jsdelivr.net/gh/kurukona/compomint@latest/dist/compomint.umd.min.js'});
-    const outputcssPath = document.querySelectorAll('link[rel="stylesheet"]').forEach(css => {
+    document.querySelectorAll('link[rel="stylesheet"]').forEach(css => {
       if (css.href.includes('/output')) imports.push({type: 'css', text: css.href});
     });
   ##
