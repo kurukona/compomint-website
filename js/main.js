@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Initialize the application
     promise.then(() => {
       console.log("loaded templates, now initialize app");
-      initApp();
+      initApp(compomint, tmpl);
     });
   } else {
     console.error("Failed to load templates, cannot initialize app");
@@ -172,7 +172,7 @@ function initDarkMode() {
 }
 
 // Initialize the application
-async function initApp() {
+async function initApp(compomint, tmpl) {
   // Add core application i18n that's needed globally for meta tags and language switching
   compomint.addI18ns({
     examples: {

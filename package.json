@@ -10,11 +10,19 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build-css-once && vite build",
+    "build:ssg": "npm run build-css-once && node build_ssg.js && npm run copy-assets:ssg:jsdom",
+    "build:ssg:jsdom": "npm run build-css-once && node build_ssg_jsdom.js && npm run copy-assets:ssg:jsdom",
+    "copy-assets:ssg": "cp -r css dist_static/ && cp -r img dist_static/ && cp -r js dist_static/ && cp -r public dist_static/ && cp manifest.json dist_static/ 2>/dev/null || echo 'Some assets may not exist, continuing...'",
+    "copy-assets:ssg:jsdom": "cp -r css dist_jsdom/ && cp -r img dist_jsdom/ && cp -r js dist_jsdom/ && cp -r public dist_jsdom/ && cp manifest.json dist_jsdom/ 2>/dev/null || echo 'Some assets may not exist, continuing...'",
     "preview": "vite preview",
+    "preview:ssg": "cd dist_static && python3 -m http.server 3200",
+    "preview:ssg:jsdom": "cd dist_jsdom && python3 -m http.server 3201",
     "build-css": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
     "build-css-once": "tailwindcss -i ./css/input.css -o ./css/output.css",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "deploy:ssg": "npm run build:ssg && gh-pages -d dist_static",
+    "deploy:ssg:jsdom": "npm run build:ssg:jsdom && gh-pages -d dist_jsdom"
   },
   "repository": {
     "type": "git",
@@ -31,15 +39,19 @@
     "@playwright/test": "^1.53.2",
     "codemirror": "^5.65.2",
     "compomint": "^1.1.3",
-    "playwright": "^1.53.2"
+    "playwright": "^1.53.2",
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
     "gh-pages": "^6.3.0",
+    "jsdom": "^26.1.0",
     "node-fetch": "^3.3.2",
     "postcss": "^8.4.32",
     "sharp": "^0.34.3",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
     "vite": "^5.0.0"
   }
 }
