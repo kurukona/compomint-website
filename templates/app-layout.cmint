@@ -4,6 +4,7 @@
   // Refresh for adapt i18n
 
   component.changeI18n = () => {
+    if (data.hero) data.hero.refresh();
     if (data.header) data.header.refresh();
     if (data.features) data.features.refresh();
     if (data.vscodeExtension) data.vscodeExtension.refresh();
