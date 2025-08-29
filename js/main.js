@@ -16,47 +16,43 @@ window.CodeMirror = CodeMirror;
 
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", async function () {
+  await loadTemplate(initApp);
+  // Initialize dark mode
+  initDarkMode();
+});
+
+export async function loadTemplate(initApp) {
   // Load all template files
   // NOTE: Template files are loaded once and cached. Changes to template files
   // require a page refresh to take effect as they are not dynamically reloaded.
 
-  const promise = compomint.addTmplByUrl([
-    "templates/app-layout.cmint",
-    "templates/layout-header.cmint",
-    "templates/layout-footer.cmint",
-    "templates/section-hero.cmint",
-    "templates/section-features.cmint",
-    "templates/section-vscode-extension.cmint",
-    "templates/section-examples.cmint",
-    "templates/section-architecture.cmint",
-    "templates/section-syntax.cmint",
-    "templates/section-installation.cmint",
-    "templates/section-documentation.cmint",
-    "templates/section-integrations.cmint",
-    "templates/page-tutorial.cmint",
+  const promise = compomint
+    .addTmplByUrl([
+      "templates/app-layout.cmint",
+      "templates/layout-header.cmint",
+      "templates/layout-footer.cmint",
+      "templates/section-hero.cmint",
+      "templates/section-features.cmint",
+      "templates/section-vscode-extension.cmint",
+      "templates/section-examples.cmint",
+      "templates/section-architecture.cmint",
+      "templates/section-syntax.cmint",
+      "templates/section-installation.cmint",
+      "templates/section-documentation.cmint",
+      "templates/section-integrations.cmint",
+      "templates/page-tutorial.cmint",
 
-    "templates/ui-cookie-consent.cmint",
-    "templates/ui-language-switcher.cmint",
+      "templates/ui-cookie-consent.cmint",
+      "templates/ui-language-switcher.cmint",
 
-    "templates/cmint-brui.cmint",
-    "templates/cmint-playground.cmint",
-  ]);
-
-  if (promise) {
-    // Initialize the application
-    promise.then(() => {
+      "templates/cmint-brui.cmint",
+      "templates/cmint-playground.cmint",
+    ])
+    .then(() => {
       console.log("loaded templates, now initialize app");
       initApp(compomint, tmpl);
     });
-  } else {
-    console.error("Failed to load templates, cannot initialize app");
-    document.getElementById("app-container").innerHTML =
-      '<div class="text-center p-8"><h1 class="text-2xl text-red-600">Error loading application templates</h1></div>';
-  }
-
-  // Initialize dark mode
-  initDarkMode();
-});
+}
 
 // Initialize hash navigation
 function initHashNavigation() {

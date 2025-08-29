@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run build-css-once && vite build",
+    "build": "npm run build-css-once && vite build && node build-static.mjs",
     "build:ssg": "npm run build-css-once && node build_ssg.js && npm run copy-assets:ssg:jsdom",
     "build:ssg:jsdom": "npm run build-css-once && node build_ssg_jsdom.js && npm run copy-assets:ssg:jsdom",
     "copy-assets:ssg": "cp -r css dist_static/ && cp -r img dist_static/ && cp -r js dist_static/ && cp -r public dist_static/ && cp manifest.json dist_static/ 2>/dev/null || echo 'Some assets may not exist, continuing...'",
