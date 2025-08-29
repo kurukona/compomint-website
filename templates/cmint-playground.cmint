@@ -512,7 +512,7 @@
 
   ##
   <div class="cmint-Playground-Rendering-Area">
-    <iframe class="w-full h-full" data-co-element-ref="##:renderingIframe##" sandbox="allow-same-origin allow-scripts allow-modals"
+    <iframe class="w-full h-full" data-co-element-ref="##:renderingIframe##" sandbox="allow-same-origin allow-scripts allow-modals allow-forms"
     ></iframe>
   </div>
 
