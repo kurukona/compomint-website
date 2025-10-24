@@ -897,6 +897,10 @@ video {
   height: 5rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .max-h-\[80vh\] {
   max-height: 80vh;
 }
@@ -963,6 +967,10 @@ video {
 
 .w-20 {
   width: 5rem;
+}
+
+.w-24 {
+  width: 6rem;
 }
 
 .max-w-2xl {
@@ -3025,6 +3033,10 @@ body.dark-mode .logo-primary {
     height: 6rem;
   }
 
+  .sm\:h-32 {
+    height: 8rem;
+  }
+
   .sm\:w-14 {
     width: 3.5rem;
   }
@@ -3039,6 +3051,10 @@ body.dark-mode .logo-primary {
 
   .sm\:w-24 {
     width: 6rem;
+  }
+
+  .sm\:w-32 {
+    width: 8rem;
   }
 
   .sm\:grid-cols-2 {
