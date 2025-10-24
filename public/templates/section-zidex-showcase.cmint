@@ -1,0 +1,147 @@
+<!-- Zidex Showcase Section -->
+<template id="section-ZidexShowcase">
+  ##!
+    compomint.addI18ns({
+      'section-ZidexShowcase': {
+        'title': {
+          'en': 'Built with Compomint',
+          'ko': 'Compomint로 만들어진 서비스',
+          'ja': 'Compomintで構築',
+          'zh': '使用Compomint构建'
+        },
+        'subtitle': {
+          'en': 'Real-world applications powered by Compomint',
+          'ko': '실제 프로덕션 환경에서 사용되는 Compomint 기반 애플리케이션',
+          'ja': 'Compomintで動作する実際のアプリケーション',
+          'zh': '由Compomint驱动的实际应用'
+        },
+        'zidexTitle': {
+          'en': 'ZiDex - AI-Powered Vocabulary Learning',
+          'ko': 'ZiDex - AI 기반 어휘 학습 플랫폼',
+          'ja': 'ZiDex - AI駆動型語彙学習',
+          'zh': 'ZiDex - AI驱动词汇学习'
+        },
+        'zidexSubtitle': {
+          'en': 'Precision Vocabulary Learning with Template-Based AI',
+          'ko': '템플릿 기반 AI를 활용한 정밀 어휘 학습',
+          'ja': 'テンプレートベースAIによる精密な語彙学習',
+          'zh': '基于模板的AI精准词汇学习'
+        },
+        'zidexDescription': {
+          'en': 'ZiDex is an AI-powered mobile app for vocabulary learning. Its promotional website (zidex.app) is built entirely with Compomint, showcasing the framework\'s capability to create fast, responsive, and multilingual web applications.',
+          'ko': 'ZiDex는 AI 기반 어휘 학습 모바일 앱입니다. 이 앱의 홍보 웹사이트(zidex.app)가 Compomint로 완전히 구축되어, 빠르고 반응형이며 다국어를 지원하는 웹 애플리케이션을 만드는 프레임워크의 역량을 보여줍니다.',
+          'ja': 'ZiDexはAI駆動型の語彙学習モバイルアプリです。そのプロモーションウェブサイト(zidex.app)はCompomintで完全に構築されており、高速で応答性が高く多言語対応のWebアプリケーションを作成するフレームワークの能力を示しています。',
+          'zh': 'ZiDex是一款AI驱动的词汇学习移动应用。其宣传网站(zidex.app)完全使用Compomint构建，展示了该框架创建快速、响应式和多语言Web应用程序的能力。'
+        },
+        'builtWithCompomint': {
+          'en': 'Website Built with Compomint',
+          'ko': 'Compomint로 구축된 웹사이트',
+          'ja': 'Compomintで構築されたウェブサイト',
+          'zh': '使用Compomint构建的网站'
+        },
+        'visitZidex': {
+          'en': 'Visit ZiDex Website',
+          'ko': 'ZiDex 웹사이트 방문',
+          'ja': 'ZiDex Webサイトを訪問',
+          'zh': '访问ZiDex网站'
+        },
+        'features': {
+          'webBuilt': {
+            'en': 'Website Built with Compomint',
+            'ko': 'Compomint로 구축된 웹',
+            'ja': 'Compomint製Webサイト',
+            'zh': 'Compomint构建的网站'
+          },
+          'mobileApp': {
+            'en': 'Mobile App (Android)',
+            'ko': '모바일 앱 (Android)',
+            'ja': 'モバイルアプリ (Android)',
+            'zh': '移动应用 (Android)'
+          },
+          'multiLanguage': {
+            'en': '4-Language Support',
+            'ko': '4개 언어 지원',
+            'ja': '4言語対応',
+            'zh': '支持4种语言'
+          },
+          'aiPowered': {
+            'en': 'AI-Powered Learning',
+            'ko': 'AI 기반 학습',
+            'ja': 'AI駆動学習',
+            'zh': 'AI驱动学习'
+          }
+        }
+      }
+    });
+  ##
+  <section id="showcase" class="section-ZidexShowcase py-12 md:py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="container mx-auto px-4">
+      <!-- Section Header -->
+      <div class="text-center mb-10 md:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-gray-900 dark:text-white">
+          ##=i18n.title##
+        </h2>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          ##=i18n.subtitle##
+        </p>
+      </div>
+
+      <!-- Zidex Showcase Card -->
+      <div class="max-w-5xl mx-auto">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
+          <div class="flex flex-col lg:flex-row">
+            <!-- Left Side - Logo/Visual -->
+            <div class="lg:w-2/5 bg-gradient-to-br from-blue-600 to-cyan-600 p-8 sm:p-12 flex items-center justify-center">
+              <div class="text-center">
+                <div class="mb-6">
+                  <img src="img/zidex-logo.avif" alt="ZiDex Logo" class="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-2xl shadow-lg" />
+                </div>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+                  ZiDex
+                </h3>
+                <p class="text-blue-100 text-sm sm:text-base max-w-xs mx-auto font-medium">
+                  ##=i18n.zidexSubtitle##
+                </p>
+              </div>
+            </div>
+
+            <!-- Right Side - Content -->
+            <div class="lg:w-3/5 p-6 sm:p-8">
+              <h4 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white">
+                ##=i18n.zidexTitle##
+              </h4>
+              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                ##=i18n.zidexDescription##
+              </p>
+
+              <!-- Compomint Badge -->
+              <div class="mb-6">
+                <div class="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-md">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7L12 12L22 7L12 2M2 17L12 22L22 17V10L12 15L2 10V17Z"/>
+                  </svg>
+                  <span class="text-sm font-bold text-white">
+                    ##=i18n.builtWithCompomint##
+                  </span>
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <a
+                href="https://zidex.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                ##=i18n.visitZidex##
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>

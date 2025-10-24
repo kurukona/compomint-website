@@ -24,37 +24,39 @@
       }
     });
   ##
-  <section id="home" class="section-Hero bg-gradient-to-br from-indigo-500 to-purple-600 text-white py-20">
+  <section id="home" class="section-Hero bg-gradient-to-br from-indigo-500 to-purple-600 text-white py-12 md:py-20">
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2 mb-10 md:mb-0">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+      <div class="md:w-1/2 mb-8 md:mb-0">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
           ##=i18n.title##
         </h1>
-        <p class="text-xl md:text-2xl mb-8 text-indigo-100">
+        <p class="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-indigo-100">
           ##=i18n.subtitle##
         </p>
-        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-          <a href="#documentation" class="bg-white text-indigo-600 dark:text-indigo-400 px-6 py-3 rounded-lg font-medium text-center hover:bg-gray-100 transition-colors duration-200">
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <a href="#documentation" class="bg-white text-indigo-600 dark:text-indigo-400 px-6 py-3 rounded-lg font-medium text-center hover:bg-gray-100 transition-colors duration-200 min-h-[48px] flex items-center justify-center">
             ##=i18n.getStarted##
           </a>
-          <a href="https://github.com/kurukona/compomint" class="border border-white text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white/10 transition-colors duration-200">
+          <a href="https://github.com/kurukona/compomint" class="border-2 border-white text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-white/10 transition-colors duration-200 min-h-[48px] flex items-center justify-center">
             GitHub
           </a>
         </div>
       </div>
-      <div class="md:w-1/2 md:pl-10">
+      <div class="md:w-1/2 md:pl-6 lg:pl-10 w-full">
         <div class="bg-white rounded-xl shadow-2xl overflow-hidden text-gray-800">
-          <div class="bg-gray-800 px-4 py-2 flex items-center space-x-2">
+          <div class="bg-gray-800 px-3 py-2 flex items-center space-x-2">
             <div class="flex space-x-1">
-              <div class="w-3 h-3 rounded-full bg-red-500"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
             </div>
-            <div class="text-gray-400 text-sm">example.html</div>
+            <div class="text-gray-400 text-xs sm:text-sm">example.html</div>
           </div>
-          <pre class="p-4 text-sm font-mono overflow-x-auto"><code>&lt;template id="hello-world"&gt;
+          <pre class="p-3 sm:p-4 text-xs sm:text-sm font-mono overflow-x-auto"><code>&lt;template id="hello-world"&gt;
   &lt;style id="style-hello-world"&gt;
-    .hello-world { color: ##=data.color || 'black'## }
+    .hello-world {
+      color: ##=data.color || 'black'##
+    }
   &lt;/style&gt;
   &lt;div class="hello-world"&gt;
     &lt;h1&gt;##=data.title || 'Hello'##&lt;/h1&gt;
@@ -65,7 +67,7 @@
 // Create and use component
 const hello = compomint.tmpl('hello-world')({
   title: 'Hello Compomint!',
-  message: 'Easy and simple component',
+  message: 'Easy and simple',
   color: '#4F46E5'
 });
 

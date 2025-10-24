@@ -32,6 +32,7 @@ export async function loadTemplate(initApp) {
       "templates/layout-header.cmint",
       "templates/layout-footer.cmint",
       "templates/section-hero.cmint",
+      "templates/section-zidex-showcase.cmint",
       "templates/section-features.cmint",
       "templates/section-vscode-extension.cmint",
       "templates/section-examples.cmint",
@@ -292,6 +293,9 @@ async function initApp(compomint, tmpl) {
 
   // Define the hero section
   const hero = tmpl.section.Hero({});
+
+  // Define the Zidex showcase section
+  const zidexShowcase = tmpl.section.ZidexShowcase({});
 
   // Define the features section
   const features = tmpl.section.Features({});
@@ -815,6 +819,7 @@ function initializeVueApp() {
   const appLayout = tmpl.app.Layout({
     header: header,
     hero: hero,
+    zidexShowcase: zidexShowcase,
     features: features,
     vscodeExtension: vscodeExtension,
     architecture: architecture,
