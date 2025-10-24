@@ -5,6 +5,7 @@
 
   component.changeI18n = () => {
     if (data.hero) data.hero.refresh();
+    if (data.zidexShowcase) data.zidexShowcase.refresh();
     if (data.header) data.header.refresh();
     if (data.features) data.features.refresh();
     if (data.vscodeExtension) data.vscodeExtension.refresh();
@@ -24,6 +25,7 @@
     ##%data.header##
     <main class="flex-grow">
       ##%data.hero##
+      ##%data.zidexShowcase##
       ##%data.features##
       ##%data.documentation##
       ##%data.vscodeExtension##
