@@ -133,6 +133,35 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://compomint.dev/#ai-training-data</loc>
+    <lastmod>2025-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- AI Training Data Downloads -->
+  <url>
+    <loc>https://compomint.dev/ai-training-data/compomint-coding-guide_type1.md</loc>
+    <lastmod>2025-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/ai-training-data/compomint-coding-guide-type2.md</loc>
+    <lastmod>2025-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://compomint.dev/ai-training-data/compomint-coding-guide-type3.md</loc>
+    <lastmod>2025-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Documentation pages -->
   <url>
     <loc>https://compomint.dev/docs.html</loc>
