@@ -41,6 +41,7 @@ export async function loadTemplate(initApp) {
       "templates/section-installation.cmint",
       "templates/section-documentation.cmint",
       "templates/section-integrations.cmint",
+      "templates/section-ai-training-data.cmint",
       "templates/page-tutorial.cmint",
 
       "templates/ui-cookie-consent.cmint",
@@ -296,6 +297,9 @@ async function initApp(compomint, tmpl) {
 
   // Define the Zidex showcase section
   const zidexShowcase = tmpl.section.ZidexShowcase({});
+
+  // Define the AI training data section
+  const aiTrainingData = tmpl.section.AiTrainingData({});
 
   // Define the features section
   const features = tmpl.section.Features({});
@@ -820,6 +824,7 @@ function initializeVueApp() {
     header: header,
     hero: hero,
     zidexShowcase: zidexShowcase,
+    aiTrainingData: aiTrainingData,
     features: features,
     vscodeExtension: vscodeExtension,
     architecture: architecture,

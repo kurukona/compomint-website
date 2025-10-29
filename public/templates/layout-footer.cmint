@@ -69,7 +69,7 @@
         { label: i18n.links.docs("Documentation"), url: "#documentation" },
         { label: "GitHub", url: "https://github.com/kurukona/compomint" }
       ],
-      email: data.email || "choish@kurukona.com",
+      email: data.email || "admin@kurukona.com",
       github: data.github || "kurukona/compomint",
       year: data.year || new Date().getFullYear(),
       copyright: data.copyright || "Compomint"
