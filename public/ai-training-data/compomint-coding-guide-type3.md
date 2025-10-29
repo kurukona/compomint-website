@@ -53,9 +53,9 @@ async function loadAndInitialize() {
 
 // Method 4: Load multiple template files
 await compomint.addTmplByUrl([
-  "templates/ui-Button.cmint",
-  "templates/ui-Card.cmint",
-  "templates/ui-Modal.cmint"
+  "templates/header.html",
+  "templates/main.html",
+  "templates/footer.html"
 ]);
 
 // Method 5: With loading options
@@ -69,28 +69,20 @@ await compomint.addTmplByUrl({
 });
 ```
 
-### Other Loading Methods
-
-```javascript
-// Direct template string
-compomint.addTmpl('my-component', '<div>##=data.text##</div>');
-
-// From HTML template tags
-compomint.addTmpls(templateString);
-```
-
 ---
 
 ## Template Syntax Quick Reference
 
+### Expression Types
+
 | Syntax | Purpose | Example |
 |--------|---------|---------|
-| `##= ##` | Data interpolation | `<span>##=data.name##</span>` |
+| `##= ##` | Data interpolation (outputs values) | `<span>##=data.name##</span>` |
 | `##- ##` | HTML-escaped output | `<div>##-data.html##</div>` |
 | `##% ##` | Element insertion | `<div>##%childComponent##</div>` |
 | `##! ##` | Pre-evaluation (runs once) | `##! compomint.addI18ns({...}) ##` |
-| `## ##` | JavaScript code | `## let x = 5; ##` |
-| `### ##` | Lazy evaluation (after render) | `### initComponent() ##` |
+| `## ##` | JavaScript code blocks | `## let x = 5; ##` |
+| `### ##` | Lazy evaluation (runs after render) | `### initComponent() ##` |
 | `##* ##` | Comments | `##* This is a comment ##` |
 
 ### HTML Attributes
@@ -101,6 +93,15 @@ compomint.addTmpls(templateString);
 | `data-co-named-element` | Element references | `<input data-co-named-element="##:'inputField'##">` |
 | `data-co-element-ref` | Element variables | `<div data-co-element-ref="##:container##">` |
 | `data-co-load` | Load callbacks | `<div data-co-load="##:initElement##">` |
+
+### Built-in Variables
+
+- `data` - Data passed to the component
+- `status` - Component state object (persists across refreshes)
+- `component` - Component instance
+- `i18n` - Internationalization object
+- `tmpl` - Template registry
+- `compomint` - Global compomint object
 
 ---
 
@@ -113,33 +114,21 @@ compomint.addTmpls(templateString);
   <style id="style-ui-Button">
     .ui-Button {
       padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
+      border-radius: 0.25rem;
+      background-color: #3b82f6;
+      color: white;
     }
   </style>
-  ##!
-    // Pre-evaluation: i18n, constants
-    compomint.addI18ns({
-      'ui-Button': {
-        'label': {
-          'en': 'Button',
-          'ko': '��',
-          'ja': 'ܿ�',
-          'zh': '	�'
-        }
-      }
-    });
-  ##
   ##
     // Component logic
-    const buttonClass = data.variant === 'primary' ? 'btn-primary' : 'btn-secondary';
+    let classes = 'ui-Button';
+    if (data.variant === 'secondary') {
+      classes += ' ui-Button--secondary';
+    }
   ##
-  <button class="ui-Button ##=buttonClass##" data-co-event="##:data.onClick##">
-    ##=data.label || i18n.label##
+  <button class="##=classes##" data-co-event="##:data.onClick##">
+    ##=data.label##
   </button>
-  ###
-    // Post-render code
-    console.log('Button rendered');
-  ##
 </template>
 ```
 
@@ -149,71 +138,57 @@ compomint.addTmpls(templateString);
 // Method 1: Using tmpl namespace
 const button = tmpl.ui.Button({
   label: 'Click Me',
-  variant: 'primary',
-  onClick: () => console.log('Clicked!')
+  onClick: () => alert('Clicked!')
 });
-document.body.appendChild(button.element);
 
 // Method 2: Using compomint.tmpl()
 const button = compomint.tmpl('ui-Button')({
   label: 'Click Me'
 });
+
+// Add to DOM
+document.body.appendChild(button.element);
 ```
 
 ---
 
 ## Event Handling
 
-### Basic Events
+### Basic Event Handling
 
 ```html
-<!-- Single event -->
-<button data-co-event="##:handleClick##">Click</button>
+<button data-co-event="##:data.onClick##">Click Me</button>
+```
 
-<!-- Multiple events -->
+```javascript
+const button = tmpl.ui.Button({
+  onClick: (event, {data, element, component}) => {
+    console.log('Button clicked!');
+  }
+});
+```
+
+### Multiple Event Types
+
+```html
 <input data-co-event="##:{
   focus: handleFocus,
   blur: handleBlur,
   input: handleInput
 }##" />
-
-<!-- Inline function -->
-<button data-co-event="##:{
-  click: (event, {data, component}) => {
-    alert('Hello!');
-    component.refresh();
-  }
-}##">
-  Greet
-</button>
 ```
 
 ### Event Handler Parameters
 
 Event handlers receive:
-- `event` - The DOM event object
-- `eventData` - Object containing:
-  - `data` - Component data
-  - `customData` - Custom data passed after `::`
-  - `element` - Element that triggered the event
-  - `componentElement` - Main component element
-  - `component` - Component instance
-  - `compomint` - Global compomint object
-
-```html
-<button data-co-event="##:handleClick::data.itemId##">
-  View Item
-</button>
-```
-
-```javascript
-const component = tmpl.ui.Button({
-  itemId: 123,
-  handleClick: (event, {data, customData}) => {
-    console.log('Item ID:', customData); // 123
-  }
-});
-```
+1. `event` - The DOM event object
+2. `eventData` - Object containing:
+   - `data` - Component data
+   - `customData` - Custom data passed after `::`
+   - `element` - Element that triggered the event
+   - `componentElement` - Main component element
+   - `component` - Component instance
+   - `compomint` - Global compomint object
 
 ---
 
@@ -225,9 +200,9 @@ const component = tmpl.ui.Button({
 // Single i18n entry
 compomint.addI18n('greeting', {
   'en': 'Hello',
-  'ko': 'HUX8�',
-  'ja': 'S�kao',
-  'zh': '`}'
+  'ko': '안녕하세요',
+  'ja': 'こんにちは',
+  'zh': '你好'
 });
 
 // Multiple i18n entries (nested)
@@ -235,31 +210,41 @@ compomint.addI18ns({
   'ui-Button': {
     'submit': {
       'en': 'Submit',
-      'ko': '�',
-      'ja': '�',
-      'zh': 'Ф'
+      'ko': '제출',
+      'ja': '送信',
+      'zh': '提交'
     },
     'cancel': {
       'en': 'Cancel',
-      'ko': '�',
-      'ja': '����',
-      'zh': 'ֈ'
+      'ko': '취소',
+      'ja': 'キャンセル',
+      'zh': '取消'
     }
   }
 });
 ```
 
-### Using Translations
+### Using Translations in Templates
 
 ```html
-<!-- Basic usage -->
-<span>##=i18n.greeting##</span>
-
-<!-- With default value -->
-<span>##=i18n.greeting('Hello')##</span>
-
-<!-- Accessing from specific namespace -->
-<span>##=compomint.i18n['ui-Button'].submit##</span>
+<template id="ui-Button">
+  ##!
+  compomint.addI18ns({
+    'ui-Button': {
+      'label': {
+        'en': 'Button',
+        'ko': '버튼',
+        'ja': 'ボタン',
+        'zh': '按钮'
+      }
+    }
+  });
+  ##
+  <button class="ui-Button">
+    ##=i18n.label##  <!-- Uses current language -->
+    ##=i18n.label('Default')##  <!-- With fallback -->
+  </button>
+</template>
 ```
 
 ---
@@ -269,34 +254,26 @@ compomint.addI18ns({
 ### Component Instance Methods
 
 ```javascript
-const component = tmpl.ui.Card({ title: 'My Card' });
+const button = tmpl.ui.Button({ label: 'Click' });
 
-// Add to DOM
-document.body.appendChild(component.element);
-component.appendTo(document.getElementById('container'));
+// Append to element
+button.appendTo(document.body);
 
-// Update component
-component.render({ title: 'New Title' });      // Full re-render
-component.refresh({ title: 'Updated Title' }); // Partial update (faster)
+// Render with new data (replaces all data)
+button.render({ label: 'New Label' });
+
+// Refresh with partial data (updates only specified fields)
+button.refresh({ label: 'Updated Label' });
 
 // Remove from DOM
-component.remove();
+button.remove();
 
 // Replace with another component
-const newComponent = tmpl.ui.Card({ title: 'Replacement' });
-component.replace(newComponent);
+button.replace(tmpl.ui.OtherButton({}));
+
+// Release resources
+button.release();
 ```
-
-### Built-in Variables
-
-| Variable | Description |
-|----------|-------------|
-| `data` | Data passed to the component |
-| `status` | Component state object (persists across refreshes) |
-| `component` | Component instance |
-| `i18n` | Internationalization object |
-| `tmpl` | Template registry |
-| `compomint` | Global compomint object |
 
 ---
 
@@ -307,16 +284,22 @@ component.replace(newComponent);
 ```html
 <template id="ui-Counter">
   ##
-    // Initialize state
+    // Initialize persistent state
     status.count = status.count || data.initialCount || 0;
 
     function increment() {
       status.count++;
       component.refresh();
     }
+
+    function decrement() {
+      status.count--;
+      component.refresh();
+    }
   ##
-  <div>
+  <div class="ui-Counter">
     <span>Count: ##=status.count##</span>
+    <button data-co-event="##:{click: decrement}##">-</button>
     <button data-co-event="##:{click: increment}##">+</button>
   </div>
 </template>
@@ -325,55 +308,59 @@ component.replace(newComponent);
 ### Conditional Rendering
 
 ```html
-##if (data.showHeader) {##
-  <header>##=data.title##</header>
-##}##
-
-##if (data.type === 'success') {##
-  <div class="success">Success!</div>
-##} else if (data.type === 'error') {##
-  <div class="error">Error!</div>
-##} else {##
-  <div class="info">Info</div>
-##}##
+<template id="ui-Message">
+  ##
+    let messageClass = 'ui-Message';
+    if (data.type === 'error') {
+      messageClass += ' ui-Message--error';
+    } else if (data.type === 'success') {
+      messageClass += ' ui-Message--success';
+    }
+  ##
+  <div class="##=messageClass##">
+    ##if (data.icon) {##
+      <span class="ui-Message-icon">##=data.icon##</span>
+    ##}##
+    <span class="ui-Message-text">##=data.message##</span>
+    ##if (data.dismissible) {##
+      <button
+        class="ui-Message-close"
+        data-co-event="##:data.onClose##"
+      >×</button>
+    ##}##
+  </div>
+</template>
 ```
 
-### Loop Rendering
+### List Rendering
 
 ```html
-<!-- Array forEach -->
-<ul>
-  ##data.items.forEach(item => {##
-    <li>##=item.name##</li>
-  ##})##
-</ul>
-
-<!-- Array map with components -->
-<div class="card-list">
-  ##data.items.forEach(item => {##
-    ##%tmpl.ui.Card({ title: item.title, content: item.content })##
-  ##})##
-</div>
-
-<!-- Traditional for loop -->
-<ul>
-  ##for (let i = 0; i < data.items.length; i++) {##
-    <li>##=i + 1##. ##=data.items[i].name##</li>
-  ##}##
-</ul>
+<template id="ui-List">
+  <ul class="ui-List">
+    ##data.items.forEach((item, index) => {##
+      <li class="ui-List-item" data-index="##=index##">
+        ##=item.text##
+      </li>
+    ##})##
+  </ul>
+</template>
 ```
 
 ### Component Composition
 
 ```html
-<template id="ui-UserCard">
+<template id="ui-Card">
   ##
-    const avatar = tmpl.ui.Avatar({ src: data.avatarUrl });
-    const details = tmpl.ui.UserDetails({ name: data.name });
+    // Create child components
+    const header = tmpl.ui.CardHeader({ title: data.title });
+    const footer = tmpl.ui.CardFooter({ actions: data.actions });
   ##
-  <div class="user-card">
-    <div class="user-card-avatar">##%avatar##</div>
-    <div class="user-card-details">##%details##</div>
+  <div class="ui-Card">
+    ##%header##
+    <div class="ui-Card-body">
+      ##=data.content##
+    </div>
+    ##%footer##
   </div>
 </template>
 ```
@@ -383,102 +370,75 @@ component.replace(newComponent);
 ```html
 <template id="ui-Form">
   ##
-    function handleSubmit() {
-      const value = component.nameInput.value;
-      console.log('Submitted:', value);
+    function handleSubmit(event) {
+      event.preventDefault();
+      const input = component.element.querySelector('[data-co-named-element="emailInput"]');
+      console.log('Email:', input.value);
     }
   ##
-  <form>
+  <form data-co-event="##:{submit: handleSubmit}##">
     <input
-      type="text"
-      data-co-named-element="##:'nameInput'##"
-      placeholder="Enter name"
+      type="email"
+      data-co-named-element="##:'emailInput'##"
+      placeholder="Email"
     />
-    <button
-      type="button"
-      data-co-event="##:{click: handleSubmit}##"
-    >
-      Submit
-    </button>
+    <button type="submit">Submit</button>
   </form>
 </template>
 ```
 
-### Lazy Initialization
+---
+
+## Tips and Best Practices
+
+1. **Performance**: Use `refresh()` for minor updates instead of `render()`
+2. **State**: Use `status` object for persistent state across refreshes
+3. **Events**: Always use `data-co-event` for event handling
+4. **i18n**: Define translations in `##!` block for early initialization
+5. **Naming**: Use consistent naming conventions (kebab-case for IDs)
+6. **Composition**: Break large components into smaller, reusable ones
+7. **Error Handling**: Always validate data before using it
+8. **Accessibility**: Include proper ARIA attributes for interactive elements
+
+---
+
+## Quick Examples
+
+### Simple Button
 
 ```html
-<template id="ui-Chart">
-  <canvas
-    id="chart-##=component._id##"
-    data-co-load="##:initChart::data.chartData##"
-  ></canvas>
+<template id="ui-Button">
+  <button data-co-event="##:data.onClick##">##=data.label##</button>
+</template>
+```
 
-  ###
-    function initChart(element, {customData}) {
-      // Initialize chart after DOM is ready
-      new Chart(element, {
-        type: 'bar',
-        data: customData
-      });
-    }
+### Counter with State
+
+```html
+<template id="ui-Counter">
   ##
+    status.count = status.count || 0;
+    const inc = () => { status.count++; component.refresh(); };
+  ##
+  <div>
+    <span>##=status.count##</span>
+    <button data-co-event="##:{click: inc}##">+</button>
+  </div>
+</template>
+```
+
+### List with Loop
+
+```html
+<template id="ui-List">
+  <ul>
+    ##data.items.forEach(item => {##
+      <li>##=item##</li>
+    ##})##
+  </ul>
 </template>
 ```
 
 ---
 
-## Best Practices
-
-### Performance
-
-- Use `refresh()` for minor updates instead of `render()`
-- Use non-blocking insertion: `##%heavyComponent::true##`
-- Cache element references with `data-co-named-element`
-
-### Code Organization
-
-- Keep components focused on single responsibility
-- Use consistent naming conventions
-- Prepare data before passing to templates
-- Break large components into smaller, reusable ones
-
-### Error Handling
-
-```html
-<!-- Provide fallbacks -->
-<img src="##=data.avatar || 'default-avatar.png'##" alt="User" />
-<h3>##=data.name || 'Unknown User'##</h3>
-
-<!-- Validate before using -->
-##if (data.items && data.items.length > 0) {##
-  <ul>
-    ##data.items.forEach(item => {##
-      <li>##=item.name##</li>
-    ##})##
-  </ul>
-##} else {##
-  <p>No items found</p>
-##}##
-```
-
----
-
-## Utility Functions
-
-```javascript
-// Generate element
-compomint.tools.genElement('div', { class: 'container' }, 'Content');
-
-// Merge props
-compomint.tools.props({ a: 1 }, { b: 2 }); // { a: 1, b: 2 }
-
-// Generate unique ID
-compomint.tools.genId('prefix'); // 'prefix-123'
-
-// Escape HTML
-compomint.tools.escapeHtml.escape('<script>alert("xss")</script>');
-```
-
----
-
-This quick reference covers the essential Compomint features and patterns for building web applications efficiently.
+For more detailed information, please refer to the full Compomint documentation.
