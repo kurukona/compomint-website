@@ -1,0 +1,210 @@
+<!-- AI Training Data Section -->
+<template id="section-AiTrainingData">
+  ##!
+    compomint.addI18ns({
+      'section-AiTrainingData': {
+        'title': {
+          'en': 'AI Training Data',
+          'ko': 'AI 학습 데이터',
+          'ja': 'AIトレーニングデータ',
+          'zh': 'AI训练数据'
+        },
+        'subtitle': {
+          'en': 'Download Compomint coding guides for AI assistants',
+          'ko': 'AI 어시스턴트를 위한 Compomint 코딩 가이드 다운로드',
+          'ja': 'AIアシスタント向けCompomintコーディングガイドをダウンロード',
+          'zh': '下载AI助手的Compomint编码指南'
+        },
+        'description': {
+          'en': 'Train your AI coding assistants with comprehensive Compomint framework guides. These markdown files contain detailed instructions, best practices, and examples for effective Compomint development.',
+          'ko': 'AI 코딩 어시스턴트를 위한 포괄적인 Compomint 프레임워크 가이드입니다. 이 마크다운 파일들은 효과적인 Compomint 개발을 위한 상세한 지침, 모범 사례 및 예제를 포함하고 있습니다.',
+          'ja': 'AIコーディングアシスタントに包括的なCompomintフレームワークガイドでトレーニングしましょう。これらのマークダウンファイルには、効果的なCompomint開発のための詳細な手順、ベストプラクティス、例が含まれています。',
+          'zh': '使用全面的Compomint框架指南训练您的AI编码助手。这些markdown文件包含详细说明、最佳实践和示例，用于有效的Compomint开发。'
+        },
+        'guides': {
+          'type1': {
+            'title': {
+              'en': 'Type 1: Coding Standards',
+              'ko': 'Type 1: 코딩 표준',
+              'ja': 'Type 1: コーディング規約',
+              'zh': 'Type 1: 编码规范'
+            },
+            'description': {
+              'en': 'Project coding standards with basic setup, template structure, and naming conventions',
+              'ko': '기본 설정, 템플릿 구조 및 네이밍 규칙을 포함한 프로젝트 코딩 표준',
+              'ja': '基本設定、テンプレート構造、命名規則を含むプロジェクトコーディング規約',
+              'zh': '包含基本设置、模板结构和命名约定的项目编码规范'
+            }
+          },
+          'type2': {
+            'title': {
+              'en': 'Type 2: HTML Conversion Guide',
+              'ko': 'Type 2: HTML 변환 가이드',
+              'ja': 'Type 2: HTML変換ガイド',
+              'zh': 'Type 2: HTML转换指南'
+            },
+            'description': {
+              'en': 'Comprehensive guide for converting HTML to Compomint templates with detailed examples',
+              'ko': '상세한 예제와 함께 HTML을 Compomint 템플릿으로 변환하는 종합 가이드',
+              'ja': '詳細な例を含むHTMLからCompomintテンプレートへの変換総合ガイド',
+              'zh': '包含详细示例的HTML转换为Compomint模板的综合指南'
+            }
+          },
+          'type3': {
+            'title': {
+              'en': 'Type 3: Quick Reference',
+              'ko': 'Type 3: 빠른 참조',
+              'ja': 'Type 3: クイックリファレンス',
+              'zh': 'Type 3: 快速参考'
+            },
+            'description': {
+              'en': 'Concise quick reference focusing on essential syntax and common patterns',
+              'ko': '필수 문법과 일반적인 패턴에 중점을 둔 간결한 빠른 참조 가이드',
+              'ja': '必須構文と一般的なパターンに焦点を当てたクイックリファレンス',
+              'zh': '专注于基本语法和常见模式的快速参考指南'
+            }
+          }
+        },
+        'downloadButton': {
+          'en': 'Download',
+          'ko': '다운로드',
+          'ja': 'ダウンロード',
+          'zh': '下载'
+        },
+        'forAiAssistants': {
+          'en': 'For AI Assistants',
+          'ko': 'AI 어시스턴트용',
+          'ja': 'AIアシスタント向け',
+          'zh': 'AI助手专用'
+        },
+        'usageTitle': {
+          'en': 'Usage:',
+          'ko': '사용 방법:',
+          'ja': '使用方法：',
+          'zh': '使用方法：'
+        },
+        'usageDescription': {
+          'en': 'Add these guide files as project documentation to AI coding assistants like Claude or ChatGPT for more accurate and efficient code generation when developing with the Compomint framework.',
+          'ko': '이 가이드 파일들을 Claude, ChatGPT 등의 AI 코딩 어시스턴트에 프로젝트 문서로 추가하면, Compomint 프레임워크 개발 시 더욱 정확하고 효율적인 코드 생성이 가능합니다.',
+          'ja': 'これらのガイドファイルをClaude、ChatGPTなどのAIコーディングアシスタントのプロジェクトドキュメントとして追加すると、Compomintフレームワーク開発時により正確で効率的なコード生成が可能になります。',
+          'zh': '将这些指南文件添加到Claude、ChatGPT等AI编码助手的项目文档中，可以在Compomint框架开发时实现更准确、更高效的代码生成。'
+        }
+      }
+    });
+  ##
+  ##
+    const trainingFiles = [
+      {
+        id: 'type1',
+        filename: 'compomint-coding-guide_type1.md',
+        path: 'ai-training-data/compomint-coding-guide_type1.md',
+        size: '22KB',
+        icon: '📘'
+      },
+      {
+        id: 'type2',
+        filename: 'compomint-coding-guide-type2.md',
+        path: 'ai-training-data/compomint-coding-guide-type2.md',
+        size: '27KB',
+        icon: '📗'
+      },
+      {
+        id: 'type3',
+        filename: 'compomint-coding-guide-type3.md',
+        path: 'ai-training-data/compomint-coding-guide-type3.md',
+        size: '11KB',
+        icon: '📙'
+      }
+    ];
+
+    function downloadFile(filename, path) {
+      const link = document.createElement('a');
+      link.href = path;
+      link.download = filename;
+      link.click();
+    }
+  ##
+  <section id="ai-training-data" class="section-AiTrainingData py-12 md:py-16 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+    <div class="container mx-auto px-4">
+      <!-- Section Header -->
+      <div class="text-center mb-10 md:mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-600 rounded-full shadow-md mb-4">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9,10A3.04,3.04 0 0,1 12,7A3.04,3.04 0 0,1 15,10A3.04,3.04 0 0,1 12,13A3.04,3.04 0 0,1 9,10M12,19L16,20V16.92A7.54,7.54 0 0,1 12,18A7.54,7.54 0 0,1 8,16.92V20M12,4A5.78,5.78 0 0,0 7.76,5.74A5.78,5.78 0 0,0 6,10A5.78,5.78 0 0,0 7.76,14.23A5.78,5.78 0 0,0 12,16A5.78,5.78 0 0,0 16.24,14.23A5.78,5.78 0 0,0 18,10A5.78,5.78 0 0,0 16.24,5.74A5.78,5.78 0 0,0 12,4M20,10A8,8 0 0,1 12,18A8,8 0 0,1 4,10A8,8 0 0,1 12,2A8,8 0 0,1 20,10Z"/>
+          </svg>
+          <span class="text-sm font-bold text-white">
+            ##=i18n.forAiAssistants##
+          </span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-gray-900 dark:text-white">
+          ##=i18n.title##
+        </h2>
+        <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-4">
+          ##=i18n.subtitle##
+        </p>
+        <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
+          ##=i18n.description##
+        </p>
+      </div>
+
+      <!-- Download Cards Grid -->
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        ##
+          trainingFiles.forEach((file, index) => {
+        ##
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.03]">
+          <!-- Card Header -->
+          <div class="bg-gradient-to-br from-purple-500 to-blue-600 p-6 text-center">
+            <div class="text-5xl mb-3">##=file.icon##</div>
+            <div class="text-white text-xs font-medium px-3 py-1 bg-white/20 rounded-full inline-block">
+              ##=file.size##
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2 text-gray-900 dark:text-white">
+              ##=i18n.guides[file.id].title##
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-6 leading-relaxed min-h-[4.5rem]">
+              ##=i18n.guides[file.id].description##
+            </p>
+
+            <!-- Download Button -->
+            <button
+              data-co-event="##:{click: () => downloadFile(file.filename, file.path)}##"
+              class="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/>
+              </svg>
+              ##=i18n.downloadButton##
+            </button>
+          </div>
+        </div>
+        ##
+          });
+        ##
+      </div>
+
+      <!-- Additional Info -->
+      <div class="max-w-4xl mx-auto mt-10 p-6 bg-white/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+            </svg>
+          </div>
+          <div class="flex-1 text-sm text-gray-600 dark:text-gray-300">
+            <p class="font-semibold mb-2">
+              ##=i18n.usageTitle##
+            </p>
+            <p>
+              ##=i18n.usageDescription##
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
