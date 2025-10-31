@@ -70,6 +70,36 @@
             'ja': 'AI駆動学習',
             'zh': 'AI驱动学习'
           }
+        },
+        'compomintWebsiteTitle': {
+          'en': 'Compomint Framework Website',
+          'ko': 'Compomint 프레임워크 웹사이트',
+          'ja': 'Compomintフレームワークウェブサイト',
+          'zh': 'Compomint框架网站'
+        },
+        'compomintWebsiteSubtitle': {
+          'en': 'Official Documentation & Showcase',
+          'ko': '공식 문서 및 쇼케이스',
+          'ja': '公式ドキュメント＆ショーケース',
+          'zh': '官方文档与展示'
+        },
+        'compomintWebsiteDescription': {
+          'en': 'This website itself is built entirely with Compomint! It demonstrates the framework\'s capabilities including component-based architecture, internationalization, dark/light theme support, and responsive design. A perfect example of "eating our own dog food".',
+          'ko': '이 웹사이트 자체가 Compomint로 완전히 구축되었습니다! 컴포넌트 기반 아키텍처, 국제화, 다크/라이트 테마 지원, 반응형 디자인 등 프레임워크의 역량을 보여줍니다. "자신의 도구를 직접 사용하는" 완벽한 사례입니다.',
+          'ja': 'このウェブサイト自体がCompomintで完全に構築されています！コンポーネントベースアーキテクチャ、国際化、ダーク/ライトテーマサポート、レスポンシブデザインなど、フレームワークの機能を実証しています。「自分のツールを使う」完璧な例です。',
+          'zh': '这个网站本身完全使用Compomint构建！它展示了框架的功能，包括基于组件的架构、国际化、深色/浅色主题支持和响应式设计。一个完美的"吃自己的狗粮"示例。'
+        },
+        'visitCompomintWebsite': {
+          'en': 'Visit GitHub Repository',
+          'ko': 'GitHub 저장소 방문',
+          'ja': 'GitHubリポジトリを訪問',
+          'zh': '访问GitHub仓库'
+        },
+        'sourceCode': {
+          'en': 'Open Source',
+          'ko': '오픈 소스',
+          'ja': 'オープンソース',
+          'zh': '开源'
         }
       }
     });
@@ -86,41 +116,106 @@
         </p>
       </div>
 
-      <!-- Zidex Showcase Card -->
-      <div class="max-w-5xl mx-auto">
+      <!-- Showcase Cards Grid -->
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+
+        <!-- Card 1: Compomint Website -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
-          <div class="flex flex-col lg:flex-row">
-            <!-- Left Side - Logo/Visual -->
-            <div class="lg:w-2/5 bg-gradient-to-br from-blue-600 to-cyan-600 p-8 sm:p-12 flex items-center justify-center">
+          <div class="flex flex-col">
+            <!-- Logo/Visual Section -->
+            <div class="bg-gradient-to-br from-indigo-600 to-purple-600 p-8 flex items-center justify-center">
               <div class="text-center">
-                <div class="mb-6">
-                  <img src="img/zidex-logo.avif" alt="ZiDex Logo" class="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-2xl shadow-lg" />
+                <div class="mb-4">
+                  <img src="img/image.png" alt="Compomint Logo" class="w-20 h-20 sm:w-24 sm:h-24 mx-auto" />
                 </div>
-                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2">
+                  Compomint
+                </h3>
+                <p class="text-purple-100 text-sm max-w-xs mx-auto font-medium">
+                  ##=i18n.compomintWebsiteSubtitle##
+                </p>
+              </div>
+            </div>
+
+            <!-- Content Section -->
+            <div class="p-6 flex-1 flex flex-col">
+              <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                ##=i18n.compomintWebsiteTitle##
+              </h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed flex-1">
+                ##=i18n.compomintWebsiteDescription##
+              </p>
+
+              <!-- Compomint Badge & Open Source Badge -->
+              <div class="mb-4 flex gap-2 flex-wrap">
+                <div class="inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-md">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7L12 12L22 7L12 2M2 17L12 22L22 17V10L12 15L2 10V17Z"/>
+                  </svg>
+                  <span class="text-xs font-bold text-white">
+                    ##=i18n.builtWithCompomint##
+                  </span>
+                </div>
+                <div class="inline-flex items-center gap-2 px-3 py-2 bg-gray-700 dark:bg-gray-600 rounded-lg shadow-md">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  <span class="text-xs font-bold text-white">
+                    ##=i18n.sourceCode##
+                  </span>
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <a
+                href="https://github.com/kurukona/compomint-website"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-sm"
+              >
+                ##=i18n.visitCompomintWebsite##
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: ZiDex -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
+          <div class="flex flex-col">
+            <!-- Logo/Visual Section -->
+            <div class="bg-gradient-to-br from-blue-600 to-cyan-600 p-8 flex items-center justify-center">
+              <div class="text-center">
+                <div class="mb-4">
+                  <img src="img/zidex-logo.avif" alt="ZiDex Logo" class="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-2xl shadow-lg" />
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2">
                   ZiDex
                 </h3>
-                <p class="text-blue-100 text-sm sm:text-base max-w-xs mx-auto font-medium">
+                <p class="text-blue-100 text-sm max-w-xs mx-auto font-medium">
                   ##=i18n.zidexSubtitle##
                 </p>
               </div>
             </div>
 
-            <!-- Right Side - Content -->
-            <div class="lg:w-3/5 p-6 sm:p-8">
-              <h4 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-white">
+            <!-- Content Section -->
+            <div class="p-6 flex-1 flex flex-col">
+              <h4 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
                 ##=i18n.zidexTitle##
               </h4>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+              <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed flex-1">
                 ##=i18n.zidexDescription##
               </p>
 
               <!-- Compomint Badge -->
-              <div class="mb-6">
-                <div class="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-md">
-                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <div class="mb-4">
+                <div class="inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-md">
+                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2L2 7L12 12L22 7L12 2M2 17L12 22L22 17V10L12 15L2 10V17Z"/>
                   </svg>
-                  <span class="text-sm font-bold text-white">
+                  <span class="text-xs font-bold text-white">
                     ##=i18n.builtWithCompomint##
                   </span>
                 </div>
@@ -131,7 +226,7 @@
                 href="https://zidex.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                class="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-sm"
               >
                 ##=i18n.visitZidex##
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,6 +236,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
