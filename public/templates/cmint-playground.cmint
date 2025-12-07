@@ -110,13 +110,16 @@
   let showConsole = data.showConsole !== undefined ? data.showConsole : false;
   let autoRefresh = data.autoRefresh !== undefined ? data.autoRefresh : true;
   let runOnStart = data.runOnStart !== undefined ? data.runOnStart : true;
+  let onCodeChange = data.onCodeChange;
 
   const renderingAreaOnload = data.renderingAreaOnload;
 
   const runCodeArea = tmpl.cmint.PlaygroundCodeMirrorArea({
     value: code,
     changeEvent: function(cMirror) {
-      if (autoRefresh) renderingArea.refreshCode({code: cMirror.getValue(), type: type});
+      const newVal = cMirror.getValue();
+      if (autoRefresh) renderingArea.refreshCode({code: newVal, type: type});
+      if (onCodeChange) onCodeChange(newVal);
     }
   });
   const consoleArea = tmpl.cmint.PlaygroundConsoleArea({show: showConsole});

@@ -33,6 +33,12 @@
           'ja': '統合',
           'zh': '集成'
         },
+        'service': {
+          'en': 'Service',
+          'ko': '서비스',
+          'ja': 'サービス',
+          'zh': '服务'
+        },
         'documentation': {
           'en': 'Documentation',
           'ko': '문서',
@@ -169,6 +175,13 @@
               </a>
             </li>
             <li>
+              <a href="javascript:void(0)"
+                 onclick="showPage('service')"
+                 class="block py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=window.currentPage === 'service' ? 'text-indigo-600 dark:text-indigo-400 font-medium' : ''##">
+                ##=i18n.service##
+              </a>
+            </li>
+            <li>
               <a href="https://github.com/kurukona/compomint" target="_blank" rel="noopener"
                  class="flex items-center space-x-1 py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -227,6 +240,13 @@
                data-co-event="##:{click: closeMobileMenu}##"
                class="block py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=status.activeSection === 'integrations' ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium' : ''##">
               ##=i18n.integrations##
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"
+               onclick="showPage('service'); closeMobileMenu();"
+               class="block py-3 px-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 ##=window.currentPage === 'service' ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium' : ''##">
+              ##=i18n.service##
             </a>
           </li>
           <li>
