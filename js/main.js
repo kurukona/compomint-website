@@ -8,6 +8,9 @@ import "codemirror/mode/javascript/javascript.js";
 import "./theme-switcher.js";
 import "./syntax-highlighter.js";
 import "./language-switcher.js";
+import { auth, db } from "./firebase-config.js";
+import * as authModule from "firebase/auth";
+import * as firestoreModule from "firebase/firestore";
 
 //import "/Users/choish/workspaces/kurukona/compomint-website/public/templates/section-examples.cmint";
 
@@ -43,6 +46,7 @@ export async function loadTemplate(initApp) {
       "templates/section-integrations.cmint",
       "templates/section-ai-training-data.cmint",
       "templates/page-tutorial.cmint",
+      "templates/page-service.cmint",
 
       "templates/ui-cookie-consent.cmint",
       "templates/ui-language-switcher.cmint",
@@ -1035,6 +1039,25 @@ document.body.appendChild(itemList.element);`,
     const tutorialPage = tmpl.page.Tutorial({ examples: tutorialExamples });
     appContainer.innerHTML = "";
     appContainer.appendChild(tutorialPage.element);
+
+    // Scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  } else if (pageType === "service") {
+    // Show service page
+    window.currentPage = "service";
+
+    const servicePage = tmpl.page.Service({
+      auth: auth,
+      db: db,
+      authModule: authModule,
+      firestoreModule: firestoreModule
+    });
+
+    appContainer.innerHTML = "";
+    appContainer.appendChild(servicePage.element);
 
     // Scroll to top
     window.scrollTo({

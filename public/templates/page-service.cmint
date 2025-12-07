@@ -1,0 +1,262 @@
+<!-- Service Page Component -->
+<template id="page-Service">
+  ##!
+    compomint.addI18ns({
+      'page-Service': {
+        'title': {
+          'en': 'Service Editor',
+          'ko': '서비스 에디터',
+          'ja': 'サービスエディタ',
+          'zh': '服务编辑器'
+        },
+        'login': {
+          'en': 'Login',
+          'ko': '로그인',
+          'ja': 'ログイン',
+          'zh': '登录'
+        },
+        'logout': {
+          'en': 'Logout',
+          'ko': '로그아웃',
+          'ja': 'ログアウト',
+          'zh': '退出'
+        },
+        'save': {
+          'en': 'Save',
+          'ko': '저장',
+          'ja': '保存',
+          'zh': '保存'
+        },
+        'fileName': {
+          'en': 'File Name',
+          'ko': '파일 이름',
+          'ja': 'ファイル名',
+          'zh': '文件名'
+        },
+        'myFiles': {
+          'en': 'My Files',
+          'ko': '내 파일',
+          'ja': 'マイファイル',
+          'zh': '我的文件'
+        },
+        'newFile': {
+          'en': 'New File',
+          'ko': '새 파일',
+          'ja': '新規ファイル',
+          'zh': '新建文件'
+        },
+        'email': {
+          'en': 'Email',
+          'ko': '이메일',
+          'ja': 'メール',
+          'zh': '电子邮件'
+        },
+        'password': {
+          'en': 'Password',
+          'ko': '비밀번호',
+          'ja': 'パスワード',
+          'zh': '密码'
+        }
+      }
+    });
+  ##
+  ##
+    const auth = data.auth;
+    const db = data.db;
+    const { signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } = data.authModule;
+    const { collection, addDoc, getDocs, query, where, doc, setDoc, getDoc } = data.firestoreModule;
+
+    status.user = status.user || null;
+    status.files = status.files || [];
+    status.currentFile = status.currentFile || { name: 'untitled.cmint', content: '<!-- New Component -->\n<template id="my-Component">\n  <div>Hello World</div>\n</template>' };
+    status.email = status.email || '';
+    status.password = status.password || '';
+    status.loading = status.loading || false;
+    status.message = status.message || '';
+
+    // Initialize Auth Listener
+    if (!component.authListener) {
+      component.authListener = onAuthStateChanged(auth, async (user) => {
+        status.user = user;
+        if (user) {
+          await loadFiles();
+        } else {
+          status.files = [];
+        }
+        component.refresh();
+      });
+    }
+
+    async function handleLogin() {
+      try {
+        status.loading = true;
+        component.refresh();
+        await signInWithEmailAndPassword(auth, status.email, status.password);
+        status.message = '';
+      } catch (error) {
+        status.message = error.message;
+        // Try signup if login fails (simple approach for this demo)
+        try {
+           await createUserWithEmailAndPassword(auth, status.email, status.password);
+           status.message = '';
+        } catch(signupError) {
+           status.message = error.message;
+        }
+      } finally {
+        status.loading = false;
+        component.refresh();
+      }
+    }
+
+    async function handleLogout() {
+      await signOut(auth);
+    }
+
+    async function loadFiles() {
+      if (!status.user) return;
+      try {
+        const q = query(collection(db, "files"), where("uid", "==", status.user.uid));
+        const querySnapshot = await getDocs(q);
+        status.files = [];
+        querySnapshot.forEach((doc) => {
+          status.files.push({ id: doc.id, ...doc.data() });
+        });
+        component.refresh();
+      } catch (e) {
+        console.error("Error loading files: ", e);
+      }
+    }
+
+    async function saveFile() {
+      if (!status.user) return;
+      try {
+        const fileData = {
+          uid: status.user.uid,
+          name: status.currentFile.name,
+          content: status.currentFile.content,
+          updatedAt: new Date()
+        };
+
+        if (status.currentFile.id) {
+           await setDoc(doc(db, "files", status.currentFile.id), fileData);
+        } else {
+           const docRef = await addDoc(collection(db, "files"), fileData);
+           status.currentFile.id = docRef.id;
+        }
+
+        await loadFiles();
+        alert('Saved!');
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        alert('Error saving: ' + e.message);
+      }
+    }
+
+    function selectFile(file) {
+      status.currentFile = { ...file };
+      component.refresh();
+    }
+
+    function createNewFile() {
+      status.currentFile = { name: 'new-component.cmint', content: '<!-- New Component -->\n<template id="new-Component">\n  <div>Hello New World</div>\n</template>' };
+      component.refresh();
+    }
+
+    function updateContent(newContent) {
+      status.currentFile.content = newContent;
+    }
+  ##
+  <div class="page-Service page-content min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">##=i18n.title##</h1>
+        <div class="flex items-center gap-4">
+          ##if (status.user) {##
+            <span class="text-gray-600 dark:text-gray-300">##=status.user.email##</span>
+            <button class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded hover:bg-gray-300 dark:hover:bg-gray-600"
+                    data-co-event="##:{click: handleLogout}##">##=i18n.logout##</button>
+          ##}##
+        </div>
+      </div>
+
+      ##if (!status.user) {##
+        <div class="max-w-md mx-auto bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+          <h2 class="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">##=i18n.login## / Signup</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">##=i18n.email##</label>
+              <input type="email" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white"
+                     value="##=status.email##"
+                     data-co-event="##:{input: (e) => status.email = e.target.value}##">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">##=i18n.password##</label>
+              <input type="password" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white"
+                     value="##=status.password##"
+                     data-co-event="##:{input: (e) => status.password = e.target.value}##">
+            </div>
+            ##if (status.message) {##
+              <p class="text-red-500 text-sm">##=status.message##</p>
+            ##}##
+            <button class="w-full py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-50"
+                    ##=status.loading ? 'disabled' : ''##
+                    data-co-event="##:{click: handleLogin}##">
+              ##=status.loading ? 'Loading...' : i18n.login##
+            </button>
+          </div>
+        </div>
+      ##} else {##
+        <div class="flex flex-col md:flex-row gap-6 h-[calc(100vh-200px)]">
+          <!-- Sidebar -->
+          <div class="w-full md:w-64 bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden flex flex-col">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+              <h3 class="font-bold text-gray-900 dark:text-gray-100">##=i18n.myFiles##</h3>
+              <button class="text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 p-1 rounded"
+                      title="##=i18n.newFile##"
+                      data-co-event="##:{click: createNewFile}##">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+              </button>
+            </div>
+            <div class="overflow-y-auto flex-1 p-2 space-y-1">
+              ##status.files.forEach(file => {##
+                <div class="px-3 py-2 rounded cursor-pointer ##=status.currentFile.id === file.id ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300' : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'##"
+                     data-co-event="##:{click: () => selectFile(file)}##">
+                  <div class="font-medium truncate">##=file.name##</div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">##=file.updatedAt ? new Date(file.updatedAt.seconds * 1000).toLocaleDateString() : ''##</div>
+                </div>
+              ##})##
+            </div>
+          </div>
+
+          <!-- Main Editor Area -->
+          <div class="flex-1 flex flex-col bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-800">
+              <input type="text" class="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 w-64"
+                     value="##=status.currentFile.name##"
+                     data-co-event="##:{input: (e) => status.currentFile.name = e.target.value}##">
+              <button class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 flex items-center gap-2"
+                      data-co-event="##:{click: saveFile}##">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                ##=i18n.save##
+              </button>
+            </div>
+            <div class="flex-1 relative">
+              ##%tmpl.cmint.Playground({
+                template: null,
+                code: status.currentFile.content,
+                type: 'codeIsTemplateFile',
+                showConsole: true,
+                autoRefresh: false,
+                onCodeChange: updateContent,
+                renderingAreaOnload: (iframeWindow) => {
+                   iframeWindow.compomint = iframeWindow.Compomint.compomint;
+                   iframeWindow.tmpl = iframeWindow.Compomint.tmpl;
+                }
+              })##
+            </div>
+          </div>
+        </div>
+      ##}##
+    </div>
+  </div>
+</template>
