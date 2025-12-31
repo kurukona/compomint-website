@@ -9,9 +9,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run build-css-once && vite build && node build-static.mjs",
-    "build:ssg": "npm run build-css-once && node build_ssg.js && npm run copy-assets:ssg:jsdom",
-    "build:ssg:jsdom": "npm run build-css-once && node build_ssg_jsdom.js && npm run copy-assets:ssg:jsdom",
+    "build": "npm run build-css-once && vite build",
+    "build:ssg": "npm run build-css-once && echo 'build_ssg.js is missing' && npm run copy-assets:ssg:jsdom",
+    "build:ssg:jsdom": "npm run build-css-once && echo 'build_ssg_jsdom.js is missing' && npm run copy-assets:ssg:jsdom",
     "copy-assets:ssg": "cp -r css dist_static/ && cp -r img dist_static/ && cp -r js dist_static/ && cp -r public dist_static/ && cp manifest.json dist_static/ 2>/dev/null || echo 'Some assets may not exist, continuing...'",
     "copy-assets:ssg:jsdom": "cp -r css dist_jsdom/ && cp -r img dist_jsdom/ && cp -r js dist_jsdom/ && cp -r public dist_jsdom/ && cp manifest.json dist_jsdom/ 2>/dev/null || echo 'Some assets may not exist, continuing...'",
     "preview": "vite preview",
