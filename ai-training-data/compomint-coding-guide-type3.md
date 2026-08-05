@@ -67,6 +67,14 @@ await compomint.addTmplByUrl({
     loadLink: true    // Load link tags
   }
 });
+
+// Method 6: Using Module Bundlers (Vite/Webpack) - Recommended
+import headerTmpl from './templates/header.cmint?raw';
+import mainTmpl from './templates/main.cmint?raw';
+
+compomint.addTmpls(headerTmpl);
+compomint.addTmpls(mainTmpl);
+// Avoids network requests and SPA routing issues
 ```
 
 ---
@@ -437,6 +445,37 @@ button.release();
     ##})##
   </ul>
 </template>
+```
+
+---
+
+## Client-Side Router (SPA Routing)
+
+```javascript
+import { compomint, CompomintRouter } from 'compomint';
+
+// 1. Programmatic Router Setup
+compomint.createRouter({
+  mode: 'history',
+  routes: {
+    '/': { render: () => { /* render home */ } },
+    '/events/:id': { render: (match) => { /* render detail */ } }
+  }
+});
+compomint.navigate('/events/123');
+
+// 2. Static Tree Routing Utilities & CompomintRouter Namespace
+const PageToRouter = CompomintRouter.buildPageToRouterMap(Router.app);
+
+function parseUrl(): CompomintRouter.RouterItem {
+  return CompomintRouter.parseUrlFromPath(
+    window.location.pathname,
+    window.location.search,
+    Router.app
+  );
+}
+
+const targetUrl = CompomintRouter.getUrlForStateFromMap(PageToRouter, 'home', { id: '123' });
 ```
 
 ---
