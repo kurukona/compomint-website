@@ -880,3 +880,33 @@ a comprehensive example utilizing TailwindCSS 4 and all Compomint syntax.
 ```
 
 Following these standards will help you write consistent and maintainable Compomint code for the zidex-web project.
+
+## Client-Side Router (SPA Routing) & CompomintRouter Namespace
+
+```javascript
+import { compomint, CompomintRouter } from 'compomint';
+
+// Programmatic Router Setup
+compomint.createRouter({
+  mode: 'history',
+  routes: {
+    '/': { render: () => { /* render home */ } },
+    '/events/:id': { render: (match) => { /* render detail */ } }
+  }
+});
+compomint.navigate('/events/123');
+
+// Static Tree Routing Utilities & CompomintRouter Namespace
+const PageToRouter = CompomintRouter.buildPageToRouterMap(Router.app);
+
+function parseUrl(): CompomintRouter.RouterItem {
+  return CompomintRouter.parseUrlFromPath(
+    window.location.pathname,
+    window.location.search,
+    Router.app
+  );
+}
+
+const targetUrl = CompomintRouter.getUrlForStateFromMap(PageToRouter, 'home', { id: '123' });
+```
+

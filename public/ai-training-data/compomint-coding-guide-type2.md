@@ -1063,6 +1063,35 @@ document.body.appendChild(input);
 -->
 ```
 
+## Client-Side Routing with CompomintRouter
+
+```javascript
+import { compomint, CompomintRouter } from 'compomint';
+
+// Programmatic Router Setup
+compomint.createRouter({
+  mode: 'history',
+  routes: {
+    '/': { render: () => { /* render home */ } },
+    '/events/:id': { render: (match) => { /* render detail */ } }
+  }
+});
+compomint.navigate('/events/123');
+
+// Static Tree Routing Utilities & CompomintRouter Namespace
+const PageToRouter = CompomintRouter.buildPageToRouterMap(Router.app);
+
+function parseUrl(): CompomintRouter.RouterItem {
+  return CompomintRouter.parseUrlFromPath(
+    window.location.pathname,
+    window.location.search,
+    Router.app
+  );
+}
+
+const targetUrl = CompomintRouter.getUrlForStateFromMap(PageToRouter, 'home', { id: '123' });
+```
+
 ## Conclusion
 
 Converting HTML to Compomint templates involves understanding the template syntax, component lifecycle, and best practices for component design. By following the guidelines in this document, you can create maintainable, reusable components that leverage the full power of the Compomint framework.
