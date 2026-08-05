@@ -909,6 +909,46 @@ Load handlers receive these parameters:
 
 ## Advanced Features
 
+### Client-Side Router (SPA Routing)
+
+Compomint includes a built-in router for handling client-side SPA navigation, route matching with URL parameters, query strings, and state history:
+
+```javascript
+import { compomint, tmpl } from 'compomint';
+
+compomint.createRouter({
+  mode: 'history',
+  routes: {
+    '/': {
+      render: () => {
+        const page = tmpl.homePage();
+        document.getElementById('app').replaceChildren(page.element);
+      }
+    },
+    '/events/:id': {
+      render: (match) => {
+        const page = tmpl.eventDetailPage({ eventId: match.params.id, tab: match.queryParams.tab });
+        document.getElementById('app').replaceChildren(page.element);
+      }
+    }
+  }
+});
+
+// 2. Programmatic navigation
+compomint.navigate('/events/123?tab=info');
+
+// 3. Static tree routing utilities & namespace
+import { CompomintRouter } from 'compomint';
+
+const PageToRouter = CompomintRouter.buildPageToRouterMap(Router.app);
+const currentRoute: CompomintRouter.RouterItem = CompomintRouter.parseUrlFromPath(
+  window.location.pathname,
+  window.location.search,
+  Router.app
+);
+const urlStr = CompomintRouter.getUrlForStateFromMap(PageToRouter, 'home', { id: '123' });
+```
+
 ### Internationalization Support (i18n)
 
 Compomint includes built-in support for multiple languages:

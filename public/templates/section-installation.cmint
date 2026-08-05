@@ -81,10 +81,10 @@
         },
         'templateLoading': {
           'title': {
-            'en': 'Template Loading with addTmplByUrl',
-            'ko': 'addTmplByUrl로 템플릿 로딩',
-            'ja': 'addTmplByUrlでテンプレートローディング',
-            'zh': '使用addTmplByUrl加载模板'
+            'en': 'Template Loading Methods',
+            'ko': '템플릿 로딩 방법',
+            'ja': 'テンプレートローディング方法',
+            'zh': '模板加载方法'
           }
         },
         'basicUsage': {
@@ -141,6 +141,20 @@
             'ko': '스크립트, 스타일, 링크 로딩을 위한 고급 옵션',
             'ja': 'スクリプト、スタイル、リンクのローディングのための高度なオプション',
             'zh': '用于加载脚本、样式和链接的高级选项'
+          }
+        },
+        'moduleBundler': {
+          'title': {
+            'en': 'Module Bundler',
+            'ko': '모듈 번들러',
+            'ja': 'モジュールバンドラー',
+            'zh': '模块打包器'
+          },
+          'description': {
+            'en': 'Import templates as raw strings via loaders and use addTmpls',
+            'ko': '로더를 통해 템플릿을 문자열로 가져와서 addTmpls 사용',
+            'ja': 'ローダーを通じてテンプレートを文字列としてインポートし、addTmplsを使用',
+            'zh': '通过加载器将模板作为字符串导入并使用addTmpls'
           }
         },
         'projectStructure': {
@@ -354,6 +368,29 @@ await compomint.addTmplByUrl(
     loadStyle: true,   // Load style tags
     loadLink: true     // Load link tags
   });
+</pre>
+            </div>
+          </div>
+
+          <!-- Module Bundler -->
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center mr-3">
+                <svg class="w-5 h-5 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                </svg>
+              </div>
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">##=i18n.moduleBundler.title##</h4>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">##=i18n.moduleBundler.description##</p>
+            <div class="bg-gray-800 rounded-lg p-4">
+              <pre class="text-green-400 font-mono text-sm overflow-x-auto">
+// Load as string via bundler (e.g. raw-loader or ?raw)
+import myTmpl from './my-tmpl.cmint?raw';
+
+compomint.addTmpls(myTmpl);
+const component = tmpl.my.Component({});
+document.body.appendChild(component.element);
 </pre>
             </div>
           </div>

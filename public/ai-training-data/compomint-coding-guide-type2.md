@@ -178,10 +178,18 @@ await compomint.addTmplByUrl({
 ### Other Template Loading Methods
 
 ```javascript
-// Method 1: Direct template string
+// Method 1: Using Module Bundlers (Vite, Webpack) - Recommended
+// This avoids network requests and routing issues
+import buttonTmpl from './templates/plin-Button.cmint?raw';
+import cardTmpl from './templates/plin-Card.cmint?raw';
+
+compomint.addTmpls(buttonTmpl);
+compomint.addTmpls(cardTmpl);
+
+// Method 2: Direct template string
 compomint.addTmpl('plin-Button', '<div>##=data.text##</div>');
 
-// Method 2: From HTML template tags
+// Method 3: From HTML template tags
 compomint.addTmpls(templateString);
 ```
 

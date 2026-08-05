@@ -50,6 +50,25 @@ This repository contains the website for Compomint - a lightweight JavaScript te
    npx http-server
    ```
 
+4. For AI Assistants and Developers:
+   To learn about Compomint's coding standards and usage patterns, refer to the guides in the `public/ai-training-data/` directory:
+   - [`compomint-coding-guide_type1.md`](public/ai-training-data/compomint-coding-guide_type1.md): Compomint Coding Standards
+   - [`compomint-coding-guide-type2.md`](public/ai-training-data/compomint-coding-guide-type2.md): Guide to Converting HTML to Compomint Templates
+   - [`compomint-coding-guide-type3.md`](public/ai-training-data/compomint-coding-guide-type3.md): Compomint Quick Reference Guide
+
+5. Contributing and Version Control:
+   When making changes to the documentation, templates, or AI training data, ensure you stage your changes before committing:
+   ```bash
+   # Stage all modified files
+   git add .
+   
+   # Or stage specific files
+   git add path/to/file.md
+   
+   # Commit your staged changes
+   git commit -m "Description of your changes"
+   ```
+
 ## Internationalization
 
 The website supports multiple languages through Compomint's built-in i18n system:

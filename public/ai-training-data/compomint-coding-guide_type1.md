@@ -8,11 +8,26 @@ This document outlines the coding standards for using the Compomint template eng
 
 ### Template Loading
 
-- Template files are loaded using the `compomint.addTmplByUrl()` method
-- Multiple template files can be loaded simultaneously
+- Template files can be loaded using module bundlers (like Vite) or the `compomint.addTmplByUrl()` method.
+- **Recommended**: Using Vite's `?raw` import with `compomint.addTmpls()` directly bundles templates, preventing network overhead and routing issues.
 
 ```javascript
-// Load multiple template files
+// Recommended: Load templates via Module Bundler (Vite)
+import buttonTmpl from './templates/zd-Button.cmint?raw';
+import mainPageTmpl from './templates/zd-MainPage.cmint?raw';
+import userCardTmpl from './templates/zd-UserCard.cmint?raw';
+
+async function loadTemplates() {
+  compomint.addTmpls(buttonTmpl);
+  compomint.addTmpls(mainPageTmpl);
+  compomint.addTmpls(userCardTmpl);
+  
+  console.log("All templates loaded");
+  const mainPage = tmpl.zd.MainPage({});
+  document.body.appendChild(mainPage.element);
+}
+
+// Alternative: Load multiple template files via URL
 compomint
   .addTmplByUrl([
     "templates/zd-Button.cmint",
@@ -20,9 +35,7 @@ compomint
     "templates/zd-UserCard.cmint",
   ])
   .then(() => {
-    console.log("All templates loaded");
-    const mainPage = tmpl.zd.MainPage({});
-    document.body.appendChild(mainPage.element);
+    console.log("All templates loaded via URL");
   });
 ```
 

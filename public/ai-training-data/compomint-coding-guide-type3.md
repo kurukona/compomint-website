@@ -67,6 +67,14 @@ await compomint.addTmplByUrl({
     loadLink: true    // Load link tags
   }
 });
+
+// Method 6: Using Module Bundlers (Vite/Webpack) - Recommended
+import headerTmpl from './templates/header.cmint?raw';
+import mainTmpl from './templates/main.cmint?raw';
+
+compomint.addTmpls(headerTmpl);
+compomint.addTmpls(mainTmpl);
+// Avoids network requests and SPA routing issues
 ```
 
 ---
