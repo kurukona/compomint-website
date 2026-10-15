@@ -5,7 +5,8 @@
 
   component.changeI18n = () => {
     if (data.hero) data.hero.refresh();
-    if (data.zidexShowcase) data.zidexShowcase.refresh();
+    if (data.kurukonaShowcase) data.kurukonaShowcase.refresh();
+    else if (data.zidexShowcase) data.zidexShowcase.refresh();
     if (data.aiTrainingData) data.aiTrainingData.refresh();
     if (data.header) data.header.refresh();
     if (data.features) data.features.refresh();
@@ -26,7 +27,7 @@
     ##%data.header##
     <main class="flex-grow">
       ##%data.hero##
-      ##%data.zidexShowcase##
+      ##%data.kurukonaShowcase || data.zidexShowcase##
       ##%data.aiTrainingData##
       ##%data.features##
       ##%data.documentation##

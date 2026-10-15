@@ -32,7 +32,7 @@ export async function loadTemplate(initApp) {
       "templates/layout-header.cmint",
       "templates/layout-footer.cmint",
       "templates/section-hero.cmint",
-      "templates/section-zidex-showcase.cmint",
+      "templates/section-kurukona-showcase.cmint",
       "templates/section-features.cmint",
       "templates/section-vscode-extension.cmint",
       "templates/section-examples.cmint",
@@ -295,8 +295,8 @@ async function initApp(compomint, tmpl) {
   // Define the hero section
   const hero = tmpl.section.Hero({});
 
-  // Define the Zidex showcase section
-  const zidexShowcase = tmpl.section.ZidexShowcase({});
+  // Define the KuruKona showcase section
+  const kurukonaShowcase = tmpl.section.KurukonaShowcase({});
 
   // Define the AI training data section
   const aiTrainingData = tmpl.section.AiTrainingData({});
@@ -823,7 +823,7 @@ function initializeVueApp() {
   const appLayout = tmpl.app.Layout({
     header: header,
     hero: hero,
-    zidexShowcase: zidexShowcase,
+    kurukonaShowcase: kurukonaShowcase,
     aiTrainingData: aiTrainingData,
     features: features,
     vscodeExtension: vscodeExtension,
