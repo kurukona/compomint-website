@@ -511,20 +511,22 @@
       });
     </script>
 
-    <!-- Google tag (gtag.js) - Only loaded if analytics are enabled -->
+    <!-- Google tag (gtag.js) - Only loaded if analytics are enabled (GDPR Compliant) -->
     <script>
       // Initialize consent mode
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
+      window.gtag = gtag;
 
-      // Default consent state
+      // Default consent state (denied)
       gtag("consent", "default", {
         analytics_storage: "denied",
+        ad_storage: "denied",
       });
 
-      // Only load gtag if analytics are enabled
+      // Only load gtag if analytics are enabled by user consent
       if (localStorage.getItem("analyticsEnabled") === "true") {
         const script = document.createElement("script");
         script.async = true;
@@ -568,30 +570,16 @@
         if (localStorage.getItem("analyticsEnabled") === "true") {
           // Send to Google Analytics 4 (GA4) for Core Web Vitals tracking
           try {
-            // Use gtag if available (Google Analytics)
-            if (typeof gtag !== "undefined") {
+            if (typeof gtag === "function") {
               gtag("event", metric.name, {
                 event_category: "Web Vitals",
-                value: Math.round(metric.value),
+                value: Math.round(
+                  metric.name === "CLS" ? metric.value * 1000 : metric.value
+                ),
                 metric_rating: metric.rating,
                 page_location: window.location.href,
-                custom_parameter_1: "Core Web Vitals",
               });
             }
-
-            // Also send to custom analytics endpoint if needed
-            const data = {
-              site: "compomint.dev", // cspell:ignore compomint
-              url: window.location.href,
-              metric: metric.name,
-              value: metric.value,
-              rating: metric.rating,
-              timestamp: Date.now(),
-              userAgent: navigator.userAgent,
-            };
-
-            // Use Beacon API to send data reliably to your analytics service
-            navigator.sendBeacon("/api/analytics", JSON.stringify(data));
 
             console.log("Web Vitals sent to analytics:", metric);
           } catch (error) {
