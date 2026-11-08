@@ -1,10 +1,13 @@
-<!-- KuruKona Showcase Section -->
+<!-- Showcase Section (KuruKona & IKUMAP) -->
 <template id="section-KurukonaShowcase">
   ##!
     compomint.addI18ns({
       'section-KurukonaShowcase': {
-        'title': { 'en': 'Built with Compomint', 'ko': 'Compomint로 만들어진 서비스', 'ja': 'Compomintで構築', 'zh': '使用Compomint构建' },
-        'subtitle': { 'en': 'Real-world production platform powered by Compomint', 'ko': '실제 글로벌 프로덕션에서 사용되는 Compomint 기반 올인원 플랫폼', 'ja': 'Compomintで動作するグローバル・プロダクションプラットフォーム', 'zh': '由Compomint驱动的实际全球生产级平台' },
+        'title': { 'en': 'Built with Compomint', 'ko': 'Compomint로 만들어진 서비스', 'ja': 'Compomintで構築されたサービス', 'zh': '使用Compomint构建的服务' },
+        'subtitle': { 'en': 'Real-world production services powered by Compomint', 'ko': '실제 글로벌 프로덕션에서 서비스 중인 Compomint 기반 웹 애플리케이션', 'ja': '実際のグローバル本番環境で稼働するCompomintベースのサービス', 'zh': '在实际全球生产环境中运行的Compomint驱动服务' },
+        'builtWithBadge': { 'en': '100% Frontend Powered by Compomint', 'ko': '100% Compomint로 구축된 프론트엔드', 'ja': '100% Compomint製フロントエンド', 'zh': '100% Compomint构建前端' },
+
+        // KuruKona i18n
         'appTitle': { 'en': 'KuruKona — All-in-One Event Management Platform', 'ko': 'KuruKona (くるこな) — 올인원 모임·이벤트 관리 플랫폼', 'ja': 'くるこな (KuruKona) — オールインワン・イベント管理プラットフォーム', 'zh': 'KuruKona — 一站式活动与聚会综合管理平台' },
         'appSubtitle': { 'en': 'Smart RSVP, Meeting Polls, Shift Timetables & Bill Splitting', 'ko': '출결 확인·일정 투표·타임테이블 시프트·스마트 N분의1 정산', 'ja': '出欠確認・日程投票・タイムテーブル・スマート割り勘', 'zh': '出勤确认·日程投票·轮班排表·智能差额AA' },
         'appDesc': {
@@ -13,12 +16,61 @@
           'ja': 'KuruKonaはCompomintでフロントエンドが完全に構築されたイベント管理プラットフォームです。出欠・写真共有（くるこな）、日程投票（いつくる）、シフト管理（いつだれ）、スマート割り勘（パッと割り）の4大アプリを備えています。',
           'zh': 'KuruKona是完全基于Compomint构建前端的一站式活动平台。包含出勤相册(Kurukona)、日程投票(Itsukuru)、分工时间表(Itsudare)与智能差额分摊(Pattowari)四大核心微应用，展现了极速响应与多语言实力。'
         },
-        'builtWithBadge': { 'en': '100% Frontend Powered by Compomint', 'ko': '100% Compomint로 구축된 프론트엔드', 'ja': '100% Compomint製フロントエンド', 'zh': '100% Compomint构建前端' },
         'visitSite': { 'en': 'Visit KuruKona Platform', 'ko': 'KuruKona 웹사이트 방문', 'ja': 'KuruKona Webサイトを訪問', 'zh': '访问KuruKona平台' },
         'app1': { 'en': 'Kurukona: RSVP & Photos', 'ko': 'くるこな: 출결 & 사진공유', 'ja': 'くるこな: 出欠・アルバム', 'zh': 'Kurukona: 出勤与相册' },
         'app2': { 'en': 'Itsukuru: Instant Polls', 'ko': 'いつくる: 로그인 없는 투표', 'ja': 'いつくる: ログイン不要日程投票', 'zh': 'Itsukuru: 免登录日程投票' },
         'app3': { 'en': 'Itsudare: Shifts & Roles', 'ko': 'いつだれ: 타임테이블 시프트', 'ja': 'いつだれ: タイムテーブル・シフト', 'zh': 'Itsudare: 轮班排表分工' },
-        'app4': { 'en': 'Pattowari: Smart Splitting', 'ko': 'パッと割り: 스마트 N분의1 정산', 'ja': 'パッと割り: スマート傾斜精算', 'zh': 'Pattowari: 智能AA制精算' }
+        'app4': { 'en': 'Pattowari: Smart Splitting', 'ko': 'パッと割り: 스마트 N분의1 정산', 'ja': 'パッと割り: スマート傾斜精算', 'zh': 'Pattowari: 智能AA制精算' },
+
+        // IKUMAP i18n
+        'ikumapTitle': {
+          'en': 'IKUMAP — Universal Map & Field History Platform',
+          'ko': 'IKUMAP (いくまっぷ) — 차세대 범용 지도 협업·방문 관리 플랫폼',
+          'ja': 'いくまっぷ (IKUMAP) — 次世代ユニバーサルマップ協業・訪問履歴管理プラットフォーム',
+          'zh': 'IKUMAP — 次世代通用地图协作与拜访历史管理平台'
+        },
+        'ikumapSubtitle': {
+          'en': 'Area Polygons, Multi-Unit Tracking & Dynamic Form Workflows',
+          'ko': '다각형 구역 분할·건물 호실별 방문 이력·노코드 동적 폼',
+          'ja': '階層ポリゴンエリア・号室別訪問履歴・ノーコード動的フォーム',
+          'zh': '多边形网格分区·建筑单元拜访追踪·无代码动态表单'
+        },
+        'ikumapDesc': {
+          'en': 'IKUMAP is a universal map-based collaboration and visit-history tracking platform built with Compomint. Designed for field operations, facility inspection, maintenance, and community care, it delivers snappy real-time map interactions, multi-unit building visit logs, and customizable dynamic form schemas with native 4-language support.',
+          'ko': 'IKUMAP(いくまっぷ)은 Compomint로 프론트엔드가 구축된 차세대 범용 지도 협업 및 방문 이력 관리 플랫폼입니다. 현장 영업, 시설 점검, 설비 보수, 방문 돌봄 등 다양한 현장 활동을 위해 지도 기반의 다각형(Polygon) 영역 관리, 건물 호실(Unit)별 방문 이력 추적, 노코드 동적 입력 폼, LINE 간편 로그인을 지원합니다.',
+          'ja': 'いくまっぷ(IKUMAP)はCompomintでフロントエンドが構築された次世代ユニバーサルマップ協業・訪問履歴管理プラットフォームです。フィールド営業、設備点検、保守、訪問介護などの現場活動向けに、階層型ポリゴンエリア管理、建物号室別の訪問履歴、ノーコード動的フォーム、LINE連携を提供します。',
+          'zh': 'IKUMAP是完全基于Compomint构建前端的新一代通用地图协作与拜访历史管理平台。专为外勤销售、设施巡检、设备运维与社区看护打造，支持层级多边形区域划分、建筑单元级拜访记录、无代码动态表单定制与LINE便捷登录。'
+        },
+        'visitIkumapSite': {
+          'en': 'Visit IKUMAP Platform',
+          'ko': 'IKUMAP 웹사이트 방문',
+          'ja': 'IKUMAP Webサイトを訪問',
+          'zh': '访问IKUMAP平台'
+        },
+        'ikuApp1': {
+          'en': 'Places & Multi-Unit Tracking',
+          'ko': '장소 및 호실(Unit)별 이력 관리',
+          'ja': '地点・建物号室別の訪問履歴',
+          'zh': '地点与建筑单元独立追踪'
+        },
+        'ikuApp2': {
+          'en': 'Hierarchical Area Polygons',
+          'ko': '계층형 폴리곤 구역 할당',
+          'ja': '階層型ポリゴンエリア管理',
+          'zh': '多层级多边形网格划分'
+        },
+        'ikuApp3': {
+          'en': 'No-Code Dynamic Forms',
+          'ko': '노코드 맞춤형 동적 폼',
+          'ja': 'ノーコード動的フォーム作成',
+          'zh': '无代码动态表单定制'
+        },
+        'ikuApp4': {
+          'en': 'LINE Integration & 4 Languages',
+          'ko': 'LINE 간편 연동 & 4개 국어 지원',
+          'ja': 'LINE連携・4言語リアルタイム対応',
+          'zh': 'LINE登录联动与四语即时切换'
+        }
       }
     });
   ##
@@ -29,47 +81,97 @@
         <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">##=i18n.subtitle##</p>
       </div>
 
-      <div class="max-w-5xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl">
-        <div class="flex flex-col lg:flex-row">
-          <div class="lg:w-2/5 bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 p-8 sm:p-10 flex flex-col items-center justify-center text-center text-white">
-            <img src="img/kurukona-logo.webp" alt="KuruKona Logo" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl shadow-2xl ring-4 ring-white/20 mb-5 object-cover" />
-            <h3 class="text-2xl sm:text-3xl font-extrabold mb-1 tracking-tight">KuruKona</h3>
-            <p class="text-xs sm:text-sm text-indigo-100/90 font-medium max-w-xs">##=i18n.appSubtitle##</p>
-            <div class="mt-5 inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 backdrop-blur-md rounded-full text-xs font-semibold text-white">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Production Active
-            </div>
-          </div>
-
-          <div class="lg:w-3/5 p-6 sm:p-8 flex flex-col justify-between">
-            <div>
-              <h4 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">##=i18n.appTitle##</h4>
-              <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">##=i18n.appDesc##</p>
-
-              <div class="grid grid-cols-2 gap-2 mb-6 text-xs sm:text-sm">
-                <div class="p-2.5 rounded-xl bg-indigo-50/70 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>##=i18n.app1##
-                </div>
-                <div class="p-2.5 rounded-xl bg-purple-50/70 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 font-medium flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>##=i18n.app2##
-                </div>
-                <div class="p-2.5 rounded-xl bg-sky-50/70 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 font-medium flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>##=i18n.app3##
-                </div>
-                <div class="p-2.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 font-medium flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>##=i18n.app4##
-                </div>
+      <div class="max-w-5xl mx-auto space-y-8 md:space-y-10">
+        <!-- KuruKona Showcase Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl">
+          <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-2/5 bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 p-8 sm:p-10 flex flex-col items-center justify-center text-center text-white">
+              <img src="img/kurukona-logo.webp" alt="KuruKona Logo" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl shadow-2xl ring-4 ring-white/20 mb-5 object-cover" />
+              <h3 class="text-2xl sm:text-3xl font-extrabold mb-1 tracking-tight">KuruKona</h3>
+              <p class="text-xs sm:text-sm text-indigo-100/90 font-medium max-w-xs">##=i18n.appSubtitle##</p>
+              <div class="mt-5 inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 backdrop-blur-md rounded-full text-xs font-semibold text-white">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Production Active
               </div>
             </div>
 
-            <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
-              <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg text-xs font-semibold shadow-sm">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7L12 12L22 7L12 2M2 17L12 22L22 17V10L12 15L2 10V17Z"/></svg>
-                ##=i18n.builtWithBadge##
-              </span>
-              <a href="https://kurukona.net" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg transition-all">
-                ##=i18n.visitSite##
-                <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </a>
+            <div class="lg:w-3/5 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">##=i18n.appTitle##</h4>
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">##=i18n.appDesc##</p>
+
+                <div class="grid grid-cols-2 gap-2 mb-6 text-xs sm:text-sm">
+                  <div class="p-2.5 rounded-xl bg-indigo-50/70 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>##=i18n.app1##
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-purple-50/70 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 font-medium flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>##=i18n.app2##
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-sky-50/70 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 font-medium flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>##=i18n.app3##
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 font-medium flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>##=i18n.app4##
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg text-xs font-semibold shadow-sm">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7L12 12L22 7L12 2M2 17L12 22L22 17V10L12 15L2 10V17Z"/></svg>
+                  ##=i18n.builtWithBadge##
+                </span>
+                <a href="https://kurukona.net" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg transition-all">
+                  ##=i18n.visitSite##
+                  <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- IKUMAP Showcase Card -->
+        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-2xl">
+          <div class="flex flex-col lg:flex-row">
+            <div class="lg:w-2/5 bg-gradient-to-br from-amber-500 via-orange-600 to-rose-600 p-8 sm:p-10 flex flex-col items-center justify-center text-center text-white">
+              <img src="img/ikumap-logo.webp" alt="IKUMAP Logo" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl shadow-2xl ring-4 ring-white/20 mb-5 object-cover bg-white" />
+              <h3 class="text-2xl sm:text-3xl font-extrabold mb-1 tracking-tight">IKUMAP</h3>
+              <p class="text-xs sm:text-sm text-amber-100/90 font-medium max-w-xs">##=i18n.ikumapSubtitle##</p>
+              <div class="mt-5 inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 backdrop-blur-md rounded-full text-xs font-semibold text-white">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Production Active
+              </div>
+            </div>
+
+            <div class="lg:w-3/5 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <h4 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">##=i18n.ikumapTitle##</h4>
+                <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">##=i18n.ikumapDesc##</p>
+
+                <div class="grid grid-cols-2 gap-2 mb-6 text-xs sm:text-sm">
+                  <div class="p-2.5 rounded-xl bg-amber-50/70 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 font-medium flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>##=i18n.ikuApp1##
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-orange-50/70 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 font-medium flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>##=i18n.ikuApp2##
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-rose-50/70 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300 font-medium flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>##=i18n.ikuApp3##
+                  </div>
+                  <div class="p-2.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 font-medium flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>##=i18n.ikuApp4##
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white rounded-lg text-xs font-semibold shadow-sm">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7L12 12L22 7L12 2M2 17L12 22L22 17V10L12 15L2 10V17Z"/></svg>
+                  ##=i18n.builtWithBadge##
+                </span>
+                <a href="https://ikumap.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg transition-all">
+                  ##=i18n.visitIkumapSite##
+                  <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
